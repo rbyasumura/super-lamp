@@ -62,8 +62,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.People.Repositories.EntityFramework\Advance.Framework.PersonService.Repositories.EntityFramework.csproj">
-      <Project>{F3A606EC-9AC9-418A-8198-534C4E065FEA}</Project>
+    <ProjectReference Include="..\Advance.Framework.PeopleService.Repositories.EntityFramework\Advance.Framework.PersonService.Repositories.EntityFramework.csproj">
+      <Project>{f3a606ec-9ac9-418a-8198-534c4e065fea}</Project>
       <Name>Advance.Framework.PersonService.Repositories.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
