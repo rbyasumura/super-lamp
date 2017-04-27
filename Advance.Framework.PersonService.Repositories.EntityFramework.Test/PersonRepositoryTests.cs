@@ -27,10 +27,12 @@ namespace Advance.Framework.PersonService.Repositories.EntityFramework.Test
             {
                 FirstName = "Bobby",
                 LastName = "Yasumura",
+                DateOfBirth = new DateTime(1981, 12, 11),
             };
 
             /// Act
             new PersonRepository().Add(person);
+
             /// Assert
         }
 

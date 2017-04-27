@@ -50,6 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201704262246519_InitialCreate.cs" />
+    <Compile Include="Migrations\201704262246519_InitialCreate.Designer.cs">
+      <DependentUpon>201704262246519_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704271827237_Person.DateOfBirth.cs" />
+    <Compile Include="Migrations\201704271827237_Person.DateOfBirth.Designer.cs">
+      <DependentUpon>201704271827237_Person.DateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonRepository.cs" />
     <Compile Include="PersonServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +72,14 @@
       <Project>{BD056327-C21F-4847-BBC7-694CBFA11D0F}</Project>
       <Name>Advance.Framework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704262246519_InitialCreate.resx">
+      <DependentUpon>201704262246519_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704271827237_Person.DateOfBirth.resx">
+      <DependentUpon>201704271827237_Person.DateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
