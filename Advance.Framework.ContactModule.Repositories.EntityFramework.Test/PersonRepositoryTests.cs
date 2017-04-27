@@ -1,10 +1,10 @@
-﻿using Advance.Framework.People.Repositories.EntityFramework;
-using Advance.Framework.PersonService.Entities;
+﻿using Advance.Framework.ContactModule.Repositories.EntityFramework;
+using Advance.Framework.ContactModule.Entities;
 using AutoMapper;
 using NUnit.Framework;
 using System;
 
-namespace Advance.Framework.PersonService.Repositories.EntityFramework.Test
+namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [TestFixture]
     public class PersonRepositoryTests

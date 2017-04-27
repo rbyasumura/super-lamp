@@ -1,4 +1,4 @@
-namespace Advance.Framework.People.Repositories.EntityFramework.Migrations
+namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -14,6 +14,7 @@ namespace Advance.Framework.People.Repositories.EntityFramework.Migrations
                     PersonId = c.Guid(nullable: false),
                     FirstName = c.String(),
                     LastName = c.String(),
+                    DateOfBirth = c.DateTime(nullable: false),
                 })
                 .PrimaryKey(t => t.PersonId);
 

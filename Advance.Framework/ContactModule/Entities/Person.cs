@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Advance.Framework.PersonService.Entities
+namespace Advance.Framework.ContactModule.Entities
 {
     public class Person
     {

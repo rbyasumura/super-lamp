@@ -1,14 +1,14 @@
-﻿using Advance.Framework.PersonService.Repositories;
+﻿using Advance.Framework.ContactModule.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Advance.Framework.PersonService.Entities;
-using Advance.Framework.PersonService.Repositories.EntityFramework;
+using Advance.Framework.ContactModule.Entities;
+using Advance.Framework.ContactModule.Repositories.EntityFramework;
 using AutoMapper;
 
-namespace Advance.Framework.People.Repositories.EntityFramework
+namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 {
     public class PersonRepository : IPersonRepository
     {
@@ -51,9 +51,9 @@ namespace Advance.Framework.People.Repositories.EntityFramework
             }
         }
 
-        private static PersonServiceContext GetContext()
+        private static ContactModuleContext GetContext()
         {
-            return new PersonServiceContext();
+            return new ContactModuleContext();
         }
 
         public void Update(Person person)
