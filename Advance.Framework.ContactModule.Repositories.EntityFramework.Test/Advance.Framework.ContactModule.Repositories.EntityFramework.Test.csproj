@@ -54,6 +54,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PhoneNumberRepositoryTests.cs" />
     <Compile Include="PersonRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\Advance.Framework.ContactModule.Repositories.EntityFramework\Advance.Framework.ContactModule.Repositories.EntityFramework.csproj">
       <Project>{f3a606ec-9ac9-418a-8198-534c4e065fea}</Project>
       <Name>Advance.Framework.ContactModule.Repositories.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
+      <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
+      <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{BD056327-C21F-4847-BBC7-694CBFA11D0F}</Project>

@@ -2,7 +2,7 @@
 
 namespace Advance.Framework.ContactModule.Repositories
 {
-    public interface IPersonRepository : IRepository<Person>
+    public interface IPhoneNumberRepository : IRepository<PhoneNumber>
     {
     }
 }

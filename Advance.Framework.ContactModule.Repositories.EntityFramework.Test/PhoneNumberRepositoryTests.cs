@@ -3,13 +3,15 @@ using Advance.Framework.ContactModule.Entities;
 using AutoMapper;
 using NUnit.Framework;
 using System;
+using Advance.Framework.DependencyInjection.Unity;
+using System.Linq;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [TestFixture]
-    public class PersonRepositoryTests
+    public class PhoneNumberRepositoryTests
     {
-        private static readonly Guid PersonId = new Guid("5d6711e0-4be6-4758-a778-e5936bafbc15");
+        private static readonly Guid PhoneNumberId = new Guid("5d6711e0-4be6-4758-a778-e5936bafbc15");
 
         [TestCase]
         public void ListAll()
@@ -25,17 +27,33 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void Add()
         {
             /// Arrange
-            var person = new Person
+            using (var unitOfWork = GetUnitOfWork())
             {
-                FirstName = $"Bobby{DateTime.Now.Ticks}",
-                LastName = $"Yasumura{DateTime.Now.Ticks}",
-                DateOfBirth = new DateTime(1981, 12, 11),
-            };
+                var personRepository = GetPersonRepository();
+                var person = personRepository.ListAll().FirstOrDefault();
+                var phoneNumber = new PhoneNumber
+                {
+                    Number = "4164528685",
+                    Type = PhoneNumberType.Home,
+                    Person = person,
+                };
 
-            /// Act
-            new PersonRepository().Add(person);
+                /// Act
+                new PhoneNumberRepository().Add(phoneNumber);
+                unitOfWork.Commit();
+            }
 
             /// Assert
+        }
+
+        private static IPersonRepository GetPersonRepository()
+        {
+            return Container.Instance.Resolve<IPersonRepository>();
+        }
+
+        private static IUnitOfWork GetUnitOfWork()
+        {
+            return Container.Instance.Resolve<IUnitOfWork>();
         }
 
         [TestCase]
@@ -44,7 +62,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Arrange
             var person = new Person
             {
-                PersonId = PersonId,
+                PersonId = PhoneNumberId,
                 FirstName = $"Bobby{DateTime.Now.Ticks}",
                 LastName = $"Yasumura{DateTime.Now.Ticks}",
             };
@@ -63,7 +81,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void GetById()
         {
             /// Arrange
-            var id = PersonId;
+            var id = PhoneNumberId;
 
             /// Act
             var result = new PersonRepository().GetById(id);
@@ -78,7 +96,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Arrange
             var person = new Person
             {
-                PersonId = PersonId,
+                PersonId = PhoneNumberId,
             };
 
             /// Act

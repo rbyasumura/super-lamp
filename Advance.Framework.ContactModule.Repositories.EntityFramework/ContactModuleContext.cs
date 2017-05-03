@@ -10,6 +10,9 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 {
     class ContactModuleContext : DbContext
     {
-        public DbSet<Person> People { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PhoneNumber>().HasRequired(i => i.Person);
+        }
     }
 }
