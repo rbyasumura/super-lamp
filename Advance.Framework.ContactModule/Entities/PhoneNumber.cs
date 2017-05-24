@@ -5,7 +5,12 @@ namespace Advance.Framework.ContactModule.Entities
 {
     public class PhoneNumber
     {
-        public Guid PhoneNumberId { get; set; } = Guid.NewGuid();
+        public PhoneNumber()
+        {
+            PhoneNumberId = Guid.NewGuid();
+        }
+
+        public Guid PhoneNumberId { get; set; }
         public string Number { get; set; }
         public PhoneNumberType Type { get; set; }
         [Required]

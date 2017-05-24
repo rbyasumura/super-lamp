@@ -1,24 +1,27 @@
-﻿using Advance.Framework.ContactModule.Repositories.EntityFramework;
-using Advance.Framework.ContactModule.Entities;
-using AutoMapper;
+﻿using Advance.Framework.ContactModule.Entities;
 using NUnit.Framework;
 using System;
 using Advance.Framework.DependencyInjection.Unity;
 using System.Linq;
+using Advance.Framework.Repositories;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [TestFixture]
     public class PhoneNumberRepositoryTests
     {
-        private static readonly Guid PhoneNumberId = new Guid("5d6711e0-4be6-4758-a778-e5936bafbc15");
+        private static readonly Guid DeletePhoneNumberId = new Guid("ac5766d3-8e66-4bbf-a80e-599009cb467f");
+        private readonly Guid GetByIdPhoneNumberId = new Guid("2ae22193-12bb-4fd2-8de1-6d778baf5949");
 
         [TestCase]
         public void ListAll()
         {
             /// Arrange
             /// Act
-            var result = new PersonRepository().ListAll();
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var result = unitOfWork.GetRepository<IPersonRepository>().ListAll();
+            }
 
             /// Asset
         }
@@ -29,7 +32,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Arrange
             using (var unitOfWork = GetUnitOfWork())
             {
-                var personRepository = GetPersonRepository();
+                var personRepository = GetPersonRepository(unitOfWork);
                 var person = personRepository.ListAll().FirstOrDefault();
                 var phoneNumber = new PhoneNumber
                 {
@@ -39,16 +42,21 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 };
 
                 /// Act
-                new PhoneNumberRepository().Add(phoneNumber);
+                GetPhoneNumberRepository(unitOfWork).Add(phoneNumber);
                 unitOfWork.Commit();
             }
 
             /// Assert
         }
 
-        private static IPersonRepository GetPersonRepository()
+        private static IPhoneNumberRepository GetPhoneNumberRepository(IUnitOfWork unitOfWork)
         {
-            return Container.Instance.Resolve<IPersonRepository>();
+            return unitOfWork.GetRepository<IPhoneNumberRepository>();
+        }
+
+        private static IPersonRepository GetPersonRepository(IUnitOfWork unitOfWork)
+        {
+            return unitOfWork.GetRepository<IPersonRepository>();
         }
 
         private static IUnitOfWork GetUnitOfWork()
@@ -60,19 +68,21 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void Update()
         {
             /// Arrange
-            var person = new Person
+            using (var unitOfWork = GetUnitOfWork())
             {
-                PersonId = PhoneNumberId,
-                FirstName = $"Bobby{DateTime.Now.Ticks}",
-                LastName = $"Yasumura{DateTime.Now.Ticks}",
-            };
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<Person, Person>();
-            });
+                var phoneNumber = new PhoneNumber
+                {
+                    PhoneNumberId = GetByIdPhoneNumberId,
+                    Number = Guid.NewGuid().ToString(),
+                    Person = GetPersonRepository(unitOfWork)
+                        .ListAll()
+                        .FirstOrDefault(),
+                };
 
-            /// Act
-            new PersonRepository().Update(person);
+                /// Act
+                GetPhoneNumberRepository(unitOfWork).Update(phoneNumber);
+                unitOfWork.Commit();
+            }
 
             /// Assert
         }
@@ -81,26 +91,37 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void GetById()
         {
             /// Arrange
-            var id = PhoneNumberId;
+            var id = GetByIdPhoneNumberId;
 
             /// Act
-            var result = new PersonRepository().GetById(id);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var result = GetPhoneNumberRepository(unitOfWork).GetById(id);
 
-            /// Assert
-            Assert.NotNull(result);
+                /// Assert
+                Assert.NotNull(result);
+            }
         }
 
         [TestCase]
         public void Delete()
         {
             /// Arrange
-            var person = new Person
+            var phoneNumber = new PhoneNumber
             {
-                PersonId = PhoneNumberId,
+                PhoneNumberId = DeletePhoneNumberId,
             };
 
             /// Act
-            new PersonRepository().Delete(person);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var phoneNumberRepository = GetPhoneNumberRepository(unitOfWork);
+                if (phoneNumberRepository.Exists(phoneNumber.PhoneNumberId))
+                {
+                    phoneNumberRepository.Delete(phoneNumber);
+                }
+                unitOfWork.Commit();
+            }
 
             /// Assert
         }

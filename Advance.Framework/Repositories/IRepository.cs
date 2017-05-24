@@ -1,4 +1,4 @@
-﻿namespace Advance.Framework.ContactModule.Repositories
+﻿namespace Advance.Framework.Repositories
 {
     public interface IRepository<TEntity> : IReadOnlyRepository<TEntity>
     {

@@ -1,24 +1,38 @@
-﻿using Advance.Framework.ContactModule.Repositories.EntityFramework;
-using Advance.Framework.ContactModule.Entities;
-using AutoMapper;
+﻿using Advance.Framework.ContactModule.Entities;
 using NUnit.Framework;
 using System;
+using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Repositories;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [TestFixture]
     public class PersonRepositoryTests
     {
-        private static readonly Guid PersonId = new Guid("5d6711e0-4be6-4758-a778-e5936bafbc15");
+        private static readonly Guid DeletePersonId = new Guid("a57c8320-5432-4f4b-bb77-53d4a00fa0fd");
+        private readonly Guid GetByIdPersonId = new Guid("c838ecbb-907d-4478-ab05-982f08372900");
 
         [TestCase]
         public void ListAll()
         {
             /// Arrange
             /// Act
-            var result = new PersonRepository().ListAll();
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var result = GetPersonRepository(unitOfWork).ListAll();
+            }
 
             /// Asset
+        }
+
+        private static IPersonRepository GetPersonRepository(IUnitOfWork unitOfWork)
+        {
+            return unitOfWork.GetRepository<IPersonRepository>();
+        }
+
+        private static IUnitOfWork GetUnitOfWork()
+        {
+            return Container.Instance.Resolve<IUnitOfWork>();
         }
 
         [TestCase]
@@ -33,7 +47,12 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             };
 
             /// Act
-            new PersonRepository().Add(person);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                GetPersonRepository(unitOfWork).Add(person);
+
+                unitOfWork.Commit();
+            }
 
             /// Assert
         }
@@ -44,17 +63,17 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Arrange
             var person = new Person
             {
-                PersonId = PersonId,
+                PersonId = GetByIdPersonId,
                 FirstName = $"Bobby{DateTime.Now.Ticks}",
                 LastName = $"Yasumura{DateTime.Now.Ticks}",
             };
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<Person, Person>();
-            });
 
             /// Act
-            new PersonRepository().Update(person);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                GetPersonRepository(unitOfWork).Update(person);
+                unitOfWork.Commit();
+            }
 
             /// Assert
         }
@@ -63,13 +82,16 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void GetById()
         {
             /// Arrange
-            var id = PersonId;
+            var id = GetByIdPersonId;
 
             /// Act
-            var result = new PersonRepository().GetById(id);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var result = unitOfWork.GetRepository<IPersonRepository>().GetById(id);
 
-            /// Assert
-            Assert.NotNull(result);
+                /// Assert
+                Assert.NotNull(result);
+            }
         }
 
         [TestCase]
@@ -78,11 +100,19 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Arrange
             var person = new Person
             {
-                PersonId = PersonId,
+                PersonId = DeletePersonId,
             };
 
             /// Act
-            new PersonRepository().Delete(person);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var personRepository = GetPersonRepository(unitOfWork);
+                if (personRepository.Exists(person.PersonId))
+                {
+                    personRepository.Delete(person);
+                }
+                unitOfWork.Commit();
+            }
 
             /// Assert
         }

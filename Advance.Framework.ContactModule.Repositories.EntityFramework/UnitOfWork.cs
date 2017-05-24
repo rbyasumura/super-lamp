@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Repositories;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Runtime.Remoting.Messaging;
 
@@ -57,7 +60,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                 Transaction.Dispose();
             }
 
-            if (ContactModuleContext != null)
+            if (ContactModuleContext != null && this != DefaultInstance)
             {
                 ContactModuleContext.Dispose();
             }
@@ -69,6 +72,14 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             {
                 Transaction.Commit();
             }
+        }
+
+        public TRepository GetRepository<TRepository>()
+        {
+            return Container.Instance.Resolve<TRepository>(new Dictionary<string, object>()
+            {
+                { "context", this },
+            });
         }
     }
 }

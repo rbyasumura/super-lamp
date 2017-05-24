@@ -41,14 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactModule\Entities\Person.cs" />
-    <Compile Include="ContactModule\Entities\PhoneNumber.cs" />
-    <Compile Include="ContactModule\Entities\PhoneNumberType.cs" />
-    <Compile Include="ContactModule\Repositories\IPersonRepository.cs" />
-    <Compile Include="ContactModule\Repositories\IPhoneNumberRepository.cs" />
-    <Compile Include="ContactModule\Repositories\IReadOnlyRepository.cs" />
-    <Compile Include="ContactModule\Repositories\IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Repositories\IReadOnlyRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
