@@ -68,15 +68,20 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void Update()
         {
             /// Arrange
+            var person = default(Person);
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                person = GetPersonRepository(unitOfWork)
+                    .ListAll()
+                    .FirstOrDefault();
+            }
             using (var unitOfWork = GetUnitOfWork())
             {
                 var phoneNumber = new PhoneNumber
                 {
                     PhoneNumberId = GetByIdPhoneNumberId,
                     Number = Guid.NewGuid().ToString(),
-                    Person = GetPersonRepository(unitOfWork)
-                        .ListAll()
-                        .FirstOrDefault(),
+                    Person = person,
                 };
 
                 /// Act

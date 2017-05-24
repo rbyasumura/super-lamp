@@ -58,11 +58,5 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
-      <Project>{BD056327-C21F-4847-BBC7-694CBFA11D0F}</Project>
-      <Name>Advance.Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -59,9 +59,9 @@
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
-      <Project>{BD056327-C21F-4847-BBC7-694CBFA11D0F}</Project>
-      <Name>Advance.Framework</Name>
+    <ProjectReference Include="..\Advance.Framework.Mappers\Advance.Framework.Mappers.csproj">
+      <Project>{960860ac-e22f-4d6a-b28e-570400d6929b}</Project>
+      <Name>Advance.Framework.Mappers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

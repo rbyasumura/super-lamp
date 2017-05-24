@@ -1,6 +1,4 @@
-﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Mappers;
-using Advance.Framework.Repositories;
+﻿using Advance.Framework.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -78,8 +76,15 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             var id = GetId(entity);
             var expression = GetIdExpression(id);
             var currentEntity = Entities.Single(expression);
-            var mapper = Container.Instance.Resolve<IMapper>();
-            var output = mapper.Map(entity, currentEntity);
+            //var mapper = Container.Instance.Resolve<IMapper>();
+            //var output = mapper.Map(entity, currentEntity);
+
+            foreach (var property in typeof(TEntity).GetProperties()
+                .Where(i => i.CanRead && i.CanWrite
+                    && i.Name != IdPropertyName))
+            {
+                property.SetValue(currentEntity, property.GetValue(entity));
+            }
 
             UnitOfWork.SaveChanges();
         }

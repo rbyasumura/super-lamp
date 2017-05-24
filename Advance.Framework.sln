@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework", "Advance.Framework\Advance.Framework.csproj", "{BD056327-C21F-4847-BBC7-694CBFA11D0F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.ContactModule.Repositories.EntityFramework", "Advance.Framework.ContactModule.Repositories.EntityFramework\Advance.Framework.ContactModule.Repositories.EntityFramework.csproj", "{F3A606EC-9AC9-418A-8198-534C4E065FEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.ContactModule.Repositories.EntityFramework.Test", "Advance.Framework.ContactModule.Repositories.EntityFramework.Test\Advance.Framework.ContactModule.Repositories.EntityFramework.Test.csproj", "{8CC9B450-08E8-4F3B-99BD-75FF9EDAB7A1}"
@@ -21,16 +19,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.ContactMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.ContactModule.Mappers.AutoMapper", "Advance.Framework.ContactModule.Mappers.AutoMapper\Advance.Framework.ContactModule.Mappers.AutoMapper.csproj", "{281F571F-60A8-494D-B915-273D1E069747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Repositories", "Advance.Framework.Repositories\Advance.Framework.Repositories.csproj", "{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Mappers", "Advance.Framework.Mappers\Advance.Framework.Mappers.csproj", "{960860AC-E22F-4D6A-B28E-570400D6929B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BD056327-C21F-4847-BBC7-694CBFA11D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD056327-C21F-4847-BBC7-694CBFA11D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD056327-C21F-4847-BBC7-694CBFA11D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD056327-C21F-4847-BBC7-694CBFA11D0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3A606EC-9AC9-418A-8198-534C4E065FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F3A606EC-9AC9-418A-8198-534C4E065FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3A606EC-9AC9-418A-8198-534C4E065FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,16 +49,25 @@ Global
 		{281F571F-60A8-494D-B915-273D1E069747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{281F571F-60A8-494D-B915-273D1E069747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{281F571F-60A8-494D-B915-273D1E069747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960860AC-E22F-4D6A-B28E-570400D6929B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960860AC-E22F-4D6A-B28E-570400D6929B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960860AC-E22F-4D6A-B28E-570400D6929B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960860AC-E22F-4D6A-B28E-570400D6929B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BD056327-C21F-4847-BBC7-694CBFA11D0F} = {B9646424-263D-4161-A858-571D347725EF}
 		{F3A606EC-9AC9-418A-8198-534C4E065FEA} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{8CC9B450-08E8-4F3B-99BD-75FF9EDAB7A1} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{D8C560A1-3119-4114-B238-728D244F77F1} = {A9E46B26-8F35-4891-BF9E-4939A0DC6BFA}
 		{B087153C-3480-4EAA-9E3F-B06DECB3B69A} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{281F571F-60A8-494D-B915-273D1E069747} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
+		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA} = {B9646424-263D-4161-A858-571D347725EF}
+		{960860AC-E22F-4D6A-B28E-570400D6929B} = {B9646424-263D-4161-A858-571D347725EF}
 	EndGlobalSection
 EndGlobal
