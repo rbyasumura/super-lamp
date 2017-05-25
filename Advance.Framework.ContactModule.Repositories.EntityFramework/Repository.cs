@@ -8,26 +8,12 @@ using System.Linq.Expressions;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 {
-    public class Repository<TEntity> : IReadOnlyRepository<TEntity>
+    public class Repository<TEntity> : ReadOnlyRepository<TEntity>
+        , IRepository<TEntity>
         where TEntity : class
     {
-        private static readonly string IdPropertyName = GetIdPropertyName(typeof(TEntity));
-
-        private static string GetIdPropertyName(Type type)
+        public Repository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
-            return $"{type.Name}Id";
-        }
-
-        private UnitOfWork _UnitOfWork;
-
-        public Repository(UnitOfWork unitOfWork)
-        {
-            _UnitOfWork = unitOfWork;
-        }
-
-        public Repository()
-        {
-            throw new NotImplementedException();
         }
 
         public void Add(TEntity entity)
@@ -51,41 +37,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             return (Guid)type
                 .GetProperty(GetIdPropertyName(type))
                 .GetValue(entity);
-        }
-
-        private static Expression<Func<TEntity, bool>> GetIdExpression(Guid id)
-        {
-            var parameterExpression = Expression.Parameter(typeof(TEntity));
-            return Expression.Lambda<Func<TEntity, bool>>(
-                Expression.Equal(
-                    Expression.PropertyOrField(parameterExpression, IdPropertyName),
-                    Expression.Constant(id, typeof(Guid)))
-                , parameterExpression
-            );
-        }
-
-        public TEntity GetById(Guid id)
-        {
-            var expression = GetIdExpression(id);
-            return Entities.SingleOrDefault(expression);
-        }
-
-        public IEnumerable<TEntity> ListAll()
-        {
-            return Entities.ToArray();
-        }
-
-        private UnitOfWork UnitOfWork
-        {
-            get
-            {
-                if (_UnitOfWork == null)
-                {
-                    _UnitOfWork = UnitOfWork.DefaultInstance;
-                }
-
-                return _UnitOfWork;
-            }
         }
 
         public void Update(TEntity entity)
@@ -142,20 +93,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                 || type == typeof(string)
                 || type == typeof(DateTime)
                 || type.IsEnum;
-        }
-
-        public bool Exists(Guid id)
-        {
-            var expression = GetIdExpression(id);
-            return Entities.Any(expression);
-        }
-
-        DbSet<TEntity> Entities
-        {
-            get
-            {
-                return UnitOfWork.Set<TEntity>();
-            }
         }
     }
 }

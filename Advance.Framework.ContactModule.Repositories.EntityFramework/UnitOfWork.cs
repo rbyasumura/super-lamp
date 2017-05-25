@@ -18,23 +18,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         public UnitOfWork()
         {
             ContactModuleContext = new ContactModuleContext();
-
-            if (DefaultInstance == null)
-            {
-                DefaultInstance = this;
-            }
-        }
-
-        public static UnitOfWork DefaultInstance
-        {
-            get
-            {
-                return (UnitOfWork)CallContext.GetData(CALL_CONTEXT_DATA_NAME);
-            }
-            private set
-            {
-                CallContext.SetData(CALL_CONTEXT_DATA_NAME, value);
-            }
         }
 
         internal int SaveChanges()
@@ -61,7 +44,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                 Transaction = null;
             }
 
-            if (ContactModuleContext != null && this != DefaultInstance)
+            if (ContactModuleContext != null)
             {
                 ContactModuleContext.Dispose();
                 ContactModuleContext = null;
