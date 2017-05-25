@@ -8,6 +8,7 @@ namespace Advance.Framework.ContactModule.Entities
         public Person()
         {
             PersonId = Guid.NewGuid();
+            PhoneNumbers = new List<PhoneNumber>();
         }
 
         public Guid PersonId { get; set; }

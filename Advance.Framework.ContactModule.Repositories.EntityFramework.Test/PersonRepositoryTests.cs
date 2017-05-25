@@ -66,6 +66,20 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 PersonId = GetByIdPersonId,
                 FirstName = $"Bobby{DateTime.Now.Ticks}",
                 LastName = $"Yasumura{DateTime.Now.Ticks}",
+                DateOfBirth = DateTime.Now.AddYears(-35).Date,
+                PhoneNumbers = new PhoneNumber[]
+                {
+                    new PhoneNumber
+                    {
+                        Number = "1111111",
+                        Type = PhoneNumberType.Home,
+                    },
+                    new PhoneNumber
+                    {
+                        Number = "2222",
+                        Type = PhoneNumberType.Mobile,
+                    },
+                },
             };
 
             /// Act
@@ -76,6 +90,76 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             }
 
             /// Assert
+        }
+
+        [TestCase]
+        public void AddUpdateDeletePhoneNumber()
+        {
+            var person = new Person
+            {
+                FirstName = "NoPhoneNumber",
+                LastName = "Blah",
+            };
+            var personId = person.PersonId;
+
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var personRepository = GetPersonRepository(unitOfWork);
+                personRepository.Add(person);
+
+                unitOfWork.Commit();
+            }
+
+            var updatePerson = new Person
+            {
+                PersonId = personId,
+                FirstName = "AddPhoneNumber",
+                LastName = "Foo",
+            };
+            const string phoneNumber1 = "1111111";
+            PhoneNumber phoneNumber = new PhoneNumber
+            {
+                Number = phoneNumber1,
+                Type = PhoneNumberType.Home,
+            };
+            var phoneNumberId = phoneNumber.PhoneNumberId;
+            updatePerson.PhoneNumbers.Add(phoneNumber);
+
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var personRepository = GetPersonRepository(unitOfWork);
+                personRepository.Update(updatePerson);
+
+                unitOfWork.Commit();
+            }
+
+            updatePerson = new Person
+            {
+                PersonId = personId,
+                FirstName = "AddAnotherNumber",
+                LastName = "",
+                PhoneNumbers = new PhoneNumber[]
+                {
+                    new PhoneNumber{
+                        PhoneNumberId=phoneNumberId,
+                        Number=phoneNumber1,
+                        Type = PhoneNumberType.Home,
+                    },
+                    new PhoneNumber
+                    {
+                        Number = "2222",
+                        Type = PhoneNumberType.Mobile,
+                    }
+                },
+            };
+
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var personRepository = GetPersonRepository(unitOfWork);
+                personRepository.Update(updatePerson);
+
+                //unitOfWork.Commit();
+            }
         }
 
         [TestCase]

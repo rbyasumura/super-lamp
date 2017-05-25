@@ -58,11 +58,13 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             if (Transaction != null)
             {
                 Transaction.Dispose();
+                Transaction = null;
             }
 
             if (ContactModuleContext != null && this != DefaultInstance)
             {
                 ContactModuleContext.Dispose();
+                ContactModuleContext = null;
             }
         }
 
@@ -78,8 +80,13 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         {
             return Container.Instance.Resolve<TRepository>(new Dictionary<string, object>()
             {
-                { "context", this },
+                { "unitOfWork", this },
             });
+        }
+
+        internal void EagerLoadCollection<TEntity>(TEntity entity, string propertyName) where TEntity : class
+        {
+            ContactModuleContext.Entry(entity).Collection(propertyName).Load();
         }
     }
 }
