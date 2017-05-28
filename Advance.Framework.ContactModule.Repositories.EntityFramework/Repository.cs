@@ -1,4 +1,5 @@
-﻿using Advance.Framework.Repositories;
+﻿using Advance.Framework.Entities;
+using Advance.Framework.Repositories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,8 +21,19 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
         public void Add(TEntity entity)
         {
+            SetCreatedAt(entity);
+
             Entities.Add(entity);
             UnitOfWork.SaveChanges();
+        }
+
+        private static void SetCreatedAt(object entity)
+        {
+            if (typeof(ITimestampableEntity).IsAssignableFrom(entity.GetType()))
+            {
+                var timestampableEntity = (ITimestampableEntity)entity;
+                timestampableEntity.CreatedAt = DateTimeOffset.Now;
+            }
         }
 
         public void Delete(TEntity entity)
@@ -47,12 +59,12 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             var expression = GetIdExpression(id);
             var currentEntity = Entities.Single(expression);
 
-            CopyValues(entity, currentEntity);
+            UpdateProperties(entity, currentEntity, DateTimeOffset.Now);
 
             UnitOfWork.SaveChanges();
         }
 
-        private void CopyValues(object source, object destination)
+        private void UpdateProperties(object source, object destination, DateTimeOffset updatedAt)
         {
             var type = source.GetType();
             if (CopiedEntities.ContainsKey(type) == false)
@@ -71,7 +83,15 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             foreach (var property in type.GetProperties().Where(i => i.CanRead && i.CanWrite && i.Name != GetIdPropertyName(type)))
             {
                 var propertyType = property.PropertyType;
-                if (IsCopyable(propertyType))
+                if (typeof(ITimestampableEntity).IsAssignableFrom(destination.GetType())
+                    && (property.Name == nameof(ITimestampableEntity.CreatedAt) || property.Name == nameof(ITimestampableEntity.UpdatedAt)))
+                {
+                    if (property.Name == nameof(ITimestampableEntity.UpdatedAt))
+                    {
+                        SetUpdatedAt(destination, updatedAt);
+                    }
+                }
+                else if (IsCopyable(propertyType))
                 {
                     property.SetValue(destination, property.GetValue(source));
                 }
@@ -85,16 +105,18 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                         var entityChild = entityChildren.SingleOrDefault(i => GetId(i) == GetId(currentChild));
                         if (entityChild == null)
                         {
+                            SetUpdatedAt(currentChild, updatedAt);
                             currentChildren.Remove(currentChild);
                         }
                         else
                         {
-                            CopyValues(entityChild, currentChild);
+                            UpdateProperties(entityChild, currentChild, updatedAt);
                         }
                     }
 
                     foreach (var entityChild in entityChildren.Where(i => currentChildren.Cast<object>().Any(j => GetId(j) == GetId(i)) == false))
                     {
+                        SetCreatedAt(entityChild);
                         currentChildren.Add(entityChild);
                     }
                 }
@@ -103,11 +125,20 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                     UnitOfWork.EagerLoadReference(destination, property.Name);
                     var currentChild = property.GetValue(destination);
                     var entityChild = property.GetValue(source);
-                    CopyValues(entityChild, currentChild);
+                    UpdateProperties(entityChild, currentChild, updatedAt);
                 }
             }
 
             return;
+        }
+
+        private static void SetUpdatedAt(object entity, DateTimeOffset updatedAt)
+        {
+            if (typeof(ITimestampableEntity).IsAssignableFrom(entity.GetType()))
+            {
+                var timestampableEntity = (ITimestampableEntity)entity;
+                timestampableEntity.UpdatedAt = updatedAt;
+            }
         }
 
         private static bool IsCopyable(Type type)

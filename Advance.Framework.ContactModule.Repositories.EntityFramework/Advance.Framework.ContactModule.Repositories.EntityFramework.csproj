@@ -51,6 +51,10 @@
     <Compile Include="Migrations\201705280444393_Initial.Designer.cs">
       <DependentUpon>201705280444393_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705280530105_Timestampable.cs" />
+    <Compile Include="Migrations\201705280530105_Timestampable.Designer.cs">
+      <DependentUpon>201705280530105_Timestampable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonRepository.cs" />
     <Compile Include="ContactModuleContext.cs" />
@@ -73,6 +77,10 @@
       <Project>{d8c560a1-3119-4114-b238-728d244f77f1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Entities\Advance.Framework.Entities.csproj">
+      <Project>{E0E95260-764A-4009-B7A2-B5DE88E2F921}</Project>
+      <Name>Advance.Framework.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
       <Project>{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}</Project>
       <Name>Advance.Framework.Repositories</Name>
@@ -81,6 +89,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705280444393_Initial.resx">
       <DependentUpon>201705280444393_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280530105_Timestampable.resx">
+      <DependentUpon>201705280530105_Timestampable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

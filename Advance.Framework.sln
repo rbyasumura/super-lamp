@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Repositor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Mappers", "Advance.Framework.Mappers\Advance.Framework.Mappers.csproj", "{960860AC-E22F-4D6A-B28E-570400D6929B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Entities", "Advance.Framework.Entities\Advance.Framework.Entities.csproj", "{E0E95260-764A-4009-B7A2-B5DE88E2F921}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{960860AC-E22F-4D6A-B28E-570400D6929B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960860AC-E22F-4D6A-B28E-570400D6929B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960860AC-E22F-4D6A-B28E-570400D6929B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0E95260-764A-4009-B7A2-B5DE88E2F921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0E95260-764A-4009-B7A2-B5DE88E2F921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E95260-764A-4009-B7A2-B5DE88E2F921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0E95260-764A-4009-B7A2-B5DE88E2F921}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +75,6 @@ Global
 		{281F571F-60A8-494D-B915-273D1E069747} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA} = {B9646424-263D-4161-A858-571D347725EF}
 		{960860AC-E22F-4D6A-B28E-570400D6929B} = {B9646424-263D-4161-A858-571D347725EF}
+		{E0E95260-764A-4009-B7A2-B5DE88E2F921} = {B9646424-263D-4161-A858-571D347725EF}
 	EndGlobalSection
 EndGlobal

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Advance.Framework.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Advance.Framework.ContactModule.Entities
 {
-    public class Person
+    public class Person : ITimestampableEntity
     {
         public Person()
         {
@@ -16,5 +17,7 @@ namespace Advance.Framework.ContactModule.Entities
         public string LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public ICollection<PhoneNumber> PhoneNumbers { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
     }
 }

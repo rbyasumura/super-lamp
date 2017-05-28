@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Advance.Framework.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Advance.Framework.ContactModule.Entities
 {
-    public class PhoneNumber
+    public class PhoneNumber : ITimestampableEntity
     {
         public PhoneNumber()
         {
@@ -15,5 +16,7 @@ namespace Advance.Framework.ContactModule.Entities
         public PhoneNumberType Type { get; set; }
         [Required]
         public Person Person { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
     }
 }

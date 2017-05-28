@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Advance.Framework.Mappers
+﻿namespace Advance.Framework.Mappers
 {
     public interface IMapper
     {
