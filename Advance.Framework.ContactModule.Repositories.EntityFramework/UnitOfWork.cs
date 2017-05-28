@@ -55,6 +55,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             if (Transaction != null)
             {
                 Transaction.Commit();
+                Transaction = null;
             }
         }
 

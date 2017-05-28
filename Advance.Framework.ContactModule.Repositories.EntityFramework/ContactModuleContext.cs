@@ -13,7 +13,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>()
-                .HasMany(i => i.PhoneNumbers).WithOptional(i => i.Person).WillCascadeOnDelete();
+                .HasMany(i => i.PhoneNumbers).WithOptional(i => i.Person);
             modelBuilder.Entity<PhoneNumber>()
                 .HasOptional(i => i.Person)
                 ;

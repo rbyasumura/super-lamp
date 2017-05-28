@@ -131,19 +131,23 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void Delete()
         {
             /// Arrange
-            var person = new Person
-            {
-                PersonId = DeletePersonId,
-            };
-
-            /// Act
             using (var unitOfWork = GetUnitOfWork())
             {
                 var personRepository = GetPersonRepository(unitOfWork);
-                if (personRepository.Exists(person.PersonId))
+                personRepository.Add(new Person
                 {
-                    personRepository.Delete(person);
-                }
+                });
+                unitOfWork.Commit();
+
+                var person = personRepository
+                    .ListAll(i => i.PhoneNumbers)
+                    .Where(i => i.PhoneNumbers.Any() == false)
+                    .OrderBy(i => i.CreatedAt)
+                    .First();
+
+                /// Act
+                personRepository.Delete(person);
+
                 unitOfWork.Commit();
             }
 
