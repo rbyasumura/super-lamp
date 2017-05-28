@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Repositories;
+using System.Linq;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
@@ -10,7 +11,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
     public class PersonRepositoryTests
     {
         private static readonly Guid DeletePersonId = new Guid("a57c8320-5432-4f4b-bb77-53d4a00fa0fd");
-        private readonly Guid GetByIdPersonId = new Guid("c838ecbb-907d-4478-ab05-982f08372900");
+        private readonly Guid GetByIdPersonId = new Guid("017bde02-e0fa-485e-ab26-359e7730aad5");
 
         [TestCase]
         public void ListAll()
@@ -44,6 +45,14 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 FirstName = $"Bobby{DateTime.Now.Ticks}",
                 LastName = $"Yasumura{DateTime.Now.Ticks}",
                 DateOfBirth = new DateTime(1981, 12, 11),
+                PhoneNumbers = new PhoneNumber[]
+                {
+                    new PhoneNumber
+                    {
+                        Number = "11111",
+                        Type = PhoneNumberType.Home,
+                    },
+                },
             };
 
             /// Act
@@ -61,105 +70,45 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void Update()
         {
             /// Arrange
-            var person = new Person
-            {
-                PersonId = GetByIdPersonId,
-                FirstName = $"Bobby{DateTime.Now.Ticks}",
-                LastName = $"Yasumura{DateTime.Now.Ticks}",
-                DateOfBirth = DateTime.Now.AddYears(-35).Date,
-                PhoneNumbers = new PhoneNumber[]
-                {
-                    new PhoneNumber
-                    {
-                        Number = "1111111",
-                        Type = PhoneNumberType.Home,
-                    },
-                    new PhoneNumber
-                    {
-                        Number = "2222",
-                        Type = PhoneNumberType.Mobile,
-                    },
-                },
-            };
-
-            /// Act
+            var person = default(Person);
             using (var unitOfWork = GetUnitOfWork())
             {
-                GetPersonRepository(unitOfWork).Update(person);
+                var personRepository = GetPersonRepository(unitOfWork);
+                person = personRepository
+                    .ListAll(i => i.PhoneNumbers)
+                    .Where(i => i.PhoneNumbers.Count > 0)
+                    .FirstOrDefault();
+
+                person.PhoneNumbers.Clear();
+                personRepository.Update(person);
                 unitOfWork.Commit();
             }
+
+            //person.FirstName = $"Bobby{DateTime.Now.Ticks}";
+            //person.LastName = $"Yasumura{DateTime.Now.Ticks}";
+            //person.DateOfBirth = DateTime.Now.AddYears(-35).Date;
+            //person.PhoneNumbers = new PhoneNumber[]
+            //{
+            //        new PhoneNumber
+            //        {
+            //            Number = "1111111",
+            //            Type = PhoneNumberType.Home,
+            //        },
+            //        new PhoneNumber
+            //        {
+            //            Number = "2222",
+            //            Type = PhoneNumberType.Mobile,
+            //        },
+            //};
+
+            ///// Act
+            //using (var unitOfWork = GetUnitOfWork())
+            //{
+            //    GetPersonRepository(unitOfWork).Update(person);
+            //    unitOfWork.Commit();
+            //}
 
             /// Assert
-        }
-
-        [TestCase]
-        public void AddUpdateDeletePhoneNumber()
-        {
-            var person = new Person
-            {
-                FirstName = "NoPhoneNumber",
-                LastName = "Blah",
-            };
-            var personId = person.PersonId;
-
-            using (var unitOfWork = GetUnitOfWork())
-            {
-                var personRepository = GetPersonRepository(unitOfWork);
-                personRepository.Add(person);
-
-                unitOfWork.Commit();
-            }
-
-            var updatePerson = new Person
-            {
-                PersonId = personId,
-                FirstName = "AddPhoneNumber",
-                LastName = "Foo",
-            };
-            const string phoneNumber1 = "1111111";
-            PhoneNumber phoneNumber = new PhoneNumber
-            {
-                Number = phoneNumber1,
-                Type = PhoneNumberType.Home,
-            };
-            var phoneNumberId = phoneNumber.PhoneNumberId;
-            updatePerson.PhoneNumbers.Add(phoneNumber);
-
-            using (var unitOfWork = GetUnitOfWork())
-            {
-                var personRepository = GetPersonRepository(unitOfWork);
-                personRepository.Update(updatePerson);
-
-                unitOfWork.Commit();
-            }
-
-            updatePerson = new Person
-            {
-                PersonId = personId,
-                FirstName = "AddAnotherNumber",
-                LastName = "",
-                PhoneNumbers = new PhoneNumber[]
-                {
-                    new PhoneNumber{
-                        PhoneNumberId=phoneNumberId,
-                        Number=phoneNumber1,
-                        Type = PhoneNumberType.Home,
-                    },
-                    new PhoneNumber
-                    {
-                        Number = "2222",
-                        Type = PhoneNumberType.Mobile,
-                    }
-                },
-            };
-
-            using (var unitOfWork = GetUnitOfWork())
-            {
-                var personRepository = GetPersonRepository(unitOfWork);
-                personRepository.Update(updatePerson);
-
-                //unitOfWork.Commit();
-            }
         }
 
         [TestCase]

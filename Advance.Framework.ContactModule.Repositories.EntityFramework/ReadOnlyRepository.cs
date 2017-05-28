@@ -1,6 +1,5 @@
 ﻿using Advance.Framework.Repositories;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,12 +10,11 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
     public class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
         where TEntity : class
     {
-        private readonly UnitOfWork unitOfWork;
         private static readonly string IdPropertyName = GetIdPropertyName(typeof(TEntity));
 
         public ReadOnlyRepository(UnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            UnitOfWork = unitOfWork;
         }
 
         protected internal static string GetIdPropertyName(Type type)
@@ -34,10 +32,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
         protected internal UnitOfWork UnitOfWork
         {
-            get
-            {
-                return unitOfWork;
-            }
+            get;
         }
 
         public bool Exists(Guid id)
@@ -63,9 +58,20 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             return Entities.SingleOrDefault(expression);
         }
 
+        public IEnumerable<TEntity> ListAll<TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
+        {
+            var entities = (IQueryable<TEntity>)Entities;
+            foreach (var include in includes)
+            {
+                entities = entities.Include(include);
+            }
+
+            return entities.ToArray();
+        }
+
         public IEnumerable<TEntity> ListAll()
         {
-            return Entities.ToArray();
+            return ListAll<object>();
         }
     }
 }

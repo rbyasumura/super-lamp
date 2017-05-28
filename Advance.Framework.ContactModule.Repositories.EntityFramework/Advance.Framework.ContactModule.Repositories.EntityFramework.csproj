@@ -47,21 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201704271849284_InitialCreate.cs" />
-    <Compile Include="Migrations\201704271849284_InitialCreate.Designer.cs">
-      <DependentUpon>201704271849284_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704281544403_PhoneNumber.cs" />
-    <Compile Include="Migrations\201704281544403_PhoneNumber.Designer.cs">
-      <DependentUpon>201704281544403_PhoneNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704281554568_DateOfBirthNull.cs" />
-    <Compile Include="Migrations\201704281554568_DateOfBirthNull.Designer.cs">
-      <DependentUpon>201704281554568_DateOfBirthNull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704281720238_PhoneNumber.Person-required.cs" />
-    <Compile Include="Migrations\201704281720238_PhoneNumber.Person-required.Designer.cs">
-      <DependentUpon>201704281720238_PhoneNumber.Person-required.cs</DependentUpon>
+    <Compile Include="Migrations\201705280444393_Initial.cs" />
+    <Compile Include="Migrations\201705280444393_Initial.Designer.cs">
+      <DependentUpon>201705280444393_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonRepository.cs" />
@@ -91,17 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704271849284_InitialCreate.resx">
-      <DependentUpon>201704271849284_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704281544403_PhoneNumber.resx">
-      <DependentUpon>201704281544403_PhoneNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704281554568_DateOfBirthNull.resx">
-      <DependentUpon>201704281554568_DateOfBirthNull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704281720238_PhoneNumber.Person-required.resx">
-      <DependentUpon>201704281720238_PhoneNumber.Person-required.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705280444393_Initial.resx">
+      <DependentUpon>201705280444393_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

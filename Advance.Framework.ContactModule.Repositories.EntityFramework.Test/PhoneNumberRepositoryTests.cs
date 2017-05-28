@@ -11,7 +11,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
     public class PhoneNumberRepositoryTests
     {
         private static readonly Guid DeletePhoneNumberId = new Guid("ac5766d3-8e66-4bbf-a80e-599009cb467f");
-        private readonly Guid GetByIdPhoneNumberId = new Guid("2ae22193-12bb-4fd2-8de1-6d778baf5949");
+        private readonly Guid GetByIdPhoneNumberId = new Guid("00397a3e-6779-4e19-bc3e-083491b0e029");
 
         [TestCase]
         public void ListAll()
@@ -68,24 +68,13 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         public void Update()
         {
             /// Arrange
-            var person = default(Person);
             using (var unitOfWork = GetUnitOfWork())
             {
-                person = GetPersonRepository(unitOfWork)
-                    .ListAll()
-                    .FirstOrDefault();
-            }
-            using (var unitOfWork = GetUnitOfWork())
-            {
-                var phoneNumber = new PhoneNumber
-                {
-                    PhoneNumberId = GetByIdPhoneNumberId,
-                    Number = Guid.NewGuid().ToString(),
-                    Person = person,
-                };
+                var phoneNumberRepository = GetPhoneNumberRepository(unitOfWork);
+                var phoneNumber = phoneNumberRepository.ListAll().First();
 
                 /// Act
-                GetPhoneNumberRepository(unitOfWork).Update(phoneNumber);
+                phoneNumberRepository.Update(phoneNumber);
                 unitOfWork.Commit();
             }
 

@@ -12,7 +12,11 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PhoneNumber>().HasRequired(i => i.Person);
+            modelBuilder.Entity<Person>()
+                .HasMany(i => i.PhoneNumbers).WithOptional(i => i.Person).WillCascadeOnDelete();
+            modelBuilder.Entity<PhoneNumber>()
+                .HasOptional(i => i.Person)
+                ;
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         , IRepository<TEntity>
         where TEntity : class
     {
+        private readonly IDictionary<Type, IList<Guid>> CopiedEntities = new Dictionary<Type, IList<Guid>>();
+
         public Repository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
@@ -52,7 +54,20 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
         private void CopyValues(object source, object destination)
         {
-            Type type = source.GetType();
+            var type = source.GetType();
+            if (CopiedEntities.ContainsKey(type) == false)
+            {
+                CopiedEntities.Add(type, new List<Guid>());
+            }
+
+            var entityId = GetId(source);
+            if (CopiedEntities[type].Contains(entityId))
+            {
+                return;
+            }
+
+            CopiedEntities[type].Add(entityId);
+
             foreach (var property in type.GetProperties().Where(i => i.CanRead && i.CanWrite && i.Name != GetIdPropertyName(type)))
             {
                 var propertyType = property.PropertyType;
@@ -65,7 +80,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                     UnitOfWork.EagerLoadCollection(destination, property.Name);
                     var currentChildren = (IList)property.GetValue(destination);
                     var entityChildren = ((IEnumerable)property.GetValue(source)).Cast<object>();
-                    foreach (var currentChild in currentChildren)
+                    foreach (var currentChild in currentChildren.Cast<object>().ToArray())
                     {
                         var entityChild = entityChildren.SingleOrDefault(i => GetId(i) == GetId(currentChild));
                         if (entityChild == null)
@@ -83,7 +98,16 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                         currentChildren.Add(entityChild);
                     }
                 }
+                else
+                {
+                    UnitOfWork.EagerLoadReference(destination, property.Name);
+                    var currentChild = property.GetValue(destination);
+                    var entityChild = property.GetValue(source);
+                    CopyValues(entityChild, currentChild);
+                }
             }
+
+            return;
         }
 
         private static bool IsCopyable(Type type)

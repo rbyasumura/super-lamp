@@ -3,6 +3,7 @@ using Advance.Framework.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework
@@ -10,8 +11,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
     [Serializable]
     public class UnitOfWork : IUnitOfWork
     {
-        private const string CALL_CONTEXT_DATA_NAME = "_UnitOfWork_";
-
         private ContactModuleContext ContactModuleContext;
         private DbContextTransaction Transaction;
 
@@ -70,6 +69,11 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         internal void EagerLoadCollection<TEntity>(TEntity entity, string propertyName) where TEntity : class
         {
             ContactModuleContext.Entry(entity).Collection(propertyName).Load();
+        }
+
+        internal void EagerLoadReference<TEntity>(TEntity entity, string propertyName) where TEntity : class
+        {
+            ContactModuleContext.Entry(entity).Reference(propertyName).Load();
         }
     }
 }
