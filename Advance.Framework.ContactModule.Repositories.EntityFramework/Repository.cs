@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 {
@@ -13,7 +14,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         , IRepository<TEntity>
         where TEntity : class
     {
-        private readonly IDictionary<Type, IList<Guid>> CopiedEntities = new Dictionary<Type, IList<Guid>>();
+        private readonly IDictionary<Type, IList<Guid>> UpdatedEntities = new Dictionary<Type, IList<Guid>>();
 
         public Repository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
@@ -33,6 +34,11 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             {
                 var timestampableEntity = (ITimestampableEntity)entity;
                 timestampableEntity.CreatedAt = DateTimeOffset.Now;
+            }
+
+            foreach (var property in GetEditableProperties(entity.GetType()))
+            {
+
             }
         }
 
@@ -78,71 +84,85 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
         private void UpdateProperties(object source, object destination, DateTimeOffset updatedAt)
         {
             var type = source.GetType();
-            if (CopiedEntities.ContainsKey(type) == false)
+            if (UpdatedEntities.ContainsKey(type) == false)
             {
-                CopiedEntities.Add(type, new List<Guid>());
+                UpdatedEntities.Add(type, new List<Guid>());
             }
 
             var entityId = GetId(source);
-            if (CopiedEntities[type].Contains(entityId))
+            if (UpdatedEntities[type].Contains(entityId))
             {
                 return;
             }
 
-            CopiedEntities[type].Add(entityId);
+            UpdatedEntities[type].Add(entityId);
 
-            foreach (var property in type.GetProperties().Where(i => i.CanRead && i.CanWrite && i.Name != GetIdPropertyName(type)))
+            foreach (var property in GetEditableProperties(type))
             {
-                var propertyType = property.PropertyType;
+                switch (property.Type)
+                {
+                    case PropertyType.Primitive:
+                        property.SetValue(destination, property.GetValue(source));
+                        break;
 
-                /// Explicitly update the UpdatedAt for ITimestampableEntity entities
-                if (typeof(ITimestampableEntity).IsAssignableFrom(destination.GetType())
-                    && (property.Name == nameof(ITimestampableEntity.CreatedAt) || property.Name == nameof(ITimestampableEntity.UpdatedAt)))
-                {
-                    if (property.Name == nameof(ITimestampableEntity.UpdatedAt))
-                    {
-                        SetUpdatedAt(destination, updatedAt);
-                    }
-                }
-                else if (IsCopyableProperty(propertyType))
-                {
-                    property.SetValue(destination, property.GetValue(source));
-                }
-                else if (typeof(IEnumerable).IsAssignableFrom(propertyType))
-                {
-                    UnitOfWork.EagerLoadCollection(destination, property.Name);
-                    var currentChildren = (IList)property.GetValue(destination);
-                    var entityChildren = ((IEnumerable)property.GetValue(source)).Cast<object>();
-                    foreach (var currentChild in currentChildren.Cast<object>().ToArray())
-                    {
-                        var entityChild = entityChildren.SingleOrDefault(i => GetId(i) == GetId(currentChild));
-                        if (entityChild == null)
+                    case PropertyType.Timestampable:
+                        if (property.Name == nameof(ITimestampableEntity.UpdatedAt))
                         {
-                            SetUpdatedAt(currentChild, updatedAt);
-                            currentChildren.Remove(currentChild);
+                            SetUpdatedAt(destination, updatedAt);
                         }
-                        else
-                        {
-                            UpdateProperties(entityChild, currentChild, updatedAt);
-                        }
-                    }
+                        break;
 
-                    foreach (var entityChild in entityChildren.Where(i => currentChildren.Cast<object>().Any(j => GetId(j) == GetId(i)) == false))
-                    {
-                        SetCreatedAt(entityChild);
-                        currentChildren.Add(entityChild);
-                    }
-                }
-                else
-                {
-                    UnitOfWork.EagerLoadReference(destination, property.Name);
-                    var currentChild = property.GetValue(destination);
-                    var entityChild = property.GetValue(source);
-                    UpdateProperties(entityChild, currentChild, updatedAt);
+                    case PropertyType.Reference:
+                        UnitOfWork.EagerLoadReference(destination, property.Name);
+                        var currentChild = property.GetValue(destination);
+                        var entityChild = property.GetValue(source);
+                        UpdateProperties(entityChild, currentChild, updatedAt);
+                        break;
+
+                    case PropertyType.Collection:
+                        UpdateCollection(source, destination, updatedAt, property);
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
                 }
             }
 
             return;
+        }
+
+        private void UpdateCollection(object source, object destination, DateTimeOffset updatedAt, Property property)
+        {
+            UnitOfWork.EagerLoadCollection(destination, property.Name);
+            var currentChildren = (IList)property.GetValue(destination);
+            var entityChildren = ((IEnumerable)property.GetValue(source)).Cast<object>();
+            foreach (var currentChild in currentChildren.Cast<object>().ToArray())
+            {
+                var entityChild = entityChildren.SingleOrDefault(i => GetId(i) == GetId(currentChild));
+                if (entityChild == null)
+                {
+                    SetUpdatedAt(currentChild, updatedAt);
+                    currentChildren.Remove(currentChild);
+                }
+                else
+                {
+                    UpdateProperties(entityChild, currentChild, updatedAt);
+                }
+            }
+
+            foreach (var entityChild in entityChildren.Where(i => currentChildren.Cast<object>().Any(j => GetId(j) == GetId(i)) == false))
+            {
+                SetCreatedAt(entityChild);
+                currentChildren.Add(entityChild);
+            }
+        }
+
+        private static IEnumerable<Property> GetEditableProperties(Type type)
+        {
+            foreach (var property in type.GetProperties().Where(i => i.CanRead && i.CanWrite && i.Name != GetIdPropertyName(type)))
+            {
+                yield return new Property(property);
+            }
         }
 
         private static void SetUpdatedAt(object entity, DateTimeOffset updatedAt)
@@ -152,16 +172,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                 var timestampableEntity = (ITimestampableEntity)entity;
                 timestampableEntity.UpdatedAt = updatedAt;
             }
-        }
-
-        private static bool IsCopyableProperty(Type type)
-        {
-            type = Nullable.GetUnderlyingType(type) ?? type;
-            return type.IsPrimitive
-                || type == typeof(string)
-                || type == typeof(DateTime)
-                || type.IsEnum
-                || type == typeof(DateTimeOffset);
         }
     }
 }

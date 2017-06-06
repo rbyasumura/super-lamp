@@ -14,6 +14,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 .RegisterType<IUnitOfWork, UnitOfWork>()
                 .RegisterType<IPersonRepository, PersonRepository>()
                 .RegisterType<IPhoneNumberRepository, PhoneNumberRepository>()
+                .RegisterType<IContactRepository, ContactRepository>()
                 ;
         }
     }

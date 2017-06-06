@@ -38,7 +38,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 {
                     Number = "4164528685",
                     Type = PhoneNumberType.Home,
-                    Person = person,
+                    //Person = person,
                 };
 
                 /// Act

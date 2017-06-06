@@ -45,14 +45,14 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 FirstName = $"Bobby{DateTime.Now.Ticks}",
                 LastName = $"Yasumura{DateTime.Now.Ticks}",
                 DateOfBirth = new DateTime(1981, 12, 11),
-                PhoneNumbers = new PhoneNumber[]
-                {
-                    new PhoneNumber
-                    {
-                        Number = "11111",
-                        Type = PhoneNumberType.Home,
-                    },
-                },
+                //PhoneNumbers = new PhoneNumber[]
+                //{
+                //    new PhoneNumber
+                //    {
+                //        Number = "11111",
+                //        Type = PhoneNumberType.Home,
+                //    },
+                //},
             };
 
             /// Act
@@ -75,11 +75,11 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             {
                 var personRepository = GetPersonRepository(unitOfWork);
                 person = personRepository
-                    .ListAll(i => i.PhoneNumbers)
-                    .Where(i => i.PhoneNumbers.Count > 0)
+                    .ListAll(/*i => i.PhoneNumbers*/)
+                    //.Where(i => i.PhoneNumbers.Count > 0)
                     .FirstOrDefault();
 
-                person.PhoneNumbers.Clear();
+                //person.PhoneNumbers.Clear();
                 personRepository.Update(person);
                 unitOfWork.Commit();
             }
@@ -140,8 +140,8 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 unitOfWork.Commit();
 
                 var person = personRepository
-                    .ListAll(i => i.PhoneNumbers)
-                    .Where(i => i.PhoneNumbers.Any() == false)
+                    .ListAll(/*i => i.PhoneNumbers*/)
+                    //.Where(i => i.PhoneNumbers.Any() == false)
                     .OrderBy(i => i.CreatedAt)
                     .First();
 
