@@ -41,7 +41,18 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             var id = GetId(entity);
             var expression = GetIdExpression(id);
             var _entity = Entities.Single(expression);
-            Entities.Remove(_entity);
+
+            if (typeof(ISoftDeletableEntity).IsAssignableFrom(entity.GetType()))
+            {
+                var softDeletableEntity = (ISoftDeletableEntity)_entity;
+                softDeletableEntity.DeletedAt = DateTimeOffset.Now;
+                Update((TEntity)softDeletableEntity);
+            }
+            else
+            {
+                Entities.Remove(_entity);
+            }
+
             UnitOfWork.SaveChanges();
         }
 
@@ -83,6 +94,8 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             foreach (var property in type.GetProperties().Where(i => i.CanRead && i.CanWrite && i.Name != GetIdPropertyName(type)))
             {
                 var propertyType = property.PropertyType;
+
+                /// Explicitly update the UpdatedAt for ITimestampableEntity entities
                 if (typeof(ITimestampableEntity).IsAssignableFrom(destination.GetType())
                     && (property.Name == nameof(ITimestampableEntity.CreatedAt) || property.Name == nameof(ITimestampableEntity.UpdatedAt)))
                 {
@@ -91,7 +104,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                         SetUpdatedAt(destination, updatedAt);
                     }
                 }
-                else if (IsCopyable(propertyType))
+                else if (IsCopyableProperty(propertyType))
                 {
                     property.SetValue(destination, property.GetValue(source));
                 }
@@ -141,13 +154,14 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
             }
         }
 
-        private static bool IsCopyable(Type type)
+        private static bool IsCopyableProperty(Type type)
         {
             type = Nullable.GetUnderlyingType(type) ?? type;
             return type.IsPrimitive
                 || type == typeof(string)
                 || type == typeof(DateTime)
-                || type.IsEnum;
+                || type.IsEnum
+                || type == typeof(DateTimeOffset);
         }
     }
 }

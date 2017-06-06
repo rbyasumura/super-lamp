@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Advance.Framework.ContactModule.Entities
 {
     public class PhoneNumber : ITimestampableEntity
+        , ISoftDeletableEntity
     {
         public PhoneNumber()
         {
@@ -18,5 +19,6 @@ namespace Advance.Framework.ContactModule.Entities
         public Person Person { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
     }
 }

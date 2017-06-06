@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace Advance.Framework.ContactModule.Entities
 {
     public class Person : ITimestampableEntity
+        , ISoftDeletableEntity
     {
         public Person()
         {
@@ -19,5 +20,6 @@ namespace Advance.Framework.ContactModule.Entities
         public ICollection<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
     }
 }

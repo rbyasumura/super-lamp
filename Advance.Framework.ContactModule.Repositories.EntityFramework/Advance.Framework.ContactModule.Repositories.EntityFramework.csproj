@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201705280534251_remove cascade delete.Designer.cs">
       <DependentUpon>201705280534251_remove cascade delete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706021800379_add soft delete.cs" />
+    <Compile Include="Migrations\201706021800379_add soft delete.Designer.cs">
+      <DependentUpon>201706021800379_add soft delete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonRepository.cs" />
     <Compile Include="ContactModuleContext.cs" />
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705280534251_remove cascade delete.resx">
       <DependentUpon>201705280534251_remove cascade delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706021800379_add soft delete.resx">
+      <DependentUpon>201706021800379_add soft delete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
