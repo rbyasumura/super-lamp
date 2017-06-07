@@ -8,20 +8,9 @@ using System.Linq;
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [TestFixture]
-    class ContactRepositoryTests
+    internal class ContactRepositoryTests
     {
-        [TestCase]
-        public void ListAll()
-        {
-            /// Arrange
-            /// Act
-            using (var unitOfWork = GetUnitOfWork())
-            {
-                var result = unitOfWork.GetRepository<IContactRepository>().ListAll();
-            }
-
-            /// Assert
-        }
+        #region Public Methods
 
         [TestCase]
         public void Add()
@@ -46,10 +35,21 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         }
 
         [TestCase]
+        public void ListAll()
+        {
+            /// Arrange Act
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var result = unitOfWork.GetRepository<IContactRepository>().ListAll();
+            }
+
+            /// Assert
+        }
+
+        [TestCase]
         public void Update()
         {
-            /// Arrange
-            /// Act
+            /// Arrange Act
             using (var unitOfWork = GetUnitOfWork())
             {
                 var contactRepository = unitOfWork.GetRepository<IContactRepository>();
@@ -61,9 +61,15 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Assert
         }
 
+        #endregion Public Methods
+
+        #region Private Methods
+
         private static IUnitOfWork GetUnitOfWork()
         {
             return Container.Instance.Resolve<IUnitOfWork>();
         }
+
+        #endregion Private Methods
     }
 }

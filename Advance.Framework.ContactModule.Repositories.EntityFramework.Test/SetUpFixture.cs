@@ -1,12 +1,15 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Repositories;
+using Advance.Framework.Repositories.EntityFramework;
 using NUnit.Framework;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [SetUpFixture]
-    class SetUpFixture
+    internal class SetUpFixture
     {
+        #region Public Methods
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -17,5 +20,7 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 .RegisterType<IContactRepository, ContactRepository>()
                 ;
         }
+
+        #endregion Public Methods
     }
 }

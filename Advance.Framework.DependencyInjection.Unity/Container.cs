@@ -1,19 +1,28 @@
 ﻿using Microsoft.Practices.Unity;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace Advance.Framework.DependencyInjection.Unity
 {
     public class Container
     {
-        private UnityContainer UnityContainer;
-        private static Container _Instance;
+        #region Private Fields
 
-        Container()
+        private static Container _Instance;
+        private UnityContainer UnityContainer;
+
+        #endregion Private Fields
+
+        #region Private Constructors
+
+        private Container()
         {
             UnityContainer = new UnityContainer();
         }
+
+        #endregion Private Constructors
+
+        #region Public Properties
 
         public static Container Instance
         {
@@ -27,6 +36,10 @@ namespace Advance.Framework.DependencyInjection.Unity
                 return _Instance;
             }
         }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public Container RegisterInstance<TInterface>(TInterface instance)
         {
@@ -54,5 +67,7 @@ namespace Advance.Framework.DependencyInjection.Unity
         {
             return UnityContainer.Resolve<T>(parameters.Select(i => new ParameterOverride(i.Key, i.Value)).ToArray());
         }
+
+        #endregion Public Methods
     }
 }

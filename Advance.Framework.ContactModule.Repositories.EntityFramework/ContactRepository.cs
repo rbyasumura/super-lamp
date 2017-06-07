@@ -1,17 +1,17 @@
 ﻿using Advance.Framework.ContactModule.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Advance.Framework.Repositories.EntityFramework;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 {
     public class ContactRepository : Repository<Contact>
         , IContactRepository
     {
+        #region Public Constructors
+
         public ContactRepository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
+
+        #endregion Public Constructors
     }
 }

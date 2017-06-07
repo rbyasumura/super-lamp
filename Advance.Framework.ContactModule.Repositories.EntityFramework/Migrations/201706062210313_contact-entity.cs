@@ -1,10 +1,24 @@
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
 
     public partial class contactentity : DbMigration
     {
+        #region Public Methods
+
+        public override void Down()
+        {
+            AddColumn("dbo.PhoneNumbers", "Person_PersonId", c => c.Guid());
+            DropForeignKey("dbo.PhoneNumbers", "Contact_ContactId", "dbo.Contacts");
+            DropForeignKey("dbo.Contacts", "Person_PersonId", "dbo.People");
+            DropIndex("dbo.Contacts", new[] { "Person_PersonId" });
+            DropIndex("dbo.PhoneNumbers", new[] { "Contact_ContactId" });
+            DropColumn("dbo.PhoneNumbers", "Contact_ContactId");
+            DropTable("dbo.Contacts");
+            CreateIndex("dbo.PhoneNumbers", "Person_PersonId");
+            AddForeignKey("dbo.PhoneNumbers", "Person_PersonId", "dbo.People", "PersonId");
+        }
+
         public override void Up()
         {
             DropForeignKey("dbo.PhoneNumbers", "Person_PersonId", "dbo.People");
@@ -29,17 +43,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
             DropColumn("dbo.PhoneNumbers", "Person_PersonId");
         }
 
-        public override void Down()
-        {
-            AddColumn("dbo.PhoneNumbers", "Person_PersonId", c => c.Guid());
-            DropForeignKey("dbo.PhoneNumbers", "Contact_ContactId", "dbo.Contacts");
-            DropForeignKey("dbo.Contacts", "Person_PersonId", "dbo.People");
-            DropIndex("dbo.Contacts", new[] { "Person_PersonId" });
-            DropIndex("dbo.PhoneNumbers", new[] { "Contact_ContactId" });
-            DropColumn("dbo.PhoneNumbers", "Contact_ContactId");
-            DropTable("dbo.Contacts");
-            CreateIndex("dbo.PhoneNumbers", "Person_PersonId");
-            AddForeignKey("dbo.PhoneNumbers", "Person_PersonId", "dbo.People", "PersonId");
-        }
+        #endregion Public Methods
     }
 }
