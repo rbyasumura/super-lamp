@@ -10,22 +10,12 @@ namespace Advance.Framework.Repositories.EntityFramework
     public class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
         where TEntity : class
     {
-        #region Private Fields
-
         private static readonly string IdPropertyName = GetIdPropertyName(typeof(TEntity));
-
-        #endregion Private Fields
-
-        #region Public Constructors
 
         public ReadOnlyRepository(UnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }
-
-        #endregion Public Constructors
-
-        #region Internal Properties
 
         internal DbSet<TEntity> Entities
         {
@@ -35,18 +25,10 @@ namespace Advance.Framework.Repositories.EntityFramework
             }
         }
 
-        #endregion Internal Properties
-
-        #region Protected Internal Properties
-
-        protected internal UnitOfWork UnitOfWork
+        internal UnitOfWork UnitOfWork
         {
             get;
         }
-
-        #endregion Protected Internal Properties
-
-        #region Private Properties
 
         private DbQuery<TEntity> ReadOnlyEntities
         {
@@ -55,10 +37,6 @@ namespace Advance.Framework.Repositories.EntityFramework
                 return Entities.AsNoTracking();
             }
         }
-
-        #endregion Private Properties
-
-        #region Public Methods
 
         public bool Exists(Guid id)
         {
@@ -88,10 +66,6 @@ namespace Advance.Framework.Repositories.EntityFramework
             return ListAll<object>();
         }
 
-        #endregion Public Methods
-
-        #region Protected Internal Methods
-
         protected internal static Expression<Func<TEntity, bool>> GetIdExpression(Guid id)
         {
             var parameterExpression = Expression.Parameter(typeof(TEntity));
@@ -107,7 +81,5 @@ namespace Advance.Framework.Repositories.EntityFramework
         {
             return $"{type.Name}Id";
         }
-
-        #endregion Protected Internal Methods
     }
 }

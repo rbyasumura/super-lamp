@@ -4,8 +4,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
 
     public partial class addsoftdelete : DbMigration
     {
-        #region Public Methods
-
         public override void Down()
         {
             DropColumn("dbo.PhoneNumbers", "DeletedAt");
@@ -17,7 +15,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
             AddColumn("dbo.People", "DeletedAt", c => c.DateTimeOffset(precision: 7));
             AddColumn("dbo.PhoneNumbers", "DeletedAt", c => c.DateTimeOffset(precision: 7));
         }
-
-        #endregion Public Methods
     }
 }

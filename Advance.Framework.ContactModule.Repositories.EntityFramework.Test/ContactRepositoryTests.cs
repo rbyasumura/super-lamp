@@ -10,8 +10,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
     [TestFixture]
     internal class ContactRepositoryTests
     {
-        #region Public Methods
-
         [TestCase]
         public void Add()
         {
@@ -61,15 +59,9 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Assert
         }
 
-        #endregion Public Methods
-
-        #region Private Methods
-
         private static IUnitOfWork GetUnitOfWork()
         {
             return Container.Instance.Resolve<IUnitOfWork>();
         }
-
-        #endregion Private Methods
     }
 }

@@ -4,16 +4,10 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
 {
     internal sealed class Configuration : DbMigrationsConfiguration<ContactModuleContext>
     {
-        #region Public Constructors
-
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
-
-        #endregion Public Constructors
-
-        #region Protected Methods
 
         protected override void Seed(ContactModuleContext context)
         {
@@ -25,7 +19,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
             // context.People.AddOrUpdate( p => p.FullName, new Person { FullName = "Andrew Peters"
             // }, new Person { FullName = "Brice Lambson" }, new Person { FullName = "Rowan Miller" } );
         }
-
-        #endregion Protected Methods
     }
 }

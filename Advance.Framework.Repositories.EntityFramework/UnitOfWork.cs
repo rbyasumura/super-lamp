@@ -10,23 +10,13 @@ namespace Advance.Framework.Repositories.EntityFramework
     [Serializable]
     public class UnitOfWork : IUnitOfWork
     {
-        #region Private Fields
-
         private DbContext context;
         private DbContextTransaction transaction;
-
-        #endregion Private Fields
-
-        #region Public Constructors
 
         public UnitOfWork(DbContext context)
         {
             this.context = context;
         }
-
-        #endregion Public Constructors
-
-        #region Public Methods
 
         public void Commit()
         {
@@ -60,10 +50,6 @@ namespace Advance.Framework.Repositories.EntityFramework
             });
         }
 
-        #endregion Public Methods
-
-        #region Internal Methods
-
         internal void Attach<TEntity>(TEntity entity) where TEntity : class
         {
             context.Entry(entity).State = EntityState.Modified;
@@ -92,10 +78,6 @@ namespace Advance.Framework.Repositories.EntityFramework
         {
             return context.Set<TEntity>();
         }
-
-        #endregion Internal Methods
-
-        #region Private Methods
 
         private static void InterceptSoftDeletableEntity(DbEntityEntry entity, DateTimeOffset? timestamp = null)
         {
@@ -131,7 +113,5 @@ namespace Advance.Framework.Repositories.EntityFramework
                 }
             }
         }
-
-        #endregion Private Methods
     }
 }

@@ -5,13 +5,7 @@ namespace Advance.Framework.ContactModule.Mappers.AutoMapper
 {
     public class Mapper : AFM.IMapper
     {
-        #region Private Fields
-
         private IMapper mapper;
-
-        #endregion Private Fields
-
-        #region Public Constructors
 
         public Mapper()
         {
@@ -22,15 +16,9 @@ namespace Advance.Framework.ContactModule.Mappers.AutoMapper
             mapper = config.CreateMapper();
         }
 
-        #endregion Public Constructors
-
-        #region Public Methods
-
         public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
         {
             return mapper.Map(source, destination);
         }
-
-        #endregion Public Methods
     }
 }

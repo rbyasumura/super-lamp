@@ -10,14 +10,8 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
     [TestFixture]
     public class PersonRepositoryTests
     {
-        #region Private Fields
-
         private static readonly Guid DeletePersonId = new Guid("a57c8320-5432-4f4b-bb77-53d4a00fa0fd");
         private readonly Guid GetByIdPersonId = new Guid("017bde02-e0fa-485e-ab26-359e7730aad5");
-
-        #endregion Private Fields
-
-        #region Public Methods
 
         [TestCase]
         public void Add()
@@ -149,10 +143,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
             /// Assert
         }
 
-        #endregion Public Methods
-
-        #region Private Methods
-
         private static IPersonRepository GetPersonRepository(IUnitOfWork unitOfWork)
         {
             return unitOfWork.GetRepository<IPersonRepository>();
@@ -162,7 +152,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         {
             return Container.Instance.Resolve<IUnitOfWork>();
         }
-
-        #endregion Private Methods
     }
 }

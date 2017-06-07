@@ -4,8 +4,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
 
     public partial class contactentity : DbMigration
     {
-        #region Public Methods
-
         public override void Down()
         {
             AddColumn("dbo.PhoneNumbers", "Person_PersonId", c => c.Guid());
@@ -42,7 +40,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
             AddForeignKey("dbo.PhoneNumbers", "Contact_ContactId", "dbo.Contacts", "ContactId");
             DropColumn("dbo.PhoneNumbers", "Person_PersonId");
         }
-
-        #endregion Public Methods
     }
 }

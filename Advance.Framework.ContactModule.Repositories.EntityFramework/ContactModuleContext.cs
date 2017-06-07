@@ -5,16 +5,10 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 {
     internal class ContactModuleContext : DbContext
     {
-        #region Public Constructors
-
         public ContactModuleContext()
         {
             Configuration.LazyLoadingEnabled = false;
         }
-
-        #endregion Public Constructors
-
-        #region Protected Methods
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,7 +26,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                 .HasRequired(i => i.Person)
                 ;
         }
-
-        #endregion Protected Methods
     }
 }

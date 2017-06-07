@@ -7,16 +7,10 @@ namespace Advance.Framework.ContactModule.Entities
     public class Contact : ITimestampableEntity
         , ISoftDeletableEntity
     {
-        #region Public Constructors
-
         public Contact()
         {
             ContactId = Guid.NewGuid();
         }
-
-        #endregion Public Constructors
-
-        #region Public Properties
 
         public Guid ContactId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
@@ -24,7 +18,5 @@ namespace Advance.Framework.ContactModule.Entities
         public Person Person { get; set; }
         public ICollection<PhoneNumber> PhoneNumbers { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
-
-        #endregion Public Properties
     }
 }

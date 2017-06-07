@@ -4,15 +4,9 @@
         , IRepository<TEntity>
         where TEntity : class
     {
-        #region Public Constructors
-
         public Repository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
-
-        #endregion Public Constructors
-
-        #region Public Methods
 
         public void Add(TEntity entity)
         {
@@ -31,7 +25,5 @@
             UnitOfWork.Attach(entity);
             UnitOfWork.SaveChanges();
         }
-
-        #endregion Public Methods
     }
 }

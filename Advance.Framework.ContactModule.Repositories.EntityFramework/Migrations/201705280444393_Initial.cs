@@ -4,8 +4,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
 
     public partial class Initial : DbMigration
     {
-        #region Public Methods
-
         public override void Down()
         {
             DropForeignKey("dbo.PhoneNumbers", "Person_PersonId", "dbo.People");
@@ -40,7 +38,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
                 .ForeignKey("dbo.People", t => t.Person_PersonId, cascadeDelete: true)
                 .Index(t => t.Person_PersonId);
         }
-
-        #endregion Public Methods
     }
 }

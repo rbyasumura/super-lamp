@@ -4,8 +4,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
 
     public partial class Timestampable : DbMigration
     {
-        #region Public Methods
-
         public override void Down()
         {
             DropColumn("dbo.PhoneNumbers", "UpdatedAt");
@@ -21,7 +19,5 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Migration
             AddColumn("dbo.PhoneNumbers", "CreatedAt", c => c.DateTimeOffset(nullable: false, precision: 7));
             AddColumn("dbo.PhoneNumbers", "UpdatedAt", c => c.DateTimeOffset(precision: 7));
         }
-
-        #endregion Public Methods
     }
 }
