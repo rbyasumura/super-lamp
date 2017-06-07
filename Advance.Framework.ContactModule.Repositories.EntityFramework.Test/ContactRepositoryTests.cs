@@ -2,6 +2,8 @@
 using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Repositories;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
@@ -38,6 +40,22 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
                 unitOfWork.GetRepository<IContactRepository>().Add(entity);
 
                 unitOfWork.Commit();
+            }
+
+            /// Assert
+        }
+
+        [TestCase]
+        public void Update()
+        {
+            /// Arrange
+            /// Act
+            using (var unitOfWork = GetUnitOfWork())
+            {
+                var contactRepository = unitOfWork.GetRepository<IContactRepository>();
+                var contact = contactRepository.ListAll(i => i.Person).First();
+                contact.Person.FirstName = string.Format("{0}", DateTime.Now);
+                contactRepository.Update(contact);
             }
 
             /// Assert

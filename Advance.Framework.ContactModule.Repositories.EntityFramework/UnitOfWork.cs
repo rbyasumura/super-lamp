@@ -1,8 +1,10 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Entities;
 using Advance.Framework.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 
@@ -11,28 +13,73 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
     [Serializable]
     public class UnitOfWork : IUnitOfWork
     {
-        private ContactModuleContext ContactModuleContext;
+        private ContactModuleContext Context;
         private DbContextTransaction Transaction;
 
         public UnitOfWork()
         {
-            ContactModuleContext = new ContactModuleContext();
+            Context = new ContactModuleContext();
         }
 
         internal int SaveChanges()
         {
             if (Transaction == null)
             {
-                Transaction = ContactModuleContext.Database.BeginTransaction();
+                Transaction = Context.Database.BeginTransaction();
             }
 
-            return ContactModuleContext.SaveChanges();
+            var now = DateTimeOffset.Now;
+
+            foreach (var entity in Context.ChangeTracker.Entries())
+            {
+                InterceptSoftDeletableEntity(entity, now);
+                InterceptTimestampableEntity(entity, now);
+            }
+
+            return Context.SaveChanges();
         }
 
-        internal DbSet<TEntity> Set<TEntity>()
+        private static void InterceptTimestampableEntity(DbEntityEntry entity, DateTimeOffset? timestamp = null)
+        {
+            var _timestamp = timestamp ?? DateTimeOffset.Now;
+            var entityType = entity.Entity.GetType();
+
+            if (typeof(ITimestampableEntity).IsAssignableFrom(entityType))
+            {
+                var timestampableEntity = (ITimestampableEntity)entity.Entity;
+                if (entity.State == EntityState.Added)
+                {
+                    timestampableEntity.CreatedAt = _timestamp;
+                }
+                else if (entity.State == EntityState.Modified)
+                {
+                    timestampableEntity.UpdatedAt = _timestamp;
+                }
+            }
+        }
+
+        private static void InterceptSoftDeletableEntity(DbEntityEntry entity, DateTimeOffset? timestamp = null)
+        {
+            var _timestamp = timestamp ?? DateTimeOffset.Now;
+            var entityType = entity.Entity.GetType();
+
+            if (typeof(ISoftDeletableEntity).IsAssignableFrom(entityType))
+            {
+                var softDeletableEntity = (ISoftDeletableEntity)entity.Entity;
+                if (entity.State == EntityState.Deleted)
+                {
+                    softDeletableEntity.DeletedAt = _timestamp;
+                    entity.State = EntityState.Modified;
+                }
+            }
+        }
+
+        internal DbQuery<TEntity> Set<TEntity>()
             where TEntity : class
         {
-            return ContactModuleContext.Set<TEntity>();
+            return Context
+                .Set<TEntity>()
+                .AsNoTracking();
         }
 
         public void Dispose()
@@ -43,10 +90,10 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
                 Transaction = null;
             }
 
-            if (ContactModuleContext != null)
+            if (Context != null)
             {
-                ContactModuleContext.Dispose();
-                ContactModuleContext = null;
+                Context.Dispose();
+                Context = null;
             }
         }
 
@@ -69,12 +116,12 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
         internal void EagerLoadCollection<TEntity>(TEntity entity, string propertyName) where TEntity : class
         {
-            ContactModuleContext.Entry(entity).Collection(propertyName).Load();
+            Context.Entry(entity).Collection(propertyName).Load();
         }
 
         internal void EagerLoadReference<TEntity>(TEntity entity, string propertyName) where TEntity : class
         {
-            ContactModuleContext.Entry(entity).Reference(propertyName).Load();
+            Context.Entry(entity).Reference(propertyName).Load();
         }
     }
 }

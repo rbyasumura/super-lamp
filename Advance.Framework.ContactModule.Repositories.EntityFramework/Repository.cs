@@ -22,24 +22,8 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
         public void Add(TEntity entity)
         {
-            SetCreatedAt(entity);
-
             Entities.Add(entity);
             UnitOfWork.SaveChanges();
-        }
-
-        private static void SetCreatedAt(object entity)
-        {
-            if (typeof(ITimestampableEntity).IsAssignableFrom(entity.GetType()))
-            {
-                var timestampableEntity = (ITimestampableEntity)entity;
-                timestampableEntity.CreatedAt = DateTimeOffset.Now;
-            }
-
-            foreach (var property in GetEditableProperties(entity.GetType()))
-            {
-
-            }
         }
 
         public void Delete(TEntity entity)
@@ -152,7 +136,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework
 
             foreach (var entityChild in entityChildren.Where(i => currentChildren.Cast<object>().Any(j => GetId(j) == GetId(i)) == false))
             {
-                SetCreatedAt(entityChild);
                 currentChildren.Add(entityChild);
             }
         }
