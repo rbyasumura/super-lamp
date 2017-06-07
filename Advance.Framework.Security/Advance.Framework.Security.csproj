@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E0E95260-764A-4009-B7A2-B5DE88E2F921}</ProjectGuid>
+    <ProjectGuid>{92E15E74-6717-48F2-A762-DB89BC640552}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Advance.Framework.Entities</RootNamespace>
-    <AssemblyName>Advance.Framework.Entities</AssemblyName>
+    <RootNamespace>Advance.Framework.Security</RootNamespace>
+    <AssemblyName>Advance.Framework.Security</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\EntityUtility.cs" />
-    <Compile Include="ISoftDeletableEntity.cs" />
-    <Compile Include="ITimestampableEntity.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.Entities\Advance.Framework.Entities.csproj">
+      <Project>{E0E95260-764A-4009-B7A2-B5DE88E2F921}</Project>
+      <Name>Advance.Framework.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

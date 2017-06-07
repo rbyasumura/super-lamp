@@ -1,5 +1,6 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Entities;
+using Advance.Framework.Entities.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -66,6 +67,7 @@ namespace Advance.Framework.Repositories.EntityFramework
 
             foreach (var entity in context.ChangeTracker.Entries())
             {
+                InterceptPrimaryKey(entity);
                 InterceptSoftDeletableEntity(entity, now);
                 InterceptTimestampableEntity(entity, now);
             }
@@ -110,6 +112,25 @@ namespace Advance.Framework.Repositories.EntityFramework
                 else if (entity.State == EntityState.Modified)
                 {
                     timestampableEntity.UpdatedAt = _timestamp;
+                }
+            }
+        }
+
+        private void InterceptPrimaryKey(DbEntityEntry entityEntry)
+        {
+            if (entityEntry.State == EntityState.Added)
+            {
+                var entity = entityEntry.Entity;
+                var entityType = entity.GetType();
+                var property = entityType.GetProperty(EntityUtility.GetIdPropertyName(entityType));
+                var value = property.GetValue(entity);
+                if (value.GetType() == typeof(Guid))
+                {
+                    var guid = (Guid)value;
+                    if (guid == Guid.Empty)
+                    {
+                        property.SetValue(entity, Guid.NewGuid());
+                    }
                 }
             }
         }

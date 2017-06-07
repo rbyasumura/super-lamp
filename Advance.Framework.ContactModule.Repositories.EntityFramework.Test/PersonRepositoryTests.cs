@@ -8,7 +8,7 @@ using System.Linq;
 namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
 {
     [TestFixture]
-    public class PersonRepositoryTests
+    public class PersonRepositoryTests : BaseTests
     {
         private static readonly Guid DeletePersonId = new Guid("a57c8320-5432-4f4b-bb77-53d4a00fa0fd");
         private readonly Guid GetByIdPersonId = new Guid("017bde02-e0fa-485e-ab26-359e7730aad5");
@@ -146,11 +146,6 @@ namespace Advance.Framework.ContactModule.Repositories.EntityFramework.Test
         private static IPersonRepository GetPersonRepository(IUnitOfWork unitOfWork)
         {
             return unitOfWork.GetRepository<IPersonRepository>();
-        }
-
-        private static IUnitOfWork GetUnitOfWork()
-        {
-            return Container.Instance.Resolve<IUnitOfWork>();
         }
     }
 }

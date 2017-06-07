@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTests.cs" />
     <Compile Include="ContactRepositoryTests.cs" />
     <Compile Include="SetUpFixture.cs" />
     <Compile Include="PhoneNumberRepositoryTests.cs" />

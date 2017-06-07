@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.ContactModule.Repositories.EntityFramework", "Advance.Framework.ContactModule.Repositories.EntityFramework\Advance.Framework.ContactModule.Repositories.EntityFramework.csproj", "{F3A606EC-9AC9-418A-8198-534C4E065FEA}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Infrastructure", "0 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Library Implementations", "1 - Library Implementations", "{A9E46B26-8F35-4891-BF9E-4939A0DC6BFA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - ContactModule", "2 - ContactModule", "{B96AC513-D54A-4C53-B9DA-464C75BE0F9A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contact", "Contact", "{B96AC513-D54A-4C53-B9DA-464C75BE0F9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.ContactModule", "Advance.Framework.ContactModule\Advance.Framework.ContactModule.csproj", "{B087153C-3480-4EAA-9E3F-B06DECB3B69A}"
 EndProject
@@ -26,6 +26,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Entities", "Advance.Framework.Entities\Advance.Framework.Entities.csproj", "{E0E95260-764A-4009-B7A2-B5DE88E2F921}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Repositories.EntityFramework", "Advance.Framework.Repositories.EntityFramework\Advance.Framework.Repositories.EntityFramework.csproj", "{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{5C308654-3158-40F1-B579-D5F6BB77F548}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Modules", "2 - Modules", "{723F948C-12F5-455C-A455-09F0027F5600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Security", "Advance.Framework.Security\Advance.Framework.Security.csproj", "{92E15E74-6717-48F2-A762-DB89BC640552}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Contexts", "3 - Contexts", "{A47C6DFD-11C3-40D6-A9F0-46C3F85F248F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Contexts.EntityFramework", "Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj", "{226A2371-DE0F-433C-B4E0-082E150B2918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +79,14 @@ Global
 		{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E15E74-6717-48F2-A762-DB89BC640552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E15E74-6717-48F2-A762-DB89BC640552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E15E74-6717-48F2-A762-DB89BC640552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E15E74-6717-48F2-A762-DB89BC640552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{226A2371-DE0F-433C-B4E0-082E150B2918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{226A2371-DE0F-433C-B4E0-082E150B2918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{226A2371-DE0F-433C-B4E0-082E150B2918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{226A2371-DE0F-433C-B4E0-082E150B2918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,11 +95,15 @@ Global
 		{F3A606EC-9AC9-418A-8198-534C4E065FEA} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{8CC9B450-08E8-4F3B-99BD-75FF9EDAB7A1} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{D8C560A1-3119-4114-B238-728D244F77F1} = {A9E46B26-8F35-4891-BF9E-4939A0DC6BFA}
+		{B96AC513-D54A-4C53-B9DA-464C75BE0F9A} = {723F948C-12F5-455C-A455-09F0027F5600}
 		{B087153C-3480-4EAA-9E3F-B06DECB3B69A} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{281F571F-60A8-494D-B915-273D1E069747} = {B96AC513-D54A-4C53-B9DA-464C75BE0F9A}
 		{BE482925-C59B-461B-94B3-6E8F5BCEC5CA} = {B9646424-263D-4161-A858-571D347725EF}
 		{960860AC-E22F-4D6A-B28E-570400D6929B} = {B9646424-263D-4161-A858-571D347725EF}
 		{E0E95260-764A-4009-B7A2-B5DE88E2F921} = {B9646424-263D-4161-A858-571D347725EF}
 		{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E} = {A9E46B26-8F35-4891-BF9E-4939A0DC6BFA}
+		{5C308654-3158-40F1-B579-D5F6BB77F548} = {723F948C-12F5-455C-A455-09F0027F5600}
+		{92E15E74-6717-48F2-A762-DB89BC640552} = {5C308654-3158-40F1-B579-D5F6BB77F548}
+		{226A2371-DE0F-433C-B4E0-082E150B2918} = {A47C6DFD-11C3-40D6-A9F0-46C3F85F248F}
 	EndGlobalSection
 EndGlobal
