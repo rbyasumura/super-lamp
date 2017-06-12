@@ -2,9 +2,9 @@
 {
     public class BaseTests
     {
-        internal static IUnitOfWork GetUnitOfWork()
-        {
-            return Container.Instance.Resolve<IUnitOfWork>();
-        }
+        //internal static IUnitOfWork GetUnitOfWork()
+        //{
+        //    return Container.Instance.Resolve<IUnitOfWork>();
+        //}
     }
 }

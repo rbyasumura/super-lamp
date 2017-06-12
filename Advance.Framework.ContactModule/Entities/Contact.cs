@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Entities;
+﻿using Advance.Framework.Interfaces.Entities;
 using System;
 using System.Collections.Generic;
 

@@ -91,10 +91,6 @@
       <Project>{E0E95260-764A-4009-B7A2-B5DE88E2F921}</Project>
       <Name>Advance.Framework.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Repositories.EntityFramework\Advance.Framework.Repositories.EntityFramework.csproj">
-      <Project>{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E}</Project>
-      <Name>Advance.Framework.Repositories.EntityFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
       <Project>{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}</Project>
       <Name>Advance.Framework.Repositories</Name>

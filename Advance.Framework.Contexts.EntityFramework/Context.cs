@@ -1,23 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Interfaces.Repositories;
+using System;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
-    partial class Context : DbContext
+    public partial class Context : DbContext
+        , IUnitOfWork
     {
-        private Context()
+        public Context()
         {
             Configuration.LazyLoadingEnabled = false;
+        }
+
+        public void Commit()
+        {
+            throw new NotImplementedException();
+        }
+
+        public TRepository GetRepository<TRepository>()
+        {
+            return Container.Instance.Resolve<TRepository>();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             ConfigureContact(modelBuilder);
             ConfigureSecurity(modelBuilder);
+            ConfigureCms(modelBuilder);
         }
     }
 }

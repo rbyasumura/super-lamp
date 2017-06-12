@@ -45,9 +45,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.Entities\Advance.Framework.Entities.csproj">
-      <Project>{E0E95260-764A-4009-B7A2-B5DE88E2F921}</Project>
-      <Name>Advance.Framework.Entities</Name>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
+      <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
+      <Name>Advance.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

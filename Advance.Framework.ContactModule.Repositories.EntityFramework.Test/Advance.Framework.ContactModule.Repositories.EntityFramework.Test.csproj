@@ -67,10 +67,6 @@
       <Project>{281F571F-60A8-494D-B915-273D1E069747}</Project>
       <Name>Advance.Framework.ContactModule.Mappers.AutoMapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.ContactModule.Repositories.EntityFramework\Advance.Framework.ContactModule.Repositories.EntityFramework.csproj">
-      <Project>{f3a606ec-9ac9-418a-8198-534c4e065fea}</Project>
-      <Name>Advance.Framework.ContactModule.Repositories.EntityFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.ContactModule.csproj">
       <Project>{b087153c-3480-4eaa-9e3f-b06decb3b69a}</Project>
       <Name>Advance.Framework.ContactModule</Name>
@@ -78,10 +74,6 @@
     <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Repositories.EntityFramework\Advance.Framework.Repositories.EntityFramework.csproj">
-      <Project>{AC8EFBD2-7367-4E9F-9329-57EA29F6D93E}</Project>
-      <Name>Advance.Framework.Repositories.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
       <Project>{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}</Project>

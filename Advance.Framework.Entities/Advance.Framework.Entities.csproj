@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\EntityUtility.cs" />
+    <Compile Include="IAuditableEntity.cs" />
     <Compile Include="ISoftDeletableEntity.cs" />
     <Compile Include="ITimestampableEntity.cs" />
+    <Compile Include="IVersionedEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
