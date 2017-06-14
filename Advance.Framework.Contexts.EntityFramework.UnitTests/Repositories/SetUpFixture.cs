@@ -1,7 +1,7 @@
-﻿using Advance.Framework.Contexts.EntityFramework.Repositories;
-using Advance.Framework.DependencyInjection.Unity;
+﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Cms.Interfaces;
+using Advance.Framework.Modules.Cms.Repositories;
 using NUnit.Framework;
 
 namespace Advance.Framework.Contexts.EntityFramework.UnitTests.Repositories
@@ -12,7 +12,8 @@ namespace Advance.Framework.Contexts.EntityFramework.UnitTests.Repositories
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            Container.Instance.RegisterType<IUnitOfWork, Context>()
+            Container.Instance
+                .RegisterType<IUnitOfWork, UnitOfWork>()
                 .RegisterType<IWebPageRepository, WebPageRepository>()
                 ;
         }
