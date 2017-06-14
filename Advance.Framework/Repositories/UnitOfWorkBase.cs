@@ -12,5 +12,7 @@ namespace Advance.Framework.Repositories
         protected internal abstract IEnumerable<TEntity> Entities<TEntity>() where TEntity : class;
 
         public abstract TRepository GetRepository<TRepository>();
+
+        protected internal abstract TEntity Add<TEntity>(TEntity entity) where TEntity : class;
     }
 }

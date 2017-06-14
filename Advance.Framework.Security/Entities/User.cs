@@ -11,7 +11,7 @@ namespace Advance.Framework.Security.Entities
         public DateTimeOffset? DeletedAt { get; set; }
         public ICollection<Role> Roles { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
-        private Guid UserId { get; set; }
-        private string Username { get; set; }
+        public Guid UserId { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -57,6 +57,11 @@
     <Compile Include="Context.Security.cs">
       <DependentUpon>Context.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706142307574_01.cs" />
+    <Compile Include="Migrations\201706142307574_01.Designer.cs">
+      <DependentUpon>201706142307574_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
@@ -85,6 +90,11 @@
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
       <Name>Advance.Framework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706142307574_01.resx">
+      <DependentUpon>201706142307574_01.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

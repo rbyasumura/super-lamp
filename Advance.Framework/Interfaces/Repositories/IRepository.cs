@@ -2,7 +2,7 @@
 {
     public interface IRepository<TEntity> : IReadOnlyRepository<TEntity>
     {
-        void Add(TEntity entity);
+        TEntity Add(TEntity entity);
 
         void Delete(TEntity entity);
 

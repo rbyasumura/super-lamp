@@ -3,7 +3,7 @@ using Advance.Framework.Modules.Cms.Entities;
 
 namespace Advance.Framework.Modules.Cms.Interfaces
 {
-    public interface IWebPageRepository : IReadOnlyRepository<WebPage>
+    public interface IWebPageRepository : IRepository<WebPage>
     {
     }
 }

@@ -1,14 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using Advance.Framework.Interfaces.Repositories;
+using System;
 
 namespace Advance.Framework.Repositories
 {
-    public class Repository
+    public class Repository<TEntity> : ReadOnlyRepository<TEntity>
+        , IRepository<TEntity> where TEntity : class
     {
-        protected UnitOfWorkBase UnitOfWork;
-
-        protected IEnumerable<TEntity> ListAll<TEntity>() where TEntity : class
+        public Repository(UnitOfWorkBase unitOfWork) : base(unitOfWork)
         {
-            return UnitOfWork.Entities<TEntity>();
+        }
+
+        public TEntity Add(TEntity entity)
+        {
+            return UnitOfWork.Add(entity);
+        }
+
+        public void Delete(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(TEntity entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

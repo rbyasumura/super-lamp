@@ -4,7 +4,7 @@ namespace Advance.Framework.Contexts.EntityFramework
 {
     public partial class Context : DbContext
     {
-        public Context()
+        public Context() : base("Default")
         {
             Configuration.LazyLoadingEnabled = false;
         }
@@ -14,6 +14,11 @@ namespace Advance.Framework.Contexts.EntityFramework
             ConfigureContact(modelBuilder);
             ConfigureSecurity(modelBuilder);
             ConfigureCms(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
         }
     }
 }
