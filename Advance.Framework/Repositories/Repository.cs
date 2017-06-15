@@ -3,7 +3,7 @@ using System;
 
 namespace Advance.Framework.Repositories
 {
-    public class Repository<TEntity> : ReadOnlyRepository<TEntity>
+    public abstract class Repository<TEntity> : ReadOnlyRepository<TEntity>
         , IRepository<TEntity> where TEntity : class
     {
         public Repository(UnitOfWorkBase unitOfWork) : base(unitOfWork)
@@ -22,7 +22,6 @@ namespace Advance.Framework.Repositories
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
         }
     }
 }

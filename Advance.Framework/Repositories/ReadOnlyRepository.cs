@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Advance.Framework.Repositories
 {
-    public class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
+    public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
     {
         protected ReadOnlyRepository(UnitOfWorkBase unitOfWork)
         {

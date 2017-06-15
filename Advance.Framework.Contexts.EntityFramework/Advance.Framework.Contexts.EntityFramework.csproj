@@ -57,6 +57,7 @@
     <Compile Include="Context.Security.cs">
       <DependentUpon>Context.cs</DependentUpon>
     </Compile>
+    <Compile Include="DbEntityEntryWrapper.cs" />
     <Compile Include="Migrations\201706142307574_01.cs" />
     <Compile Include="Migrations\201706142307574_01.Designer.cs">
       <DependentUpon>201706142307574_01.cs</DependentUpon>

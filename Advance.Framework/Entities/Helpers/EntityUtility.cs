@@ -2,9 +2,9 @@
 
 namespace Advance.Framework.Entities.Helpers
 {
-    public static class EntityUtility
+    internal static class EntityUtility
     {
-        public static string GetIdPropertyName(Type type)
+        internal static string GetIdPropertyName(Type type)
         {
             return $"{type.Name}Id";
         }

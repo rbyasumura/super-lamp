@@ -3,6 +3,7 @@ using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Cms.Entities;
 using Advance.Framework.Modules.Cms.Interfaces;
 using NUnit.Framework;
+using System.Linq;
 
 namespace Advance.Framework.Contexts.EntityFramework.UnitTests.Repositories
 {
@@ -35,6 +36,30 @@ namespace Advance.Framework.Contexts.EntityFramework.UnitTests.Repositories
 
                 /// Act
                 webPageRepository.Add(entity);
+
+                unitOfWork.Commit();
+            }
+
+            /// Assert
+        }
+
+        [TestCase]
+        public void Update()
+        {
+            /// Arrange
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var webPageRepository = unitOfWork.GetRepository<IWebPageRepository>();
+                var entities = webPageRepository.ListAll();
+                var first = entities.First();
+                first.Title = "First";
+                var second = entities.Skip(1).First();
+                second.Title = "Second";
+                var third = entities.Skip(2).First();
+                third.Title = "Third";
+
+                /// Act
+                webPageRepository.Update(first);
 
                 unitOfWork.Commit();
             }

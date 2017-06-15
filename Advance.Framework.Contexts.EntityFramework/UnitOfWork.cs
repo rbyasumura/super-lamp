@@ -1,4 +1,5 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,24 +8,16 @@ namespace Advance.Framework.Contexts.EntityFramework
 {
     public class UnitOfWork : UnitOfWorkBase
     {
-        private Context Context = new Context();
+        private Context context = new Context();
 
-        public override int Commit()
-        {
-            return Context.SaveChanges();
-        }
+        protected override IContext Context => context;
 
         public override void Dispose()
         {
-            if (Context != null)
+            if (context != null)
             {
-                Context.Dispose();
+                context.Dispose();
             }
-        }
-
-        protected override IEnumerable<TEntity> Entities<TEntity>()
-        {
-            return GetSet<TEntity>();
         }
 
         public override TRepository GetRepository<TRepository>()
@@ -39,9 +32,14 @@ namespace Advance.Framework.Contexts.EntityFramework
             return GetSet<TEntity>().Add(entity);
         }
 
+        protected override IEnumerable<TEntity> Entities<TEntity>()
+        {
+            return GetSet<TEntity>();
+        }
+
         private DbSet<TEntity> GetSet<TEntity>() where TEntity : class
         {
-            return Context.Set<TEntity>();
+            return context.Set<TEntity>();
         }
     }
 }
