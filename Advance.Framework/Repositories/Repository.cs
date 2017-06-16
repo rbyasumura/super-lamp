@@ -15,13 +15,14 @@ namespace Advance.Framework.Repositories
             return UnitOfWork.Add(entity);
         }
 
-        public void Delete(TEntity entity)
+        public TEntity Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            return UnitOfWork.Delete(entity);
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
+            return UnitOfWork.Update(entity);
         }
     }
 }

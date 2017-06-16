@@ -4,7 +4,7 @@ namespace Advance.Framework.Interfaces.Repositories
 {
     public interface IChangedEntry
     {
-        EntityState State { get; }
+        EntityState State { get; set; }
         object Entity { get; }
     }
 }

@@ -27,7 +27,7 @@ namespace Advance.Framework.Repositories
         public IEnumerable<TEntity> ListAll()
         {
             return UnitOfWork.Entities<TEntity>()
-              .ToArray();
+                .ToArray();
         }
 
         public IEnumerable<TEntity> ListAll<TProperty>(params System.Linq.Expressions.Expression<Func<TEntity, TProperty>>[] includes)

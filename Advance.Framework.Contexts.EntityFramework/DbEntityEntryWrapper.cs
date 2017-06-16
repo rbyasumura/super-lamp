@@ -1,6 +1,7 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System.Data.Entity.Infrastructure;
+using System;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
@@ -14,6 +15,11 @@ namespace Advance.Framework.Contexts.EntityFramework
         }
 
         public object Entity => entityEntry.Entity;
-        public EntityState State => (EntityState)entityEntry.State;
+
+        public EntityState State
+        {
+            get => (EntityState)entityEntry.State;
+            set => entityEntry.State = (System.Data.Entity.EntityState)value;
+        }
     }
 }

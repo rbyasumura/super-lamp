@@ -66,5 +66,24 @@ namespace Advance.Framework.Contexts.EntityFramework.UnitTests.Repositories
 
             /// Assert
         }
+
+        [TestCase]
+        public void Delete()
+        {
+            /// Arrange
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var webPageRepository = unitOfWork.GetRepository<IWebPageRepository>();
+                var entities = webPageRepository.ListAll();
+                var first = entities.First();
+
+                /// Act
+                webPageRepository.Delete(first);
+
+                unitOfWork.Commit();
+            }
+
+            /// Assert
+        }
     }
 }

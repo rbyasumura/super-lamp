@@ -4,8 +4,8 @@
     {
         TEntity Add(TEntity entity);
 
-        void Delete(TEntity entity);
+        TEntity Delete(TEntity entity);
 
-        void Update(TEntity entity);
+        TEntity Update(TEntity entity);
     }
 }
