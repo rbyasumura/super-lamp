@@ -1,8 +1,8 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Interfaces.Repositories.Handlers;
 using Advance.Framework.Repositories.Handlers;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Advance.Framework.Repositories
 {
@@ -14,8 +14,6 @@ namespace Advance.Framework.Repositories
         {
             changeHandlers.Add(new PrimaryKeyHandler());
         }
-
-        protected internal abstract TEntity Delete<TEntity>(TEntity entity) where TEntity : class;
 
         protected abstract IContext Context { get; }
 
@@ -30,14 +28,27 @@ namespace Advance.Framework.Repositories
             return Context.Commit();
         }
 
-        public abstract void Dispose();
+        public void Dispose()
+        {
+            if (Context != null)
+            {
+                Context.Dispose();
+            }
+        }
 
-        public abstract TRepository GetRepository<TRepository>();
+        public TRepository GetRepository<TRepository>()
+        {
+            return Container.Instance.Resolve<TRepository>(new Dictionary<string, object>{
+                { "unitOfWork", this},
+            });
+        }
 
         protected internal abstract TEntity Add<TEntity>(TEntity entity) where TEntity : class;
 
-        protected internal abstract TEntity Update<TEntity>(TEntity entity) where TEntity : class;
+        protected internal abstract TEntity Delete<TEntity>(TEntity entity) where TEntity : class;
 
         protected internal abstract IEnumerable<TEntity> Entities<TEntity>() where TEntity : class;
+
+        protected internal abstract TEntity Update<TEntity>(TEntity entity) where TEntity : class;
     }
 }

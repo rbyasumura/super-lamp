@@ -1,9 +1,8 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System.Data.Entity.Infrastructure;
-using System;
 
-namespace Advance.Framework.Contexts.EntityFramework
+namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
     internal class DbEntityEntryWrapper : IChangedEntry
     {

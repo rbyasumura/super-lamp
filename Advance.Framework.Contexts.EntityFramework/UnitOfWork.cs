@@ -1,9 +1,7 @@
-﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
@@ -12,21 +10,6 @@ namespace Advance.Framework.Contexts.EntityFramework
         private Context context = new Context();
 
         protected override IContext Context => context;
-
-        public override void Dispose()
-        {
-            if (context != null)
-            {
-                context.Dispose();
-            }
-        }
-
-        public override TRepository GetRepository<TRepository>()
-        {
-            return Container.Instance.Resolve<TRepository>(new Dictionary<string, object>{
-                { "unitOfWork", this},
-            });
-        }
 
         protected override TEntity Add<TEntity>(TEntity entity)
         {

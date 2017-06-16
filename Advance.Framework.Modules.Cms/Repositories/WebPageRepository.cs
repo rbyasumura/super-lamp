@@ -1,5 +1,5 @@
 ﻿using Advance.Framework.Modules.Cms.Entities;
-using Advance.Framework.Modules.Cms.Interfaces;
+using Advance.Framework.Modules.Cms.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 
 namespace Advance.Framework.Modules.Cms.Repositories

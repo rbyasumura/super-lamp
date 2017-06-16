@@ -1,5 +1,7 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Contexts.EntityFramework.Wrappers;
+using Advance.Framework.Interfaces.Repositories;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 
@@ -8,7 +10,7 @@ namespace Advance.Framework.Contexts.EntityFramework
     public partial class Context : DbContext
         , IContext
     {
-        public Context() : base("Default")
+        public Context() : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)
         {
             Configuration.LazyLoadingEnabled = false;
         }

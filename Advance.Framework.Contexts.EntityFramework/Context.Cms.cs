@@ -7,8 +7,7 @@ namespace Advance.Framework.Contexts.EntityFramework
     {
         private void ConfigureCms(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<WebPage>()
-                ;
+            modelBuilder.Entity<WebPage>();
         }
     }
 }

@@ -7,12 +7,8 @@ namespace Advance.Framework.Contexts.EntityFramework
     {
         private void ConfigureSecurity(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(i => i.Roles)
-                ;
-            modelBuilder.Entity<Role>()
-                .HasMany(i => i.Users)
-                ;
+            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Role>();
         }
     }
 }

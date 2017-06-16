@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,7 +58,11 @@
     <Compile Include="Context.Security.cs">
       <DependentUpon>Context.cs</DependentUpon>
     </Compile>
-    <Compile Include="DbEntityEntryWrapper.cs" />
+    <Compile Include="Migrations\201706161938563_02.cs" />
+    <Compile Include="Migrations\201706161938563_02.Designer.cs">
+      <DependentUpon>201706161938563_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\DbEntityEntryWrapper.cs" />
     <Compile Include="Migrations\201706142307574_01.cs" />
     <Compile Include="Migrations\201706142307574_01.Designer.cs">
       <DependentUpon>201706142307574_01.cs</DependentUpon>
@@ -65,15 +70,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Wrappers\SqlProviderServicesWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.ContactModule.csproj">
+    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
       <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
-      <Name>Advance.Framework.ContactModule</Name>
+      <Name>Advance.Framework.Modules.Contacts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
@@ -95,6 +101,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706142307574_01.resx">
       <DependentUpon>201706142307574_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161938563_02.resx">
+      <DependentUpon>201706161938563_02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

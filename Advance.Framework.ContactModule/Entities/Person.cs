@@ -1,7 +1,7 @@
 ﻿using Advance.Framework.Interfaces.Entities;
 using System;
 
-namespace Advance.Framework.ContactModule.Entities
+namespace Advance.Framework.Modules.Contacts.Entities
 {
     public class Person : ITimestampableEntity
         , ISoftDeletableEntity
