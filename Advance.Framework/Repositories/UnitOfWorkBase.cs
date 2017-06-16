@@ -17,7 +17,7 @@ namespace Advance.Framework.Repositories
 
         protected abstract IContext Context { get; }
 
-        public int Commit()
+        public virtual int Commit()
         {
             var changedEntries = Context.GetChangedEntries();
             foreach (var handler in changeHandlers)

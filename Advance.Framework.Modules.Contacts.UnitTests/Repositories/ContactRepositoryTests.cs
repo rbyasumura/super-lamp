@@ -42,6 +42,11 @@ namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
                 var entity = repository.ListAll().First();
                 entity.Person = new Person
                 {
+                    FirstName = "First",
+                };
+                entity.Person = new Person
+                {
+                    FirstName = "Second",
                 };
 
                 /// Act
