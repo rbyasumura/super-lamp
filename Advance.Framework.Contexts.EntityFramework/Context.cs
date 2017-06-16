@@ -10,14 +10,21 @@ namespace Advance.Framework.Contexts.EntityFramework
     public partial class Context : DbContext
         , IContext
     {
-        public Context() : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)
+        internal Context() : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)
         {
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public int Commit()
+        public ITransaction Transaction
         {
-            return SaveChanges();
+            get
+            {
+                if (Database.CurrentTransaction == null)
+                {
+                    Database.BeginTransaction();
+                }
+                return new DbContextTransactionWrapper(Database.CurrentTransaction);
+            }
         }
 
         public IEnumerable<IChangedEntry> GetChangedEntries()

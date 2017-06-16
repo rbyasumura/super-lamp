@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\Entities\ITimestampableEntity.cs" />
     <Compile Include="Interfaces\Entities\IVersionedEntity.cs" />
     <Compile Include="Interfaces\Mappers\IMapper.cs" />
+    <Compile Include="Interfaces\Repositories\ITransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\Repositories\IArchiveRepository.cs" />
     <Compile Include="Interfaces\Repositories\IReadOnlyRepository.cs" />

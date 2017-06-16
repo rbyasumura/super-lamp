@@ -62,6 +62,7 @@
     <Compile Include="Migrations\201706161938563_02.Designer.cs">
       <DependentUpon>201706161938563_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wrappers\DbContextTransactionWrapper.cs" />
     <Compile Include="Wrappers\DbEntityEntryWrapper.cs" />
     <Compile Include="Migrations\201706142307574_01.cs" />
     <Compile Include="Migrations\201706142307574_01.Designer.cs">

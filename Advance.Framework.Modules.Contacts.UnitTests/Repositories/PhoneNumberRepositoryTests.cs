@@ -22,7 +22,7 @@ namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
 
                 /// Act
                 repository.Add(entity);
-                unitOfWork.Commit();
+                unitOfWork.SaveChanges();
             }
 
             /// Assert

@@ -26,7 +26,7 @@ namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
 
                 /// Act
                 repository.Add(entity);
-                unitOfWork.Commit();
+                unitOfWork.SaveChanges();
             }
 
             /// Assert
@@ -38,15 +38,19 @@ namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
             /// Arrange
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
             {
-                var repository = unitOfWork.GetRepository<IContactRepository>();
-                var entity = repository.ListAll().First();
-                entity.Person = new Person
+                var personRepository = unitOfWork.GetRepository<IPersonRepository>();
+                var person = new Person
                 {
                 };
+                personRepository.Add(person);
+
+                var repository = unitOfWork.GetRepository<IContactRepository>();
+                var entity = repository.ListAll().First();
+                entity.Person = person;
 
                 /// Act
                 repository.Update(entity);
-                unitOfWork.Commit();
+                unitOfWork.SaveChanges();
             }
 
             /// Assert

@@ -17,15 +17,20 @@ namespace Advance.Framework.Repositories
 
         protected abstract IContext Context { get; }
 
-        public int Commit()
+        public int SaveChanges()
         {
             var changedEntries = Context.GetChangedEntries();
+            foreach (var entry in changedEntries)
+            {
+                var x = 0;
+            }
+
             foreach (var handler in changeHandlers)
             {
                 handler.Handle(changedEntries);
             }
 
-            return Context.Commit();
+            return Context.SaveChanges();
         }
 
         public void Dispose()

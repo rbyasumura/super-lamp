@@ -13,7 +13,9 @@ namespace Advance.Framework.Contexts.EntityFramework
 
         protected override TEntity Add<TEntity>(TEntity entity)
         {
-            return GetSet<TEntity>().Add(entity);
+            var add = GetSet<TEntity>().Add(entity);
+            Context.Transaction.Commit();
+            return add;
         }
 
         protected override TEntity Delete<TEntity>(TEntity entity)
@@ -29,10 +31,11 @@ namespace Advance.Framework.Contexts.EntityFramework
 
         protected override TEntity Update<TEntity>(TEntity entity)
         {
-            var update = GetSet<TEntity>().Attach(entity);
-            var entityEntry = context.Entry(update);
+            //var update = GetSet<TEntity>().Attach(entity);
+            var entityEntry = context.Entry(entity);
             entityEntry.State = System.Data.Entity.EntityState.Modified;
-            return update;
+            Context.Transaction.Commit();
+            return entityEntry.Entity;
         }
 
         private DbSet<TEntity> GetSet<TEntity>() where TEntity : class

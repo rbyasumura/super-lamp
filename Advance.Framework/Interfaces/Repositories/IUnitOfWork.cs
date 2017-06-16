@@ -4,7 +4,7 @@ namespace Advance.Framework.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        int Commit();
+        int SaveChanges();
 
         TRepository GetRepository<TRepository>();
     }

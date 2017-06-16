@@ -36,7 +36,7 @@ namespace Advance.Framework.Modules.Cms.UnitTests.Repositories
 
                 /// Act
                 webPageRepository.Add(entity);
-                unitOfWork.Commit();
+                unitOfWork.SaveChanges();
             }
 
             /// Assert
@@ -59,7 +59,29 @@ namespace Advance.Framework.Modules.Cms.UnitTests.Repositories
 
                 /// Act
                 webPageRepository.Update(first);
-                unitOfWork.Commit();
+                unitOfWork.SaveChanges();
+            }
+
+            /// Assert
+        }
+
+        [TestCase]
+        public void Update_DontSaveChanges()
+        {
+            /// Arrange
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var webPageRepository = unitOfWork.GetRepository<IWebPageRepository>();
+                var entities = webPageRepository.ListAll();
+                var first = entities.First();
+                first.Title = "First";
+                var second = entities.Skip(1).First();
+                second.Title = "Second";
+                var third = entities.Skip(2).First();
+                third.Title = "Third";
+
+                /// Act
+                webPageRepository.Update(first);
             }
 
             /// Assert
@@ -77,7 +99,7 @@ namespace Advance.Framework.Modules.Cms.UnitTests.Repositories
 
                 /// Act
                 webPageRepository.Delete(first);
-                unitOfWork.Commit();
+                unitOfWork.SaveChanges();
             }
 
             /// Assert
