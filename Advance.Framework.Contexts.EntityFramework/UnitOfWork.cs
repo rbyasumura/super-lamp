@@ -1,7 +1,10 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Contexts.EntityFramework.Wrappers;
+using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
-using System.Collections.Generic;
+using System;
 using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
@@ -14,7 +17,6 @@ namespace Advance.Framework.Contexts.EntityFramework
         protected override TEntity Add<TEntity>(TEntity entity)
         {
             var add = GetSet<TEntity>().Add(entity);
-            Context.Transaction.Commit();
             return add;
         }
 
@@ -24,18 +26,24 @@ namespace Advance.Framework.Contexts.EntityFramework
             return GetSet<TEntity>().Remove(delete);
         }
 
-        protected override IEnumerable<TEntity> Entities<TEntity>()
+        protected override IQueryable<TEntity> Entities<TEntity, TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
         {
-            return GetSet<TEntity>().AsNoTracking();
+            var queryable = GetSet<TEntity>().AsQueryable();
+            foreach (var include in includes)
+            {
+                queryable = queryable.Include(include);
+            }
+            return queryable;
         }
 
         protected override TEntity Update<TEntity>(TEntity entity)
         {
             //var update = GetSet<TEntity>().Attach(entity);
-            var entityEntry = context.Entry(entity);
-            entityEntry.State = System.Data.Entity.EntityState.Modified;
-            Context.Transaction.Commit();
-            return entityEntry.Entity;
+            //var entityEntry = context.Entry(entity);
+            //entityEntry.State = System.Data.Entity.EntityState.Modified;
+            //return entityEntry.Entity;
+            UpdatedEntities.Add(new DbEntityEntryWrapper(context.Entry(entity)));
+            return context.Entry(entity).Entity;
         }
 
         private DbSet<TEntity> GetSet<TEntity>() where TEntity : class

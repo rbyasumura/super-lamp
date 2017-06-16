@@ -9,13 +9,16 @@ namespace Advance.Framework.Modules.Contacts.Entities
         , ISoftDeletableEntity
     {
         public Guid ContactId { get; set; }
+
         public DateTimeOffset CreatedAt { get; set; }
+
         public DateTimeOffset? DeletedAt { get; set; }
 
         [Required]
         public Person Person { get; set; }
 
         public ICollection<PhoneNumber> PhoneNumbers { get; set; }
+
         public DateTimeOffset? UpdatedAt { get; set; }
     }
 }

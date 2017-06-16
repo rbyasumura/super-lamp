@@ -6,5 +6,6 @@ namespace Advance.Framework.Interfaces.Repositories
     {
         EntityState State { get; set; }
         object Entity { get; }
+        object ParentEntry { get; }
     }
 }

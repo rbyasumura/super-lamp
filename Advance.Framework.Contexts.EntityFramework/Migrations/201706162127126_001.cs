@@ -3,7 +3,7 @@ namespace Advance.Framework.Contexts.EntityFramework.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _01 : DbMigration
+    public partial class _001 : DbMigration
     {
         public override void Up()
         {
@@ -87,31 +87,31 @@ namespace Advance.Framework.Contexts.EntityFramework.Migrations
                 .PrimaryKey(t => t.WebPageId);
             
             CreateTable(
-                "dbo.UserRoles",
+                "dbo.RoleUsers",
                 c => new
                     {
-                        User_UserId = c.Guid(nullable: false),
                         Role_RoleId = c.Guid(nullable: false),
+                        User_UserId = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => new { t.User_UserId, t.Role_RoleId })
-                .ForeignKey("dbo.Users", t => t.User_UserId, cascadeDelete: true)
+                .PrimaryKey(t => new { t.Role_RoleId, t.User_UserId })
                 .ForeignKey("dbo.Roles", t => t.Role_RoleId, cascadeDelete: true)
-                .Index(t => t.User_UserId)
-                .Index(t => t.Role_RoleId);
+                .ForeignKey("dbo.Users", t => t.User_UserId, cascadeDelete: true)
+                .Index(t => t.Role_RoleId)
+                .Index(t => t.User_UserId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.UserRoles", "Role_RoleId", "dbo.Roles");
-            DropForeignKey("dbo.UserRoles", "User_UserId", "dbo.Users");
+            DropForeignKey("dbo.RoleUsers", "User_UserId", "dbo.Users");
+            DropForeignKey("dbo.RoleUsers", "Role_RoleId", "dbo.Roles");
             DropForeignKey("dbo.PhoneNumbers", "Contact_ContactId", "dbo.Contacts");
             DropForeignKey("dbo.Contacts", "Person_PersonId", "dbo.People");
-            DropIndex("dbo.UserRoles", new[] { "Role_RoleId" });
-            DropIndex("dbo.UserRoles", new[] { "User_UserId" });
+            DropIndex("dbo.RoleUsers", new[] { "User_UserId" });
+            DropIndex("dbo.RoleUsers", new[] { "Role_RoleId" });
             DropIndex("dbo.Contacts", new[] { "Person_PersonId" });
             DropIndex("dbo.PhoneNumbers", new[] { "Contact_ContactId" });
-            DropTable("dbo.UserRoles");
+            DropTable("dbo.RoleUsers");
             DropTable("dbo.WebPages");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");

@@ -58,16 +58,11 @@
     <Compile Include="Context.Security.cs">
       <DependentUpon>Context.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706161938563_02.cs" />
-    <Compile Include="Migrations\201706161938563_02.Designer.cs">
-      <DependentUpon>201706161938563_02.cs</DependentUpon>
+    <Compile Include="Migrations\201706162127126_001.cs" />
+    <Compile Include="Migrations\201706162127126_001.Designer.cs">
+      <DependentUpon>201706162127126_001.cs</DependentUpon>
     </Compile>
-    <Compile Include="Wrappers\DbContextTransactionWrapper.cs" />
     <Compile Include="Wrappers\DbEntityEntryWrapper.cs" />
-    <Compile Include="Migrations\201706142307574_01.cs" />
-    <Compile Include="Migrations\201706142307574_01.Designer.cs">
-      <DependentUpon>201706142307574_01.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -100,11 +95,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706142307574_01.resx">
-      <DependentUpon>201706142307574_01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706161938563_02.resx">
-      <DependentUpon>201706161938563_02.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706162127126_001.resx">
+      <DependentUpon>201706162127126_001.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

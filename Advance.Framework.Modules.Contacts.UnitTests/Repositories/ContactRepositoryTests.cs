@@ -33,20 +33,35 @@ namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
         }
 
         [TestCase]
-        public void Update()
+        public void Update_AddPerson()
         {
             /// Arrange
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
             {
-                var personRepository = unitOfWork.GetRepository<IPersonRepository>();
                 var person = new Person
                 {
                 };
-                personRepository.Add(person);
-
                 var repository = unitOfWork.GetRepository<IContactRepository>();
                 var entity = repository.ListAll().First();
                 entity.Person = person;
+
+                /// Act
+                repository.Update(entity);
+                unitOfWork.SaveChanges();
+            }
+
+            /// Assert
+        }
+
+        [TestCase]
+        public void Update_UpdatePerson()
+        {
+            /// Arrange
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var repository = unitOfWork.GetRepository<IContactRepository>();
+                var entity = repository.ListAll(i => i.Person).First();
+                entity.Person.FirstName = "Update";
 
                 /// Act
                 repository.Update(entity);

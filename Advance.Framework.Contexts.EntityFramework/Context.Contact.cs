@@ -9,7 +9,9 @@ namespace Advance.Framework.Contexts.EntityFramework
         {
             modelBuilder.Entity<Person>();
             modelBuilder.Entity<PhoneNumber>();
-            modelBuilder.Entity<Contact>();
+            var contactConfiguration = modelBuilder.Entity<Contact>();
+            contactConfiguration.HasRequired(i => i.Person).WithMany();
+            contactConfiguration.HasMany(i => i.PhoneNumbers).WithOptional();
         }
     }
 }

@@ -7,24 +7,12 @@ using System.Linq;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
-    public partial class Context : DbContext
+    internal partial class Context : DbContext
         , IContext
     {
-        internal Context() : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)
+        public Context() : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)
         {
             Configuration.LazyLoadingEnabled = false;
-        }
-
-        public ITransaction Transaction
-        {
-            get
-            {
-                if (Database.CurrentTransaction == null)
-                {
-                    Database.BeginTransaction();
-                }
-                return new DbContextTransactionWrapper(Database.CurrentTransaction);
-            }
         }
 
         public IEnumerable<IChangedEntry> GetChangedEntries()

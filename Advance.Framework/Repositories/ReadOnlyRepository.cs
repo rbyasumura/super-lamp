@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Advance.Framework.Repositories
 {
@@ -26,13 +27,13 @@ namespace Advance.Framework.Repositories
 
         public IEnumerable<TEntity> ListAll()
         {
-            return UnitOfWork.Entities<TEntity>()
-                .ToArray();
+            return ListAll<object>();
         }
 
-        public IEnumerable<TEntity> ListAll<TProperty>(params System.Linq.Expressions.Expression<Func<TEntity, TProperty>>[] includes)
+        public IEnumerable<TEntity> ListAll<TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
         {
-            throw new NotImplementedException();
+            return UnitOfWork.Entities(includes)
+                .ToArray();
         }
     }
 }
