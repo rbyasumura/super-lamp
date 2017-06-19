@@ -5,7 +5,7 @@ namespace Advance.Framework.Interfaces.Repositories
 {
     public interface IContext : IDisposable
     {
-        IEnumerable<IChangedEntry> GetChangedEntries();
+        IEnumerable<IEntityEntry> GetEntries();
 
         int SaveChanges();
     }

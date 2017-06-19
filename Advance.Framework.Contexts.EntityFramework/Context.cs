@@ -15,10 +15,10 @@ namespace Advance.Framework.Contexts.EntityFramework
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public IEnumerable<IChangedEntry> GetChangedEntries()
+        public IEnumerable<IEntityEntry> GetEntries()
         {
             return ChangeTracker.Entries()
-                .Select(i => new DbEntityEntryWrapper(i));
+                .Select(i => new DbEntityEntryWrapper(this, i));
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

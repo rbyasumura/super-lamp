@@ -1,34 +1,78 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
-using Advance.Framework.Repositories;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    internal class DbEntityEntryWrapper : IChangedEntry
+    internal class DbEntityEntryWrapper : IEntityEntry
     {
+        private Context context;
         private DbEntityEntry entityEntry;
 
-        public DbEntityEntryWrapper(DbEntityEntry entityEntry)
+        public DbEntityEntryWrapper(Context context, DbEntityEntry entityEntry)
         {
+            this.context = context;
             this.entityEntry = entityEntry;
         }
 
-        public object Entity => entityEntry.Entity;
-        public EntityState State { get => (EntityState)entityEntry.State; set => entityEntry.State = (System.Data.Entity.EntityState)value; }
-
-        public object ParentEntry
+        public IEnumerable<DbEntityEntryWrapper> Collections
         {
             get
             {
-                foreach (var propertyName in entityEntry.CurrentValues.PropertyNames)
+                foreach (var propertyName in GetPropertyNames())
                 {
-                    var x = entityEntry.Property(propertyName);
-                }
+                    var collectionEntry = default(DbCollectionEntry);
+                    try
+                    {
+                        collectionEntry = entityEntry.Collection(propertyName);
+                        if (collectionEntry.CurrentValue == null)
+                        {
+                            continue;
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        continue;
+                    }
 
-                throw new NotImplementedException();
+                    foreach (var entity in (IEnumerable)collectionEntry.CurrentValue)
+                    {
+                        yield return new DbEntityEntryWrapper(context, context.Entry(entity));
+                    }
+                }
             }
         }
+
+        public object Entity => entityEntry.Entity;
+
+        public IEnumerable<DbEntityEntryWrapper> References
+        {
+            get
+            {
+                foreach (var propertyName in GetPropertyNames())
+                {
+                    var reference = default(DbReferenceEntry);
+                    try
+                    {
+                        reference = entityEntry.Reference(propertyName);
+                        if (reference.CurrentValue == null)
+                        {
+                            continue;
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        continue;
+                    }
+                    yield return new DbEntityEntryWrapper(context, context.Entry(reference.CurrentValue));
+                }
+            }
+        }
+
+        public EntityState State { get => (EntityState)entityEntry.State; set => entityEntry.State = (System.Data.Entity.EntityState)value; }
 
         /// <summary>
         /// If the Entity properties are equal, then the Entry is equal
@@ -49,6 +93,11 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
         public override int GetHashCode()
         {
             return Entity.GetHashCode();
+        }
+
+        private IEnumerable<string> GetPropertyNames()
+        {
+            return entityEntry.Entity.GetType().GetProperties().Select(i => i.Name);
         }
     }
 }

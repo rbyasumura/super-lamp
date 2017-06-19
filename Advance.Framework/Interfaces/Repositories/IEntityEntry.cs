@@ -12,10 +12,9 @@ namespace Advance.Framework.Interfaces.Repositories
         Modified = 16
     }
 
-    public interface IChangedEntry
+    public interface IEntityEntry
     {
         object Entity { get; }
-        object ParentEntry { get; }
         EntityState State { get; set; }
     }
 }

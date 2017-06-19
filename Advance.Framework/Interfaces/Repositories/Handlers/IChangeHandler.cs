@@ -4,6 +4,6 @@ namespace Advance.Framework.Interfaces.Repositories.Handlers
 {
     public interface IChangeHandler
     {
-        void Handle(IEnumerable<IChangedEntry> changedEntries);
+        void Handle(IEnumerable<IEntityEntry> changedEntries);
     }
 }

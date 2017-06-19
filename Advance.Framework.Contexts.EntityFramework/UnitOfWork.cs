@@ -16,12 +16,16 @@ namespace Advance.Framework.Contexts.EntityFramework
 
         protected override TEntity Add<TEntity>(TEntity entity)
         {
+            TrackChanges(GetEntityEntry(entity));
+
             var add = GetSet<TEntity>().Add(entity);
             return add;
         }
 
         protected override TEntity Delete<TEntity>(TEntity entity)
         {
+            TrackChanges(GetEntityEntry(entity));
+
             var delete = GetSet<TEntity>().Attach(entity);
             return GetSet<TEntity>().Remove(delete);
         }
@@ -38,12 +42,30 @@ namespace Advance.Framework.Contexts.EntityFramework
 
         protected override TEntity Update<TEntity>(TEntity entity)
         {
-            //var update = GetSet<TEntity>().Attach(entity);
-            //var entityEntry = context.Entry(entity);
-            //entityEntry.State = System.Data.Entity.EntityState.Modified;
-            //return entityEntry.Entity;
-            UpdatedEntities.Add(new DbEntityEntryWrapper(context.Entry(entity)));
+            var entry = GetEntityEntry(entity);
+            TrackChanges(entry);
+
             return context.Entry(entity).Entity;
+        }
+
+        private void TrackChanges(DbEntityEntryWrapper entry)
+        {
+            ModifiedEntries.Add(entry);
+
+            foreach (var reference in entry.References)
+            {
+                ModifiedEntries.Add(reference);
+            }
+
+            foreach (var collectionEntry in entry.Collections)
+            {
+                ModifiedEntries.Add(collectionEntry);
+            }
+        }
+
+        private DbEntityEntryWrapper GetEntityEntry<TEntity>(TEntity entity) where TEntity : class
+        {
+            return new DbEntityEntryWrapper(context, context.Entry(entity));
         }
 
         private DbSet<TEntity> GetSet<TEntity>() where TEntity : class

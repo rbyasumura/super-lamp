@@ -13,7 +13,7 @@ namespace Advance.Framework.Repositories
     public abstract class UnitOfWorkBase : IUnitOfWork
     {
         private ICollection<IChangeHandler> changeHandlers = new List<IChangeHandler>();
-        private ICollection<IChangedEntry> updatedEntities = new HashSet<IChangedEntry>();
+        private ICollection<IEntityEntry> modifiedEntries = new HashSet<IEntityEntry>();
 
         protected UnitOfWorkBase()
         {
@@ -21,33 +21,36 @@ namespace Advance.Framework.Repositories
         }
 
         protected abstract IContext Context { get; }
-        protected ICollection<IChangedEntry> UpdatedEntities { get => updatedEntities; }
+        protected ICollection<IEntityEntry> ModifiedEntries { get => modifiedEntries; }
 
         public int SaveChanges()
         {
-            var changedEntries = Context.GetChangedEntries();
+            var entries = Context.GetEntries();
 
             #region Log
 
-            foreach (var entry in changedEntries)
+            foreach (var entry in entries)
             {
                 Logger.Instance.Log("{0} - {1}", entry.Entity, entry.State);
             }
 
             #endregion Log
 
-            foreach (var entry in changedEntries.Where(i => i.State == EntityState.Modified))
+            #region Discard changes that were not done by the repositories
+
+            foreach (var entry in entries.Where(i => i.State != EntityState.Unchanged))
             {
-                var x = entry.ParentEntry;
-                if (updatedEntities.Contains(entry.Entity) == false)
+                if (ModifiedEntries.Contains(entry) == false)
                 {
                     entry.State = EntityState.Unchanged;
                 }
             }
 
+            #endregion Discard changes that were not done by the repositories
+
             foreach (var handler in changeHandlers)
             {
-                handler.Handle(changedEntries);
+                handler.Handle(entries);
             }
 
             return Context.SaveChanges();

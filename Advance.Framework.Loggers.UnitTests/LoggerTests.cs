@@ -6,7 +6,7 @@ namespace Advance.Framework.Loggers.UnitTests
     public class LoggerTests
     {
         [Test]
-        public void TestMethod()
+        public void Log()
         {
             /// Arrange
 
