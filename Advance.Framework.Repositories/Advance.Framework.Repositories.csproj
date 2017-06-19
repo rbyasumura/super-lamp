@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\PrimaryKeyHandler.cs" />
+    <Compile Include="Handlers\SoftDeletableEntityHandler.cs" />
+    <Compile Include="Handlers\TimestampableEntityHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlyRepository.cs" />
     <Compile Include="Repository.cs" />

@@ -18,6 +18,8 @@ namespace Advance.Framework.Repositories
         protected UnitOfWorkBase()
         {
             changeHandlers.Add(new PrimaryKeyHandler());
+            changeHandlers.Add(new TimestampableEntityHandler());
+            changeHandlers.Add(new SoftDeletableEntityHandler());
         }
 
         protected abstract IContext Context { get; }
