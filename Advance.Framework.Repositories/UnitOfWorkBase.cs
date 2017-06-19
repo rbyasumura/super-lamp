@@ -1,6 +1,7 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Interfaces.Repositories.Handlers;
+using Advance.Framework.Loggers;
 using Advance.Framework.Repositories.Handlers;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,17 @@ namespace Advance.Framework.Repositories
 
         public int SaveChanges()
         {
-            foreach (var y in updatedEntities)
+            var changedEntries = Context.GetChangedEntries();
+
+            #region Log
+
+            foreach (var entry in changedEntries)
             {
+                Logger.Instance.Log("{0} - {1}", entry.Entity, entry.State);
             }
 
-            var changedEntries = Context.GetChangedEntries();
+            #endregion Log
+
             foreach (var entry in changedEntries.Where(i => i.State == EntityState.Modified))
             {
                 var x = entry.ParentEntry;

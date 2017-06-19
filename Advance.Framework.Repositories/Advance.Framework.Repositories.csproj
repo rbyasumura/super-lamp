@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE482925-C59B-461B-94B3-6E8F5BCEC5CA}</ProjectGuid>
+    <ProjectGuid>{660D9E99-DB64-4129-8E16-12F84C771779}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Advance.Framework.Repositories</RootNamespace>
@@ -40,11 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IArchiveRepository.cs" />
-    <Compile Include="IReadOnlyRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Handlers\PrimaryKeyHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadOnlyRepository.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="UnitOfWorkBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
+      <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
+      <Name>Advance.Framework.DependencyInjection.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Logger\Advance.Framework.Loggers.csproj">
+      <Project>{9022D910-5D1C-4F75-81C5-094869F5907B}</Project>
+      <Name>Advance.Framework.Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
+      <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
+      <Name>Advance.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

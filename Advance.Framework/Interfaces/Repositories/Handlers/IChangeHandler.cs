@@ -2,7 +2,7 @@
 
 namespace Advance.Framework.Interfaces.Repositories.Handlers
 {
-    internal interface IChangeHandler
+    public interface IChangeHandler
     {
         void Handle(IEnumerable<IChangedEntry> changedEntries);
     }

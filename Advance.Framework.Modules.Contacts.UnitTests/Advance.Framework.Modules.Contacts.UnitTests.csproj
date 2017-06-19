@@ -60,6 +60,14 @@
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Loggers.log4net\Advance.Framework.Loggers.log4net.csproj">
+      <Project>{cb7b9fa6-f9e4-4292-94e6-e7925dd8ed11}</Project>
+      <Name>Advance.Framework.Loggers.log4net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
+      <Project>{660d9e99-db64-4129-8e16-12f84c771779}</Project>
+      <Name>Advance.Framework.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
       <Name>Advance.Framework</Name>

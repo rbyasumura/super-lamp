@@ -85,6 +85,10 @@
       <Project>{20B22DE8-4AA6-4FB9-AD2B-634945CDD115}</Project>
       <Name>Advance.Framework.Modules.Cms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
+      <Project>{660D9E99-DB64-4129-8E16-12F84C771779}</Project>
+      <Name>Advance.Framework.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Security\Advance.Framework.Security.csproj">
       <Project>{92E15E74-6717-48F2-A762-DB89BC640552}</Project>
       <Name>Advance.Framework.Security</Name>

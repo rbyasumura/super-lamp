@@ -47,6 +47,10 @@
     <Compile Include="Repositories\WebPageRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
+      <Project>{660D9E99-DB64-4129-8E16-12F84C771779}</Project>
+      <Name>Advance.Framework.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{df833ee4-96f7-4aad-95fd-f729caa1619e}</Project>
       <Name>Advance.Framework</Name>

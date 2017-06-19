@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Advance.Framework.Repositories")]
+[assembly: AssemblyTitle("Advance.Framework.Logger")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Advance.Framework.Repositories")]
+[assembly: AssemblyProduct("Advance.Framework.Logger")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("660d9e99-db64-4129-8e16-12f84c771779")]
+[assembly: Guid("9022d910-5d1c-4f75-81c5-094869f5907b")]
 
 // Version information for an assembly consists of the following four values:
 //
