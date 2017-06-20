@@ -1,4 +1,5 @@
-﻿using Advance.Framework.DependencyInjection.Unity;
+﻿using Advance.Framework.Contexts.EntityFramework;
+using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Loggers;
 using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Loggers.log4net;
@@ -19,7 +20,7 @@ namespace Advance.Framework.Modules.Cms.UnitTests.Repositories
                 .RegisterType<IUnitOfWork, UnitOfWork>()
                 .RegisterType<IWebPageRepository, WebPageRepository>()
                 .RegisterType<ILogger, Log4NetLogger>()
-                .RegisterType<IContext, >
+                .RegisterType<IContext, EntityFrameworkContext>()
                 ;
         }
     }

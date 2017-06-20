@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
-    partial class TestContext
+    partial class EntityFrameworkContext
     {
         private void ConfigureSecurity(DbModelBuilder modelBuilder)
         {

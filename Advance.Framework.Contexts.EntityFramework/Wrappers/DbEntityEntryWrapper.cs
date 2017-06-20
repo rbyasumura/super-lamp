@@ -9,10 +9,10 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
     internal class DbEntityEntryWrapper : IEntityEntry
     {
-        private EntityFrameworkContext context;
         private DbEntityEntry entityEntry;
+        private DbContextWrapper context;
 
-        public DbEntityEntryWrapper(EntityFrameworkContext context, DbEntityEntry entityEntry)
+        public DbEntityEntryWrapper(DbContextWrapper context, DbEntityEntry entityEntry)
         {
             this.context = context;
             this.entityEntry = entityEntry;

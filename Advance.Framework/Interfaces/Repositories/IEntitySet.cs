@@ -8,7 +8,7 @@
 
     public interface IEntitySet
     {
-        TEntity Add<TEntity>(TEntity entity);
+        TEntity Add<TEntity>(TEntity entity) where TEntity : class;
 
         TEntity Remove<TEntity>(TEntity delete);
     }

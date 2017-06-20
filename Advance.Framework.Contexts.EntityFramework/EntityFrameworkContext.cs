@@ -1,10 +1,18 @@
-﻿using System.Data.Entity;
+﻿using Advance.Framework.Interfaces.Repositories;
+using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
     public partial class EntityFrameworkContext : DbContext
-    // , IContext
+     , IContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            ConfigureContact(modelBuilder);
+            ConfigureSecurity(modelBuilder);
+            ConfigureCms(modelBuilder);
+        }
+
         // public EntityFrameworkContextBase() :
         // base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString) {
         // Configuration.LazyLoadingEnabled = false; }
@@ -24,9 +32,7 @@ namespace Advance.Framework.Contexts.EntityFramework
 
         // IEntitySet<TEntity> IContext.GetSet<TEntity>() { throw new NotImplementedException(); }
 
-        // public TEntity Add<TEntity>(TEntity entity) where TEntity : class { TrackChanges(Context.GetEntry(entity));
-
-        // var add = Context.GetSet(entity.GetType()).Add(entity); return add; }
+        // public TEntity Add<TEntity>(TEntity entity) where TEntity : class { }
 
         // public TEntity Delete<TEntity>(TEntity entity) where TEntity : class { TrackChanges(Context.GetEntry(entity));
 
