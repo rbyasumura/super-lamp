@@ -7,7 +7,7 @@ namespace Advance.Framework.Modules.Cms.Repositories
     public class WebPageRepository : Repository<WebPage>
         , IWebPageRepository
     {
-        public WebPageRepository(UnitOfWorkBase unitOfWork) : base(unitOfWork)
+        public WebPageRepository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }

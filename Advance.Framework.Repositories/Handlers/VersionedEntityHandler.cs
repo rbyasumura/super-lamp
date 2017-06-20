@@ -10,11 +10,11 @@ namespace Advance.Framework.Repositories.Handlers
 {
     internal class VersionedEntityHandler : IChangeHandler
     {
-        private UnitOfWorkBase unitOfWork;
+        private ContextWrapper context;
 
-        internal VersionedEntityHandler(UnitOfWorkBase unitOfWork)
+        internal VersionedEntityHandler(ContextWrapper context)
         {
-            this.unitOfWork = unitOfWork;
+            this.context = context;
         }
 
         public void Handle(IEnumerable<IEntityEntry> changedEntries)
@@ -39,7 +39,7 @@ namespace Advance.Framework.Repositories.Handlers
                     clone.VersionId = Guid.NewGuid();
                     clone.PreviousVersionId = versionedEntity.VersionId;
 
-                    unitOfWork.Add(clone);
+                    context.Add(clone);
                 }
             }
         }

@@ -47,7 +47,9 @@
     <Compile Include="Interfaces\Entities\IVersionedEntity.cs" />
     <Compile Include="Interfaces\Loggers\ILogger.cs" />
     <Compile Include="Interfaces\Mappers\IMapper.cs" />
+    <Compile Include="Interfaces\Repositories\IEntitySet.cs" />
     <Compile Include="Interfaces\Repositories\IPropertyValues.cs" />
+    <Compile Include="Interfaces\Repositories\IQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\Repositories\IArchiveRepository.cs" />
     <Compile Include="Interfaces\Repositories\IReadOnlyRepository.cs" />

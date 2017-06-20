@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework
 {
-    partial class Context
+    partial class TestContext
     {
         private void ConfigureContact(DbModelBuilder modelBuilder)
         {

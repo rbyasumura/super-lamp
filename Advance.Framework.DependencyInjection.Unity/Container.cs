@@ -29,9 +29,7 @@ namespace Advance.Framework.DependencyInjection.Unity
 
         public Container RegisterInstance<TInterface>(TInterface instance)
         {
-            //UnityContainer.RegisterInstance(instance, new ContainerControlledLifetimeManager());
-            //UnityContainer.RegisterInstance(instance, new ExternallyControlledLifetimeManager());
-            UnityContainer.RegisterInstance<TInterface>(instance);
+            UnityContainer.RegisterInstance(instance);
 
             return this;
         }

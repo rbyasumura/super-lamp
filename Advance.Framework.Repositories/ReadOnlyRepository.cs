@@ -8,12 +8,12 @@ namespace Advance.Framework.Repositories
 {
     public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
     {
-        protected ReadOnlyRepository(UnitOfWorkBase unitOfWork)
+        protected ReadOnlyRepository(UnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }
 
-        protected UnitOfWorkBase UnitOfWork { get; private set; }
+        protected UnitOfWork UnitOfWork { get; private set; }
 
         public bool Exists(Guid id)
         {

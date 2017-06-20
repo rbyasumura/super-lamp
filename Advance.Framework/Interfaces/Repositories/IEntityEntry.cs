@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Advance.Framework.Interfaces.Repositories
 {
@@ -17,5 +18,7 @@ namespace Advance.Framework.Interfaces.Repositories
         object Entity { get; }
         EntityState State { get; set; }
         IPropertyValues OriginalValues { get; }
+        IEnumerable<IEntityEntry> References { get; }
+        IEnumerable<IEntityEntry> Collections { get; }
     }
 }

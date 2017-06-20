@@ -9,10 +9,10 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
     internal class DbEntityEntryWrapper : IEntityEntry
     {
-        private Context context;
+        private EntityFrameworkContext context;
         private DbEntityEntry entityEntry;
 
-        public DbEntityEntryWrapper(Context context, DbEntityEntry entityEntry)
+        public DbEntityEntryWrapper(EntityFrameworkContext context, DbEntityEntry entityEntry)
         {
             this.context = context;
             this.entityEntry = entityEntry;
@@ -75,6 +75,10 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
         public EntityState State { get => (EntityState)entityEntry.State; set => entityEntry.State = (System.Data.Entity.EntityState)value; }
 
         public IPropertyValues OriginalValues => new DbPropertyValuesWrapper(entityEntry.OriginalValues);
+
+        IEnumerable<IEntityEntry> IEntityEntry.References => throw new NotImplementedException();
+
+        IEnumerable<IEntityEntry> IEntityEntry.Collections => throw new NotImplementedException();
 
         /// <summary>
         /// If the Entity properties are equal, then the Entry is equal

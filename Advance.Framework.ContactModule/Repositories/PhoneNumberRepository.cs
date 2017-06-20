@@ -7,7 +7,7 @@ namespace Advance.Framework.Modules.Contacts.Repositories
     public class PhoneNumberRepository : Repository<PhoneNumber>
         , IPhoneNumberRepository
     {
-        public PhoneNumberRepository(UnitOfWorkBase unitOfWork) : base(unitOfWork)
+        protected PhoneNumberRepository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }
