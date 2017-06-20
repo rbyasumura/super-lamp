@@ -18,7 +18,7 @@ namespace Advance.Framework.Contexts.EntityFramework
         {
             TrackChanges(GetEntityEntry(entity));
 
-            var add = GetSet<TEntity>().Add(entity);
+            var add = (TEntity)GetSet(entity.GetType()).Add(entity);
             return add;
         }
 
@@ -48,6 +48,22 @@ namespace Advance.Framework.Contexts.EntityFramework
             return context.Entry(entity).Entity;
         }
 
+        private DbEntityEntryWrapper GetEntityEntry<TEntity>(TEntity entity) where TEntity : class
+        {
+            return new DbEntityEntryWrapper(context, context.Entry(entity));
+        }
+
+        private DbSet GetSet(Type entityType)
+        {
+            return context.Set(entityType);
+        }
+
+        private DbSet<TEntity> GetSet<TEntity>() where TEntity : class
+        {
+            return GetSet(typeof(TEntity))
+                .Cast<TEntity>();
+        }
+
         private void TrackChanges(DbEntityEntryWrapper entry)
         {
             ModifiedEntries.Add(entry);
@@ -61,16 +77,6 @@ namespace Advance.Framework.Contexts.EntityFramework
             {
                 ModifiedEntries.Add(collectionEntry);
             }
-        }
-
-        private DbEntityEntryWrapper GetEntityEntry<TEntity>(TEntity entity) where TEntity : class
-        {
-            return new DbEntityEntryWrapper(context, context.Entry(entity));
-        }
-
-        private DbSet<TEntity> GetSet<TEntity>() where TEntity : class
-        {
-            return context.Set<TEntity>();
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace Advance.Framework.Interfaces.Entities
+﻿using System;
+
+namespace Advance.Framework.Interfaces.Entities
 {
-    internal interface IVersionedEntity
+    public interface IVersionedEntity
     {
-        int Version { get; set; }
-        IVersionedEntity PreviousVersion { get; set; }
+        Guid VersionId { get; set; }
+        Guid? PreviousVersionId { get; set; }
     }
 }

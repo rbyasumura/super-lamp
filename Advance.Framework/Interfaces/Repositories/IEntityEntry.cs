@@ -16,5 +16,6 @@ namespace Advance.Framework.Interfaces.Repositories
     {
         object Entity { get; }
         EntityState State { get; set; }
+        IPropertyValues OriginalValues { get; }
     }
 }

@@ -74,6 +74,8 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 
         public EntityState State { get => (EntityState)entityEntry.State; set => entityEntry.State = (System.Data.Entity.EntityState)value; }
 
+        public IPropertyValues OriginalValues => new DbPropertyValuesWrapper(entityEntry.OriginalValues);
+
         /// <summary>
         /// If the Entity properties are equal, then the Entry is equal
         /// </summary>

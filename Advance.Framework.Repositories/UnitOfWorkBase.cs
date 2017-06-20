@@ -20,6 +20,7 @@ namespace Advance.Framework.Repositories
             changeHandlers.Add(new PrimaryKeyHandler());
             changeHandlers.Add(new TimestampableEntityHandler());
             changeHandlers.Add(new SoftDeletableEntityHandler());
+            changeHandlers.Add(new VersionedEntityHandler(this));
         }
 
         protected abstract IContext Context { get; }
