@@ -4,28 +4,46 @@ using System;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    internal class DbContextWrapper : ContextWrapper
+    public class DbContextWrapper : ContextWrapperBase
     {
-        private EntityFrameworkContext context = new EntityFrameworkContext();
+        private EntityFrameworkContext context;
 
-        protected override IContext Context => context;
-
-        protected internal override IEntityEntry _GetEntry<TEntity>(TEntity entity)
+        private EntityFrameworkContext Context
         {
-            return new DbEntityEntryWrapper(this, context.Entry(entity));
+            get
+            {
+                if (context == null)
+                {
+                    context = new EntityFrameworkContext();
+                }
+                return context;
+            }
         }
 
-        protected override IEntitySet GetSet(Type entityType)
+        public override void Dispose()
         {
-            return new DbSetWrapper(context.Set(entityType));
+            if (context != null)
+            {
+                context.Dispose();
+            }
         }
 
-        protected override IEntitySet GetSet<TEntity>()
+        internal DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity) where TEntity : class
         {
-            return new DbSetWrapper(context.Set<TEntity>());
+            return new DbEntityEntryWrapper<TEntity>(this, Context.Entry(entity));
         }
 
-        protected override IEntityEntry GetEntry<TEntity>(TEntity entity)
+        protected override IEntitySet GetSet(Type type)
+        {
+            return new DbSetWrapper(Context.Set(type));
+        }
+
+        protected override ITrackedEntry<TEntity> GetTrackedEntry<TEntity>(TEntity entity)
+        {
+            return GetTrackedEntryInternal(entity);
+        }
+
+        protected override int SaveChanges()
         {
             throw new NotImplementedException();
         }

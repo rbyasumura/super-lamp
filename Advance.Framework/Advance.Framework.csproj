@@ -56,7 +56,7 @@
     <Compile Include="Interfaces\Repositories\IReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUnitOfWork.cs" />
-    <Compile Include="Interfaces\Repositories\IEntityEntry.cs" />
+    <Compile Include="Interfaces\Repositories\ITrackedEntry.cs" />
     <Compile Include="Interfaces\Repositories\Handlers\IChangeHandler.cs" />
     <Compile Include="Interfaces\Repositories\IContext.cs" />
   </ItemGroup>

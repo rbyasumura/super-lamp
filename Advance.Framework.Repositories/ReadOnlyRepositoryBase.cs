@@ -1,19 +1,26 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace Advance.Framework.Repositories
 {
-    public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
+    public abstract class ReadOnlyRepositoryBase<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
     {
-        protected ReadOnlyRepository(UnitOfWork unitOfWork)
+        private UnitOfWork unitOfWork;
+
+        protected ReadOnlyRepositoryBase(UnitOfWork unitOfWork)
         {
-            UnitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
-        protected UnitOfWork UnitOfWork { get; private set; }
+        protected UnitOfWork UnitOfWork
+        {
+            get
+            {
+                return unitOfWork;
+            }
+        }
 
         public bool Exists(Guid id)
         {
@@ -32,8 +39,7 @@ namespace Advance.Framework.Repositories
 
         public IEnumerable<TEntity> ListAll<TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
         {
-            return UnitOfWork.Entities(includes)
-                .ToArray();
+            throw new NotImplementedException();
         }
     }
 }

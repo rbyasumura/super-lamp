@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Linq.Expressions;
 
 namespace Advance.Framework.Interfaces.Repositories
 {
-    public interface IQuery<TEntity> : IEnumerable<TEntity>
+    public interface IQuery<TEntity>
     {
-        IQueryable<TEntity> Include(string path);
+        IQuery<TEntity> Include<TProperty>(Expression<Func<TEntity, TProperty>> path);
     }
 }

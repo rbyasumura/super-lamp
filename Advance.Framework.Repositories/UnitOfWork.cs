@@ -4,21 +4,21 @@ using System.Collections.Generic;
 
 namespace Advance.Framework.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
-        private ContextWrapper context;
+        private ContextWrapperBase context;
 
         public UnitOfWork()
         {
         }
 
-        internal ContextWrapper Context
+        internal ContextWrapperBase Context
         {
             get
             {
                 if (context == null)
                 {
-                    context = (ContextWrapper)Container.Instance.Resolve<IContextWrapper>();
+                    context = (ContextWrapperBase)Container.Instance.Resolve<IContextWrapper>();
                 }
                 return context;
             }

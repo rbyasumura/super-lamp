@@ -9,7 +9,7 @@ namespace Advance.Framework.Repositories.Handlers
 {
     internal class SoftDeletableEntityHandler : IChangeHandler
     {
-        public void Handle(IEnumerable<IEntityEntry> changedEntries)
+        public void Handle(IEnumerable<ITrackedEntry> changedEntries)
         {
             foreach (var entry in changedEntries.Where(i => i.State == EntityState.Deleted
                 && typeof(ISoftDeletableEntity).IsAssignableFrom(i.Entity.GetType())))

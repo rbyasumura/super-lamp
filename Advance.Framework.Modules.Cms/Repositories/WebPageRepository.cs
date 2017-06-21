@@ -4,7 +4,7 @@ using Advance.Framework.Repositories;
 
 namespace Advance.Framework.Modules.Cms.Repositories
 {
-    public class WebPageRepository : Repository<WebPage>
+    public class WebPageRepository : RepositoryBase<WebPage>
         , IWebPageRepository
     {
         public WebPageRepository(UnitOfWork unitOfWork) : base(unitOfWork)

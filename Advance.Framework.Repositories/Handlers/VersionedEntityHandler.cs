@@ -10,14 +10,14 @@ namespace Advance.Framework.Repositories.Handlers
 {
     internal class VersionedEntityHandler : IChangeHandler
     {
-        private ContextWrapper context;
+        private ContextWrapperBase context;
 
-        internal VersionedEntityHandler(ContextWrapper context)
+        internal VersionedEntityHandler(ContextWrapperBase context)
         {
             this.context = context;
         }
 
-        public void Handle(IEnumerable<IEntityEntry> changedEntries)
+        public void Handle(IEnumerable<ITrackedEntry> changedEntries)
         {
             foreach (var entry in changedEntries.Where(i => (i.State == EntityState.Added || i.State == EntityState.Modified)
                && typeof(IVersionedEntity).IsAssignableFrom(i.Entity.GetType())))
@@ -34,8 +34,12 @@ namespace Advance.Framework.Repositories.Handlers
                     /// Clone entity
                     var originalValues = entry.OriginalValues;
                     var clone = (IVersionedEntity)originalValues.ToObject();
+
+                    /// Assign new primary key
                     var property = entityType.GetProperty(EntityUtility.GetIdPropertyName(entityType));
                     property.SetValue(clone, Guid.NewGuid());
+
+                    /// Assign version
                     clone.VersionId = Guid.NewGuid();
                     clone.PreviousVersionId = versionedEntity.VersionId;
 

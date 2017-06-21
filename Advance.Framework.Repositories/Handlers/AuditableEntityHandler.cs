@@ -1,14 +1,15 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Interfaces.Repositories.Handlers;
+using System;
 using System.Collections.Generic;
 
 namespace Advance.Framework.Repositories.Handlers
 {
     internal class AuditableEntityHandler : IChangeHandler
     {
-        public void Handle(IEnumerable<IEntityEntry> changedEntries)
+        public void Handle(IEnumerable<ITrackedEntry> changedEntries)
         {
-            /// TODO
+            throw new NotImplementedException();
             //foreach (var entry in changedEntries.Where(i => typeof(IAuditableEntity).IsAssignableFrom(i.Entity.GetType())))
             //{
             //    var auditableEntity = (IAuditableEntity)entry.Entity;

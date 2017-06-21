@@ -4,7 +4,7 @@ using Advance.Framework.Repositories;
 
 namespace Advance.Framework.Modules.Contacts.Repositories
 {
-    public class PersonRepository : Repository<Person>
+    public class PersonRepository : RepositoryBase<Person>
         , IPersonRepository
     {
         protected PersonRepository(UnitOfWork unitOfWork) : base(unitOfWork)

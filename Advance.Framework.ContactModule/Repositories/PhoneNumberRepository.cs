@@ -4,7 +4,7 @@ using Advance.Framework.Repositories;
 
 namespace Advance.Framework.Modules.Contacts.Repositories
 {
-    public class PhoneNumberRepository : Repository<PhoneNumber>
+    public class PhoneNumberRepository : RepositoryBase<PhoneNumber>
         , IPhoneNumberRepository
     {
         protected PhoneNumberRepository(UnitOfWork unitOfWork) : base(unitOfWork)

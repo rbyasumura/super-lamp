@@ -9,7 +9,7 @@ namespace Advance.Framework.Repositories.Handlers
 {
     internal class PrimaryKeyHandler : IChangeHandler
     {
-        public void Handle(IEnumerable<IEntityEntry> changedEntities)
+        public void Handle(IEnumerable<ITrackedEntry> changedEntities)
         {
             foreach (var entityEntry in changedEntities.Where(i => i.State == EntityState.Added))
             {

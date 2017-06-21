@@ -1,5 +1,4 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
-using System;
 using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
@@ -13,14 +12,30 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             this.set = set;
         }
 
-        public TEntity Add<TEntity>(TEntity entity) where TEntity : class
+        //private DbSet set;
+
+        //public DbSetWrapper(DbSet set)
+        //{
+        //    this.set = set;
+        //}
+
+        //public TEntity Add<TEntity>(TEntity entity) where TEntity : class
+        //{
+        //    return set.Cast<TEntity>().Add(entity);
+        //}
+
+        //public TEntity Remove<TEntity>(TEntity delete)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        public TEntity Add<TEntity>(TEntity entity)
         {
-            return set.Cast<TEntity>().Add(entity);
+            return (TEntity)set.Add(entity);
         }
 
-        public TEntity Remove<TEntity>(TEntity delete)
+        public TEntity Remove<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            return (TEntity)set.Remove(entity);
         }
     }
 }

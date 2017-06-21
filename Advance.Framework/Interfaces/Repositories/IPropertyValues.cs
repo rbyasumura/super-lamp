@@ -2,8 +2,6 @@
 {
     public interface IPropertyValues
     {
-        object this[string propertyName] { get; set; }
-
         object ToObject();
     }
 }

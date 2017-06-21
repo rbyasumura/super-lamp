@@ -13,12 +13,17 @@ namespace Advance.Framework.Interfaces.Repositories
         Modified = 16
     }
 
-    public interface IEntityEntry
+    public interface ITrackedEntry
     {
-        object Entity { get; }
         EntityState State { get; set; }
+        object Entity { get; }
         IPropertyValues OriginalValues { get; }
-        IEnumerable<IEntityEntry> References { get; }
-        IEnumerable<IEntityEntry> Collections { get; }
+    }
+
+    public interface ITrackedEntry<TEntity> : ITrackedEntry
+    {
+        IEnumerable<ITrackedEntry> References { get; }
+        IEnumerable<ITrackedEntry> Collections { get; }
+        new TEntity Entity { get; }
     }
 }
