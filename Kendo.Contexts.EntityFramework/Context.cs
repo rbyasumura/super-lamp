@@ -4,11 +4,17 @@ using Advance.Framework.Modules.Cms;
 using Advance.Framework.Modules.Contacts;
 using Advance.Framework.Modules.Security;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace Kendo.Contexts.EntityFramework
 {
     internal class Context : EntityFrameworkContextBase
     {
+        public Context()
+            : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)
+        {
+        }
+
         protected override void RegisterModels(ICollection<IModelDefinition> modelDefinitions)
         {
             modelDefinitions.Add(new CmsModelDefinition());

@@ -8,9 +8,22 @@ namespace Advance.Framework.Contexts.EntityFramework
     public abstract class EntityFrameworkContextBase : DbContext
         , IContext
     {
-        private IEnumerable<IModelDefinition> modelDefinitions;
+        private ICollection<IModelDefinition> modelDefinitions;
 
-        private IEnumerable<IModelDefinition> ModelDefinitions
+        protected EntityFrameworkContextBase(string connectionString)
+                    : base(connectionString)
+        {
+            RegisterModels(ModelDefinitions);
+        }
+
+        /// <summary>
+        /// Hide parameterless constructor so that inheriting classes cannot call it
+        /// </summary>
+        private EntityFrameworkContextBase()
+        {
+        }
+
+        private ICollection<IModelDefinition> ModelDefinitions
         {
             get
             {
@@ -22,8 +35,6 @@ namespace Advance.Framework.Contexts.EntityFramework
             }
         }
 
-        protected abstract void RegisterModels(ICollection<IModelDefinition> modelBuilders);
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,5 +44,7 @@ namespace Advance.Framework.Contexts.EntityFramework
                 modelDefinition.Build(new DbModelBuilderWrapper(modelBuilder));
             }
         }
+
+        protected abstract void RegisterModels(ICollection<IModelDefinition> modelDefinitions);
     }
 }
