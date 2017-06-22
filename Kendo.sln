@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{5C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Modules", "3 - Modules", "{723F948C-12F5-455C-A455-09F0027F5600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Security", "Advance.Framework.Security\Advance.Framework.Security.csproj", "{92E15E74-6717-48F2-A762-DB89BC640552}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Modules.Security", "Advance.Framework.Security\Advance.Framework.Modules.Security.csproj", "{92E15E74-6717-48F2-A762-DB89BC640552}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Contexts.EntityFramework", "Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj", "{226A2371-DE0F-433C-B4E0-082E150B2918}"
 EndProject

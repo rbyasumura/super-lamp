@@ -1,20 +1,21 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    public class DbContextWrapper : ContextWrapperBase
+    public sealed class DbContextWrapper : ContextWrapperBase
     {
-        private EntityFrameworkContext context;
+        private EntityFrameworkContextBase context;
 
-        private EntityFrameworkContext Context
+        private EntityFrameworkContextBase Context
         {
             get
             {
                 if (context == null)
                 {
-                    context = new EntityFrameworkContext();
+                    context = (EntityFrameworkContextBase)Container.Instance.Resolve<IContext>();
                 }
                 return context;
             }
@@ -28,7 +29,8 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             }
         }
 
-        internal DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity) where TEntity : class
+        internal DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity)
+            where TEntity : class
         {
             return new DbEntityEntryWrapper<TEntity>(this, Context.Entry(entity));
         }

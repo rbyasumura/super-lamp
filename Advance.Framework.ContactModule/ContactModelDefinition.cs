@@ -1,11 +1,11 @@
-﻿using Advance.Framework.Modules.Contacts.Entities;
-using System.Data.Entity;
+﻿using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Modules.Contacts.Entities;
 
-namespace Advance.Framework.Contexts.EntityFramework
+namespace Advance.Framework.Modules.Contacts
 {
-    partial class EntityFrameworkContext
+    public class ContactModelDefinition : IModelDefinition
     {
-        private void ConfigureContact(DbModelBuilder modelBuilder)
+        public void Build(IModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>();
             modelBuilder.Entity<PhoneNumber>();

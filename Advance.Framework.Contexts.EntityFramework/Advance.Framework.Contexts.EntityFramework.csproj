@@ -48,16 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFrameworkContext.Cms.cs">
-      <DependentUpon>EntityFrameworkContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EntityFrameworkContext.Contact.cs">
-      <DependentUpon>EntityFrameworkContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EntityFrameworkContext.cs" />
-    <Compile Include="EntityFrameworkContext.Security.cs">
-      <DependentUpon>EntityFrameworkContext.cs</DependentUpon>
-    </Compile>
+    <Compile Include="EntityFrameworkContextBase.cs" />
     <Compile Include="Migrations\201706162127126_001.cs" />
     <Compile Include="Migrations\201706162127126_001.Designer.cs">
       <DependentUpon>201706162127126_001.cs</DependentUpon>
@@ -67,11 +58,16 @@
       <DependentUpon>201706201725406_002.cs</DependentUpon>
     </Compile>
     <Compile Include="Wrappers\DbContextWrapper.cs" />
-    <Compile Include="Wrappers\DbEntityEntryWrapper.cs" />
+    <Compile Include="Wrappers\Infrastructure\DbEntityEntryWrapper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wrappers\DbPropertyValuesWrapper.cs" />
+    <Compile Include="Wrappers\DbModelBuilderWrapper.cs" />
+    <Compile Include="Wrappers\Infrastructure\DbPropertyValuesWrapper.cs" />
     <Compile Include="Wrappers\DbSetWrapper.cs" />
+    <Compile Include="Wrappers\ModelConfiguration\DependentNavigationPropertyConfigurationWrapper.cs" />
+    <Compile Include="Wrappers\ModelConfiguration\EntityTypeConfigurationWrapper.cs" />
+    <Compile Include="Wrappers\ModelConfiguration\ManyNavigationPropertyConfigurationWrapper.cs" />
+    <Compile Include="Wrappers\ModelConfiguration\RequiredNavigationPropertyConfigurationWrapper.cs" />
     <Compile Include="Wrappers\SqlProviderServicesWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,25 +75,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
-      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
-      <Name>Advance.Framework.Modules.Contacts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Modules.Cms\Advance.Framework.Modules.Cms.csproj">
-      <Project>{20B22DE8-4AA6-4FB9-AD2B-634945CDD115}</Project>
-      <Name>Advance.Framework.Modules.Cms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
       <Project>{660D9E99-DB64-4129-8E16-12F84C771779}</Project>
       <Name>Advance.Framework.Repositories</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Security\Advance.Framework.Security.csproj">
-      <Project>{92E15E74-6717-48F2-A762-DB89BC640552}</Project>
-      <Name>Advance.Framework.Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>

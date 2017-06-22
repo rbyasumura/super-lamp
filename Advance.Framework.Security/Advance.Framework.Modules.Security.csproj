@@ -7,8 +7,8 @@
     <ProjectGuid>{92E15E74-6717-48F2-A762-DB89BC640552}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Advance.Framework.Security</RootNamespace>
-    <AssemblyName>Advance.Framework.Security</AssemblyName>
+    <RootNamespace>Advance.Framework.Modules.Security</RootNamespace>
+    <AssemblyName>Advance.Framework.Modules.Security</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,6 +43,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityModelDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />

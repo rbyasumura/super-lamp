@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Advance.Framework.Security.Entities
+namespace Advance.Framework.Modules.Security.Entities
 {
     public class Role : ITimestampableEntity
         , ISoftDeletableEntity

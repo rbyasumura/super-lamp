@@ -5,7 +5,8 @@ using System.Linq.Expressions;
 
 namespace Advance.Framework.Repositories
 {
-    public abstract class ReadOnlyRepositoryBase<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
+    public abstract class ReadOnlyRepositoryBase<TEntity> : IReadOnlyRepository<TEntity>
+        where TEntity : class
     {
         private UnitOfWork unitOfWork;
 

@@ -2,14 +2,14 @@ namespace Advance.Framework.Contexts.EntityFramework.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Advance.Framework.Contexts.EntityFramework.EntityFrameworkContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Advance.Framework.Contexts.EntityFramework.EntityFrameworkContextBase>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Advance.Framework.Contexts.EntityFramework.EntityFrameworkContext context)
+        protected override void Seed(Advance.Framework.Contexts.EntityFramework.EntityFrameworkContextBase context)
         {
             // This method will be called after migrating to the latest version.
 

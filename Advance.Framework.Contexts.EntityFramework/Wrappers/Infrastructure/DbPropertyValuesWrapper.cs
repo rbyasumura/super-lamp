@@ -3,7 +3,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    internal class DbPropertyValuesWrapper : IPropertyValues
+    internal sealed class DbPropertyValuesWrapper : IPropertyValues
     {
         private DbPropertyValues propertyValues;
 

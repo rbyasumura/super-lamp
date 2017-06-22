@@ -41,7 +41,7 @@ namespace Advance.Framework.Repositories
 
         public int SaveChanges()
         {
-            return Context.SaveChanges();
+            return Context.SaveChangesInternal();
         }
     }
 }

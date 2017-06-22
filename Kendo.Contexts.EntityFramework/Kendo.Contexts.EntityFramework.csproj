@@ -55,9 +55,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
+      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
+      <Name>Advance.Framework.Modules.Contacts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj">
       <Project>{226A2371-DE0F-433C-B4E0-082E150B2918}</Project>
       <Name>Advance.Framework.Contexts.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Modules.Cms\Advance.Framework.Modules.Cms.csproj">
+      <Project>{20B22DE8-4AA6-4FB9-AD2B-634945CDD115}</Project>
+      <Name>Advance.Framework.Modules.Cms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Security\Advance.Framework.Modules.Security.csproj">
+      <Project>{92E15E74-6717-48F2-A762-DB89BC640552}</Project>
+      <Name>Advance.Framework.Modules.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
+      <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
+      <Name>Advance.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

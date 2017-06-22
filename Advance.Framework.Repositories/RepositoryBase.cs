@@ -3,7 +3,8 @@
 namespace Advance.Framework.Repositories
 {
     public abstract class RepositoryBase<TEntity> : ReadOnlyRepositoryBase<TEntity>
-        , IRepository<TEntity> where TEntity : class
+        , IRepository<TEntity>
+        where TEntity : class
     {
         protected RepositoryBase(UnitOfWork unitOfWork) : base(unitOfWork)
         {

@@ -20,7 +20,7 @@ namespace Advance.Framework.Modules.Cms.UnitTests.Repositories
                 .RegisterType<IUnitOfWork, UnitOfWork>()
                 .RegisterType<IWebPageRepository, WebPageRepository>()
                 .RegisterType<ILogger, Log4NetLogger>()
-                .RegisterType<IContext, EntityFrameworkContext>()
+                .RegisterType<IContext, EntityFrameworkContextBase>()
                 ;
         }
     }

@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    internal class DbSetWrapper : IEntitySet
+    internal sealed class DbSetWrapper : IEntitySet
     {
         private DbSet set;
 
