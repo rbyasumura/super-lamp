@@ -6,7 +6,6 @@ using System.Data.Entity;
 namespace Advance.Framework.Contexts.EntityFramework
 {
     public abstract class EntityFrameworkContextBase : DbContext
-        , IContext
     {
         private ICollection<IModelDefinition> modelDefinitions;
 

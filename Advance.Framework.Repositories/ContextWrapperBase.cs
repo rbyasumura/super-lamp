@@ -32,7 +32,7 @@ namespace Advance.Framework.Repositories
             }
         }
 
-        private ICollection<ITrackedEntry> Changes
+        protected ICollection<ITrackedEntry> Changes
         {
             get
             {

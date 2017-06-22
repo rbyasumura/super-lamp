@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace Kendo.Contexts.EntityFramework
 {
-    internal class Context : EntityFrameworkContextBase
+    public class Context : EntityFrameworkContextBase
     {
         public Context()
             : base(ConfigurationManager.ConnectionStrings["Default"].ConnectionString)

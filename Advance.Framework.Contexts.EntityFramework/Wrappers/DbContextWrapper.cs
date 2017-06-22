@@ -1,21 +1,33 @@
-﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System;
+using System.Linq;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    public sealed class DbContextWrapper : ContextWrapperBase
+    public abstract class DbContextWrapper : ContextWrapperBase
     {
-        private EntityFrameworkContextBase context;
+        protected abstract EntityFrameworkContextBase Context { get; }
 
-        private EntityFrameworkContextBase Context
+        internal DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity)
+            where TEntity : class
+        {
+            return new DbEntityEntryWrapper<TEntity>(this, Context.Entry(entity));
+        }
+    }
+
+    public sealed class DbContextWrapper<TContext> : DbContextWrapper
+        where TContext : EntityFrameworkContextBase, new()
+    {
+        private TContext context;
+
+        protected override EntityFrameworkContextBase Context
         {
             get
             {
                 if (context == null)
                 {
-                    context = (EntityFrameworkContextBase)Container.Instance.Resolve<IContext>();
+                    context = new TContext();
                 }
                 return context;
             }
@@ -27,12 +39,6 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             {
                 context.Dispose();
             }
-        }
-
-        internal DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity)
-            where TEntity : class
-        {
-            return new DbEntityEntryWrapper<TEntity>(this, Context.Entry(entity));
         }
 
         protected override IEntitySet GetSet(Type type)
@@ -47,7 +53,15 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 
         protected override int SaveChanges()
         {
-            throw new NotImplementedException();
+            foreach (var entry in context.ChangeTracker.Entries().Where(i => i.State != System.Data.Entity.EntityState.Unchanged))
+            {
+                if (Changes.Contains(new DbEntityEntryWrapper(this, entry)) == false)
+                {
+                    entry.State = System.Data.Entity.EntityState.Unchanged;
+                }
+            }
+
+            return context.SaveChanges();
         }
     }
 }

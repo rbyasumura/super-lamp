@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Advance.Framework.Interfaces.Repositories
+﻿namespace Advance.Framework.Interfaces.Repositories
 {
-    public interface IContext : IDisposable
-    {
-        int SaveChanges();
-    }
+    //public interface IContext : IDisposable
+    //{
+    //    int SaveChanges();
+    //}
 }

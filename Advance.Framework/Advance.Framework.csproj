@@ -66,11 +66,5 @@
     <Compile Include="Interfaces\Repositories\Handlers\IChangeHandler.cs" />
     <Compile Include="Interfaces\Contexts\IContext.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
-      <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
-      <Name>Advance.Framework.DependencyInjection.Unity</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    internal class DbEntityEntryWrapper
+    internal class DbEntityEntryWrapper : ITrackedEntry
     {
         private DbContextWrapper contextWrapper;
         private DbEntityEntry entityEntry;
@@ -18,8 +18,27 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             this.entityEntry = entityEntry;
         }
 
+        public object Entity => EntityEntry.Entity;
+        public IPropertyValues OriginalValues => new DbPropertyValuesWrapper(EntityEntry.OriginalValues);
+        public EntityState State { get => (EntityState)EntityEntry.State; set => EntityEntry.State = (System.Data.Entity.EntityState)value; }
         protected DbContextWrapper ContextWrapper => contextWrapper;
         protected DbEntityEntry EntityEntry => entityEntry;
+
+        public override bool Equals(object obj)
+        {
+            if (typeof(DbEntityEntryWrapper).IsAssignableFrom(obj.GetType()) == false)
+            {
+                return false;
+            }
+
+            var entityEntryWrapper = (DbEntityEntryWrapper)obj;
+            return Entity.Equals(entityEntryWrapper.Entity);
+        }
+
+        public override int GetHashCode()
+        {
+            return Entity.GetHashCode();
+        }
     }
 
     internal sealed class DbEntityEntryWrapper<TEntity> : DbEntityEntryWrapper
@@ -59,11 +78,7 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             }
         }
 
-        public TEntity Entity => (TEntity)EntityEntry.Entity;
-
-        object ITrackedEntry.Entity => EntityEntry.Entity;
-
-        public IPropertyValues OriginalValues => new DbPropertyValuesWrapper(EntityEntry.OriginalValues);
+        TEntity ITrackedEntry<TEntity>.Entity => (TEntity)Entity;
 
         public IEnumerable<ITrackedEntry> References
         {
@@ -88,8 +103,6 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
                 }
             }
         }
-
-        public EntityState State { get; set; }
 
         private IEnumerable<string> GetPropertyNames()
         {
