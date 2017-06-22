@@ -12,22 +12,6 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             this.set = set;
         }
 
-        //private DbSet set;
-
-        //public DbSetWrapper(DbSet set)
-        //{
-        //    this.set = set;
-        //}
-
-        //public TEntity Add<TEntity>(TEntity entity) where TEntity : class
-        //{
-        //    return set.Cast<TEntity>().Add(entity);
-        //}
-
-        //public TEntity Remove<TEntity>(TEntity delete)
-        //{
-        //    throw new NotImplementedException();
-        //}
         public TEntity Add<TEntity>(TEntity entity)
         {
             return (TEntity)set.Add(entity);
