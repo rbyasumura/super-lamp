@@ -40,7 +40,7 @@ namespace Advance.Framework.Repositories
 
         public IEnumerable<TEntity> ListAll<TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
         {
-            throw new NotImplementedException();
+            return UnitOfWork.Context.ListAll(includes);
         }
     }
 }

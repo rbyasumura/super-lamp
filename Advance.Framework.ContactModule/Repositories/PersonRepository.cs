@@ -7,7 +7,7 @@ namespace Advance.Framework.Modules.Contacts.Repositories
     public class PersonRepository : RepositoryBase<Person>
         , IPersonRepository
     {
-        protected PersonRepository(UnitOfWork unitOfWork) : base(unitOfWork)
+        public PersonRepository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }

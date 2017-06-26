@@ -19,8 +19,10 @@ namespace Advance.Framework.Repositories.Handlers
 
         public void Handle(IEnumerable<ITrackedEntry> changedEntries)
         {
-            foreach (var entry in changedEntries.Where(i => (i.State == EntityState.Added || i.State == EntityState.Modified)
-               && typeof(IVersionedEntity).IsAssignableFrom(i.Entity.GetType())))
+            var _changedEntries = changedEntries.Where(i => (i.State == EntityState.Added || i.State == EntityState.Modified)
+                  && typeof(IVersionedEntity).IsAssignableFrom(i.Entity.GetType()))
+                  .ToArray();
+            foreach (var entry in _changedEntries)
             {
                 var versionedEntity = (IVersionedEntity)entry.Entity;
                 if (entry.State == EntityState.Added)
@@ -33,17 +35,17 @@ namespace Advance.Framework.Repositories.Handlers
 
                     /// Clone entity
                     var originalValues = entry.OriginalValues;
-                    var clone = (IVersionedEntity)originalValues.ToObject();
+                    var originalEntity = (IVersionedEntity)originalValues.ToObject();
 
                     /// Assign new primary key
                     var property = entityType.GetProperty(EntityUtility.GetIdPropertyName(entityType));
-                    property.SetValue(clone, Guid.NewGuid());
+                    property.SetValue(originalEntity, Guid.NewGuid());
 
                     /// Assign version
-                    clone.VersionId = Guid.NewGuid();
-                    clone.PreviousVersionId = versionedEntity.VersionId;
+                    originalEntity.VersionId = Guid.NewGuid();
+                    versionedEntity.PreviousVersionId = originalEntity.VersionId;
 
-                    context.Add(clone);
+                    context.Add(originalEntity);
                 }
             }
         }

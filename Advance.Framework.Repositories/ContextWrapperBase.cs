@@ -3,6 +3,7 @@ using Advance.Framework.Interfaces.Repositories.Handlers;
 using Advance.Framework.Repositories.Handlers;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Advance.Framework.Repositories
 {
@@ -30,6 +31,11 @@ namespace Advance.Framework.Repositories
                 }
                 return changeHandlers;
             }
+        }
+
+        internal IEnumerable<TEntity> ListAll<TEntity, TProperty>(Expression<Func<TEntity, TProperty>>[] includes) where TEntity : class
+        {
+            return GetSet(typeof(TEntity)).ListAll(includes);
         }
 
         protected ICollection<ITrackedEntry> Changes
