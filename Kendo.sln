@@ -51,7 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1 - Base Classes", "2.1 -
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2 - Library Implementation", "2.2 - Library Implementation", "{25D1BF83-7C75-4A90-AA6B-7480E3223250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.Web.Service", "Kendo.Web.Service\Kendo.Web.Service.csproj", "{43BB9706-E6C1-4F95-8C47-8F76C1959B70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{8FB2119B-A107-4D33-A2BA-D30931A859C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,10 +111,10 @@ Global
 		{B843FD3C-E86C-419E-945A-9B2FF8A40EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B843FD3C-E86C-419E-945A-9B2FF8A40EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B843FD3C-E86C-419E-945A-9B2FF8A40EEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43BB9706-E6C1-4F95-8C47-8F76C1959B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43BB9706-E6C1-4F95-8C47-8F76C1959B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43BB9706-E6C1-4F95-8C47-8F76C1959B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43BB9706-E6C1-4F95-8C47-8F76C1959B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB2119B-A107-4D33-A2BA-D30931A859C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB2119B-A107-4D33-A2BA-D30931A859C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB2119B-A107-4D33-A2BA-D30931A859C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB2119B-A107-4D33-A2BA-D30931A859C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
