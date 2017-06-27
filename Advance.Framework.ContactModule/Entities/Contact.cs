@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Advance.Framework.Modules.Core.Entities;
 
 namespace Advance.Framework.Modules.Contacts.Entities
 {

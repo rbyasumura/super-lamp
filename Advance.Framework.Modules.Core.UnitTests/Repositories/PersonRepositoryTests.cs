@@ -1,10 +1,10 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
-using Advance.Framework.Modules.Contacts.Entities;
-using Advance.Framework.Modules.Contacts.Interfaces.Repositories;
+using Advance.Framework.Modules.Core.Entities;
+using Advance.Framework.Modules.Core.Interfaces.Repositories;
 using NUnit.Framework;
 
-namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
+namespace Advance.Framework.Modules.Core.UnitTests.Repositories
 {
     [TestFixture]
     internal class PersonRepositoryTests

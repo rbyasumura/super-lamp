@@ -1,5 +1,6 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Contacts.Entities;
+using Advance.Framework.Modules.Core.Entities;
 
 namespace Advance.Framework.Modules.Contacts
 {
@@ -7,7 +8,6 @@ namespace Advance.Framework.Modules.Contacts
     {
         public void Build(IModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Person>();
             modelBuilder.Entity<PhoneNumber>();
             var contactConfiguration = modelBuilder.Entity<Contact>();
             contactConfiguration.HasRequired(i => i.Person).WithMany();

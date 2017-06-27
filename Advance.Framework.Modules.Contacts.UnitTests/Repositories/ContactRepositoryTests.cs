@@ -5,6 +5,7 @@ using Advance.Framework.Modules.Contacts.Interfaces.Repositories;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using Advance.Framework.Modules.Core.Entities;
 
 namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
 {

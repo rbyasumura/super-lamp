@@ -1,7 +1,7 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
-using Advance.Framework.Modules.Contacts.Entities;
+using Advance.Framework.Modules.Core.Entities;
 
-namespace Advance.Framework.Modules.Contacts.Interfaces.Repositories
+namespace Advance.Framework.Modules.Core.Interfaces.Repositories
 {
     public interface IPersonRepository : IRepository<Person>
     {

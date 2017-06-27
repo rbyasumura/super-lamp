@@ -1,17 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79108470-EB62-4BE3-A191-FAF1CCB62E9E}</ProjectGuid>
+    <ProjectGuid>{0497872F-773F-4375-91E7-A44184B38192}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Advance.Framework.Modules.Contacts.UnitTests</RootNamespace>
-    <AssemblyName>Advance.Framework.Modules.Contacts.UnitTests</AssemblyName>
+    <RootNamespace>Advance.Framework.Modules.Core.UnitTests</RootNamespace>
+    <AssemblyName>Advance.Framework.Modules.Core.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,22 +41,17 @@
       <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\ContactRepositoryTests.cs" />
-    <Compile Include="Repositories\PhoneNumberRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PersonRepositoryTests.cs" />
     <Compile Include="Repositories\SetUpFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
-      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
-      <Name>Advance.Framework.Modules.Contacts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj">
       <Project>{226A2371-DE0F-433C-B4E0-082E150B2918}</Project>
       <Name>Advance.Framework.Contexts.EntityFramework</Name>
@@ -60,7 +61,7 @@
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Loggers.log4net\Advance.Framework.Loggers.log4net.csproj">
-      <Project>{cb7b9fa6-f9e4-4292-94e6-e7925dd8ed11}</Project>
+      <Project>{CB7B9FA6-F9E4-4292-94E6-E7925DD8ED11}</Project>
       <Name>Advance.Framework.Loggers.log4net</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
@@ -68,7 +69,7 @@
       <Name>Advance.Framework.Modules.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
-      <Project>{660d9e99-db64-4129-8e16-12f84c771779}</Project>
+      <Project>{660D9E99-DB64-4129-8E16-12F84C771779}</Project>
       <Name>Advance.Framework.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
@@ -80,15 +81,6 @@
       <Name>Kendo.Contexts.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

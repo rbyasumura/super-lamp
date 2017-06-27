@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B843FD3C-E86C-419E-945A-9B2FF8A40EEA}</ProjectGuid>
+    <ProjectGuid>{8ACF80BC-FBE1-4927-AE11-EB718FDF0B86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kendo.Contexts.EntityFramework</RootNamespace>
-    <AssemblyName>Kendo.Contexts.EntityFramework</AssemblyName>
+    <RootNamespace>Kendo</RootNamespace>
+    <AssemblyName>Kendo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,15 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,48 +41,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context.cs" />
-    <Compile Include="Migrations\201706221530470_001.cs" />
-    <Compile Include="Migrations\201706221530470_001.Designer.cs">
-      <DependentUpon>201706221530470_001.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Entities\Club.cs" />
+    <Compile Include="Entities\Enums\Discipline.cs" />
+    <Compile Include="Entities\Member.cs" />
+    <Compile Include="Interfaces\Repositories\IMemberRepository.cs" />
+    <Compile Include="KendoModelDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="Entities\Rank.cs" />
+    <Compile Include="Entities\Enums\RankType.cs" />
+    <Compile Include="Entities\Enums\Title.cs" />
+    <Compile Include="Repositories\MemberRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
-      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
+      <Project>{b087153c-3480-4eaa-9e3f-b06decb3b69a}</Project>
       <Name>Advance.Framework.Modules.Contacts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj">
-      <Project>{226A2371-DE0F-433C-B4E0-082E150B2918}</Project>
-      <Name>Advance.Framework.Contexts.EntityFramework</Name>
+    <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
+      <Project>{75702BFE-0E36-4BB8-AF61-6DAE7C69263B}</Project>
+      <Name>Advance.Framework.Modules.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Modules.Cms\Advance.Framework.Modules.Cms.csproj">
-      <Project>{20B22DE8-4AA6-4FB9-AD2B-634945CDD115}</Project>
-      <Name>Advance.Framework.Modules.Cms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Advance.Framework.Security\Advance.Framework.Modules.Security.csproj">
-      <Project>{92E15E74-6717-48F2-A762-DB89BC640552}</Project>
-      <Name>Advance.Framework.Modules.Security</Name>
+    <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
+      <Project>{660D9E99-DB64-4129-8E16-12F84C771779}</Project>
+      <Name>Advance.Framework.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
       <Name>Advance.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Kendo.Entities\Kendo.csproj">
-      <Project>{8acf80bc-fbe1-4927-ae11-eb718fdf0b86}</Project>
-      <Name>Kendo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706221530470_001.resx">
-      <DependentUpon>201706221530470_001.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

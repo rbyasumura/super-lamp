@@ -1,4 +1,4 @@
-﻿namespace Advance.Framework.Modules.Contacts.Entities
+﻿namespace Advance.Framework.Modules.Contacts.Entities.Enums
 {
     public enum PhoneNumberType
     {

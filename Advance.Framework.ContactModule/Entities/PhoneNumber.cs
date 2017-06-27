@@ -1,5 +1,6 @@
-﻿using Advance.Framework.Interfaces.Entities;
-using System;
+﻿using System;
+using Advance.Framework.Interfaces.Entities;
+using Advance.Framework.Modules.Contacts.Entities.Enums;
 
 namespace Advance.Framework.Modules.Contacts.Entities
 {

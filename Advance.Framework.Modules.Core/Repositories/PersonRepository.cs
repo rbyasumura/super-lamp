@@ -1,8 +1,8 @@
-﻿using Advance.Framework.Modules.Contacts.Entities;
-using Advance.Framework.Modules.Contacts.Interfaces.Repositories;
+﻿using Advance.Framework.Modules.Core.Entities;
+using Advance.Framework.Modules.Core.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 
-namespace Advance.Framework.Modules.Contacts.Repositories
+namespace Advance.Framework.Modules.Core.Repositories
 {
     public class PersonRepository : RepositoryBase<Person>
         , IPersonRepository
