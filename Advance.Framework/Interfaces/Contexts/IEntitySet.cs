@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-
-namespace Advance.Framework.Interfaces.Repositories
+﻿namespace Advance.Framework.Interfaces.Repositories
 {
-    public interface IEntitySet
+    public interface IEntitySet<TEntity>
     {
-        TEntity Add<TEntity>(TEntity entity);
+        TEntity Add(TEntity entity);
 
-        TEntity Remove<TEntity>(TEntity entity);
+        IQuery<TEntity> AsQuery();
 
-        IEnumerable<TEntity> ListAll<TEntity, TProperty>(Expression<Func<TEntity, TProperty>>[] includes)
-            where TEntity : class;
-    }
-
-    public interface IEntitySet<TEntity> : IEntitySet
-    {
+        TEntity Remove(TEntity entity);
     }
 }

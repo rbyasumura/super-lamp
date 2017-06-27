@@ -22,6 +22,7 @@ namespace Advance.Framework.Modules.Core.UnitTests.Repositories
                 .RegisterType<IPersonRepository, PersonRepository>()
                 .RegisterType<ILogger, Log4NetLogger>()
                 .RegisterType<IContextWrapper, DbContextWrapper<Context>>()
+                .RegisterType<IStateRepository, StateRepository>()
                 ;
         }
     }

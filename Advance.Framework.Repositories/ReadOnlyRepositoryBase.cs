@@ -1,6 +1,8 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Entities.Helpers;
+using Advance.Framework.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Advance.Framework.Repositories
@@ -8,19 +10,14 @@ namespace Advance.Framework.Repositories
     public abstract class ReadOnlyRepositoryBase<TEntity> : IReadOnlyRepository<TEntity>
         where TEntity : class
     {
-        private UnitOfWork unitOfWork;
-
         protected ReadOnlyRepositoryBase(UnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            UnitOfWork = unitOfWork;
         }
 
-        protected UnitOfWork UnitOfWork
+        internal UnitOfWork UnitOfWork
         {
-            get
-            {
-                return unitOfWork;
-            }
+            get;
         }
 
         public bool Exists(Guid id)
@@ -28,9 +25,21 @@ namespace Advance.Framework.Repositories
             throw new NotImplementedException();
         }
 
-        public TEntity GetById(Guid id)
+        public virtual TEntity GetById<TId, TProperty>(TId id, params Expression<Func<TEntity, TProperty>>[] includes)
         {
-            throw new NotImplementedException();
+            var query = GetQuery(includes);
+            var entityType = typeof(TEntity);
+            var parameter = Expression.Parameter(entityType);
+            var left = Expression.Property(parameter, EntityUtility.GetIdPropertyName(entityType));
+            var right = Expression.Constant(id);
+            var body = Expression.Equal(left, right);
+            var predicate = Expression.Lambda<Func<TEntity, bool>>(body, parameter);
+            return query.SingleOrDefault(predicate);
+        }
+
+        public TEntity GetById<TId>(TId id)
+        {
+            return GetById<TId, object>(id);
         }
 
         public IEnumerable<TEntity> ListAll()
@@ -40,7 +49,18 @@ namespace Advance.Framework.Repositories
 
         public IEnumerable<TEntity> ListAll<TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
         {
-            return UnitOfWork.Context.ListAll(includes);
+            var query = GetQuery(includes);
+            return query.ToArray();
+        }
+
+        private IQuery<TEntity> GetQuery<TProperty>(Expression<Func<TEntity, TProperty>>[] includes)
+        {
+            var query = UnitOfWork.Context.GetSet<TEntity>().AsQuery();
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+            return query;
         }
     }
 }

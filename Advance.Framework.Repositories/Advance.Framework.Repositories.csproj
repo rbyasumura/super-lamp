@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextWrapperBase.cs" />
-    <Compile Include="Extensions\System\Linq\IQueryableExtensions.cs" />
     <Compile Include="Handlers\AuditableEntityHandler.cs" />
     <Compile Include="Handlers\PrimaryKeyHandler.cs" />
     <Compile Include="Handlers\SoftDeletableEntityHandler.cs" />

@@ -1,9 +1,7 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Interfaces.Repositories.Handlers;
 using Advance.Framework.Repositories.Handlers;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace Advance.Framework.Repositories
 {
@@ -21,6 +19,17 @@ namespace Advance.Framework.Repositories
             //ChangeHandlers.Add(new AuditableEntityHandler());
         }
 
+        protected ICollection<ITrackedEntry> Changes
+        {
+            get
+            {
+                if (changes == null)
+                {
+                    changes = new HashSet<ITrackedEntry>();
+                }
+                return changes;
+            }
+        }
         private IList<IChangeHandler> ChangeHandlers
         {
             get
@@ -33,31 +42,14 @@ namespace Advance.Framework.Repositories
             }
         }
 
-        internal IEnumerable<TEntity> ListAll<TEntity, TProperty>(Expression<Func<TEntity, TProperty>>[] includes) where TEntity : class
-        {
-            return GetSet(typeof(TEntity)).ListAll(includes);
-        }
-
-        protected ICollection<ITrackedEntry> Changes
-        {
-            get
-            {
-                if (changes == null)
-                {
-                    changes = new HashSet<ITrackedEntry>();
-                }
-                return changes;
-            }
-        }
-
         public abstract void Dispose();
 
         internal TEntity Add<TEntity>(TEntity entity)
-            where TEntity : class
+                    where TEntity : class
         {
             TrackChanges(GetTrackedEntry(entity));
 
-            return GetSet(entity.GetType()).Add(entity);
+            return GetSet<TEntity>().Add(entity);
         }
 
         internal TEntity Delete<TEntity>(TEntity entity)
@@ -65,7 +57,7 @@ namespace Advance.Framework.Repositories
         {
             TrackChanges(GetTrackedEntry(entity));
 
-            return GetSet(entity.GetType()).Remove(entity);
+            return GetSet<TEntity>().Remove(entity);
         }
 
         internal int SaveChangesInternal()
@@ -86,10 +78,11 @@ namespace Advance.Framework.Repositories
             return (TEntity)trackedEntry.Entity;
         }
 
-        protected internal abstract IEntitySet GetSet(Type type);
+        protected internal abstract IEntitySet<TEntity> GetSet<TEntity>()
+            where TEntity : class;
 
         protected internal abstract ITrackedEntry<TEntity> GetTrackedEntry<TEntity>(TEntity entity)
-            where TEntity : class;
+                    where TEntity : class;
 
         protected abstract int SaveChanges();
 

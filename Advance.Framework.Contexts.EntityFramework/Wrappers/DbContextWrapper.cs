@@ -7,21 +7,17 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
     public abstract class DbContextWrapper : ContextWrapperBase
     {
-        protected abstract EntityFrameworkContextBase Context { get; }
-
-        internal DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity)
-            where TEntity : class
-        {
-            return new DbEntityEntryWrapper<TEntity>(this, Context.Entry(entity));
-        }
+        internal abstract DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity)
+            where TEntity : class;
     }
 
     public sealed class DbContextWrapper<TContext> : DbContextWrapper
+        , IDisposable
         where TContext : EntityFrameworkContextBase, new()
     {
         private TContext context;
 
-        protected override EntityFrameworkContextBase Context
+        private TContext Context
         {
             get
             {
@@ -41,9 +37,14 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             }
         }
 
-        protected override IEntitySet GetSet(Type type)
+        internal override DbEntityEntryWrapper<TEntity> GetTrackedEntryInternal<TEntity>(TEntity entity)
         {
-            return new DbSetWrapper(Context.Set(type));
+            return new DbEntityEntryWrapper<TEntity>(this, Context.Entry(entity));
+        }
+
+        protected override IEntitySet<TEntity> GetSet<TEntity>()
+        {
+            return new DbSetWrapper<TEntity>(Context.Set<TEntity>());
         }
 
         protected override ITrackedEntry<TEntity> GetTrackedEntry<TEntity>(TEntity entity)
@@ -53,7 +54,7 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 
         protected override int SaveChanges()
         {
-            foreach (var entry in context.ChangeTracker.Entries().Where(i => i.State != System.Data.Entity.EntityState.Unchanged))
+            foreach (var entry in Context.ChangeTracker.Entries().Where(i => i.State != System.Data.Entity.EntityState.Unchanged))
             {
                 if (Changes.Contains(new DbEntityEntryWrapper(this, entry)) == false)
                 {
@@ -61,7 +62,7 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
                 }
             }
 
-            return context.SaveChanges();
+            return Context.SaveChanges();
         }
     }
 }

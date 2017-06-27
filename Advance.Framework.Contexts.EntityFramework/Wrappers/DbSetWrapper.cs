@@ -1,39 +1,31 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers
 {
-    internal sealed class DbSetWrapper : IEntitySet
+    internal sealed class DbSetWrapper<TEntity> : IEntitySet<TEntity>
+        where TEntity : class
     {
-        private DbSet set;
+        private DbSet<TEntity> set;
 
-        public DbSetWrapper(DbSet set)
+        public DbSetWrapper(DbSet<TEntity> set)
         {
             this.set = set;
         }
 
-        public TEntity Add<TEntity>(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
-            return (TEntity)set.Add(entity);
+            return set.Add(entity);
         }
 
-        public IEnumerable<TEntity> ListAll<TEntity, TProperty>(Expression<Func<TEntity, TProperty>>[] includes) where TEntity : class
+        public IQuery<TEntity> AsQuery()
         {
-            var queryable = set.Cast<TEntity>().AsQueryable();
-            foreach (var include in includes)
-            {
-                queryable = queryable.Include(include);
-            }
-            return queryable.ToArray();
+            return new DbQueryWrapper<TEntity>(set);
         }
 
-        public TEntity Remove<TEntity>(TEntity entity)
+        public TEntity Remove(TEntity entity)
         {
-            return (TEntity)set.Remove(entity);
+            return set.Remove(entity);
         }
     }
 }

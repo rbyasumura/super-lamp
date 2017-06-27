@@ -58,7 +58,17 @@
     <Compile Include="Migrations\201706270347003_002.Designer.cs">
       <DependentUpon>201706270347003_002.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706271609395_003.cs" />
+    <Compile Include="Migrations\201706271609395_003.Designer.cs">
+      <DependentUpon>201706271609395_003.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.SeedCountry.cs">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.SeedState.cs">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +87,10 @@
     <ProjectReference Include="..\Advance.Framework.Modules.Cms\Advance.Framework.Modules.Cms.csproj">
       <Project>{20B22DE8-4AA6-4FB9-AD2B-634945CDD115}</Project>
       <Name>Advance.Framework.Modules.Cms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
+      <Project>{75702BFE-0E36-4BB8-AF61-6DAE7C69263B}</Project>
+      <Name>Advance.Framework.Modules.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Security\Advance.Framework.Modules.Security.csproj">
       <Project>{92E15E74-6717-48F2-A762-DB89BC640552}</Project>
@@ -97,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706270347003_002.resx">
       <DependentUpon>201706270347003_002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271609395_003.resx">
+      <DependentUpon>201706271609395_003.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

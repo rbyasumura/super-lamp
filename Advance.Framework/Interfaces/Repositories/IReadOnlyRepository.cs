@@ -8,7 +8,9 @@ namespace Advance.Framework.Interfaces.Repositories
     {
         bool Exists(Guid id);
 
-        TEntity GetById(Guid id);
+        TEntity GetById<TId>(TId id);
+
+        TEntity GetById<TId, TProperty>(TId id, params Expression<Func<TEntity, TProperty>>[] includes);
 
         IEnumerable<TEntity> ListAll();
 

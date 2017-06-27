@@ -11,5 +11,6 @@ namespace Advance.Framework.Modules.Core.Entities
         public string StateId { get; set; }
         public string Name { get; set; }
         public Country Country { get; set; }
+        public string Code { get; set; }
     }
 }

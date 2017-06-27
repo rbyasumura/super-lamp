@@ -1,5 +1,5 @@
-﻿using System;
-using Advance.Framework.Modules.Contacts.Entities;
+﻿using Advance.Framework.Modules.Core.Entities;
+using System;
 
 namespace Kendo.Entities
 {

@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
     </Compile>
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AdventureWorksLT.cs" />
+    <Compile Include="Models\Blah.cs" />
     <Compile Include="Models\BuildVersion.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerAddress.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Models\ProductModelProductDescription.cs" />
     <Compile Include="Models\SalesOrderDetail.cs" />
     <Compile Include="Models\SalesOrderHeader.cs" />
+    <Compile Include="Models\TestContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

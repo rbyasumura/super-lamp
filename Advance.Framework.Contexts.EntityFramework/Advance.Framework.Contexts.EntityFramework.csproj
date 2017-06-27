@@ -59,6 +59,7 @@
       <DependentUpon>201706201725406_002.cs</DependentUpon>
     </Compile>
     <Compile Include="Wrappers\DbContextWrapper.cs" />
+    <Compile Include="Wrappers\DbQueryWrapper.cs" />
     <Compile Include="Wrappers\Infrastructure\DbEntityEntryWrapper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

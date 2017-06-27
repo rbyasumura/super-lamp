@@ -10,6 +10,9 @@ namespace Kendo
             modelBuilder.Entity<Member>();
             modelBuilder.Entity<Club>();
             modelBuilder.Entity<Rank>();
+            modelBuilder.Entity<Tournament>();
+            modelBuilder.Entity<Registrant>();
+            modelBuilder.Entity<TournamentSeries>();
         }
     }
 }
