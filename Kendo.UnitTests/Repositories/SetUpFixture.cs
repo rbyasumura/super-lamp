@@ -3,6 +3,8 @@ using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Loggers;
 using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Loggers.log4net;
+using Advance.Framework.Modules.Core.Interfaces.Repositories;
+using Advance.Framework.Modules.Core.Repositories;
 using Advance.Framework.Repositories;
 using Kendo.Contexts.EntityFramework;
 using Kendo.Interfaces.Repositories;
@@ -22,6 +24,8 @@ namespace Kendo.UnitTests.Repositories
                 .RegisterType<IMemberRepository, MemberRepository>()
                 .RegisterType<ILogger, Log4NetLogger>()
                 .RegisterType<IContextWrapper, DbContextWrapper<Context>>()
+                .RegisterType<ITournamentRepository, TournamentRepository>()
+                .RegisterType<IStateRepository, StateRepository>()
                 ;
         }
     }

@@ -15,15 +15,15 @@ namespace Advance.Framework.Interfaces.Repositories
 
     public interface ITrackedEntry
     {
-        EntityState State { get; set; }
+        IEnumerable<ITrackedEntry> Collections { get; }
         object Entity { get; }
         IPropertyValues OriginalValues { get; }
+        IEnumerable<ITrackedEntry> References { get; }
+        EntityState State { get; set; }
     }
 
     public interface ITrackedEntry<TEntity> : ITrackedEntry
     {
-        IEnumerable<ITrackedEntry> References { get; }
-        IEnumerable<ITrackedEntry> Collections { get; }
         new TEntity Entity { get; }
     }
 }

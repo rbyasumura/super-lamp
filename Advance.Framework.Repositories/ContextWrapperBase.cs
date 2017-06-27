@@ -2,6 +2,7 @@
 using Advance.Framework.Interfaces.Repositories.Handlers;
 using Advance.Framework.Repositories.Handlers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Advance.Framework.Repositories
 {
@@ -75,7 +76,7 @@ namespace Advance.Framework.Repositories
         {
             var trackedEntry = GetTrackedEntry(entity);
             TrackChanges(trackedEntry);
-            return (TEntity)trackedEntry.Entity;
+            return trackedEntry.Entity;
         }
 
         protected internal abstract IEntitySet<TEntity> GetSet<TEntity>()
@@ -86,18 +87,18 @@ namespace Advance.Framework.Repositories
 
         protected abstract int SaveChanges();
 
-        private void TrackChanges<TEntity>(ITrackedEntry<TEntity> trackedEntry)
+        private void TrackChanges(ITrackedEntry trackedEntry)
         {
-            Changes.Add(trackedEntry);
-
-            foreach (var reference in trackedEntry.References)
+            if (Changes.Contains(trackedEntry))
             {
-                Changes.Add(reference);
+                return;
             }
 
-            foreach (var collection in trackedEntry.Collections)
+            Changes.Add(trackedEntry);
+
+            foreach (var reference in trackedEntry.References.Union(trackedEntry.Collections))
             {
-                Changes.Add(collection);
+                TrackChanges(reference);
             }
         }
     }

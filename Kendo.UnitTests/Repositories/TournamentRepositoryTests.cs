@@ -1,11 +1,14 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Modules.Contacts.Entities;
 using Advance.Framework.Modules.Core.Entities;
 using Advance.Framework.Modules.Core.Interfaces.Repositories;
 using Kendo.Entities;
+using Kendo.Entities.Enums;
 using Kendo.Interfaces.Repositories;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Kendo.UnitTests.Repositories
 {
@@ -40,7 +43,49 @@ namespace Kendo.UnitTests.Repositories
                 };
 
                 /// Act
-                repository.Add(entity); unitOfWork.SaveChanges();
+                repository.Add(entity);
+                unitOfWork.SaveChanges();
+
+                /// Assert
+            }
+        }
+
+        [TestCase]
+        public void Update_AddRegistrant()
+        {
+            /// Arrange
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var repository = unitOfWork.GetRepository<ITournamentRepository>();
+                var entity = repository.ListAll(
+                    i => i.Registrants
+                    ).First();
+                entity.Registrants.Add(new Registrant
+                {
+                    Contact = new Contact
+                    {
+                        Person = new Person
+                        {
+                            FirstName = "Ryo",
+                            LastName = "Yasumura",
+                            DateOfBirth = new DateTime(1981, 12, 11),
+                        },
+                    },
+                    Club = new Club
+                    {
+                        Name = "Etobicoke Olympium Kendo / Iaido Club",
+                    },
+                    Rank = new Rank
+                    {
+                        RankNumber = 5,
+                        Type = RankType.Dan,
+                        Discipline = Discipline.Kendo,
+                    },
+                });
+
+                /// Act
+                repository.Update(entity);
+                unitOfWork.SaveChanges();
 
                 /// Assert
             }

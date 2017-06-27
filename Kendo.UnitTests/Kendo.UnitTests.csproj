@@ -47,6 +47,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
+      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
+      <Name>Advance.Framework.Modules.Contacts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj">
       <Project>{226A2371-DE0F-433C-B4E0-082E150B2918}</Project>
       <Name>Advance.Framework.Contexts.EntityFramework</Name>

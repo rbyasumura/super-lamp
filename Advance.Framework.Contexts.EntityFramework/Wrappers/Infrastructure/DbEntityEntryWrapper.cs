@@ -18,38 +18,6 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
             this.entityEntry = entityEntry;
         }
 
-        public object Entity => EntityEntry.Entity;
-        public IPropertyValues OriginalValues => new DbPropertyValuesWrapper(EntityEntry.OriginalValues);
-        public EntityState State { get => (EntityState)EntityEntry.State; set => EntityEntry.State = (System.Data.Entity.EntityState)value; }
-        protected DbContextWrapper ContextWrapper => contextWrapper;
-        protected DbEntityEntry EntityEntry => entityEntry;
-
-        public override bool Equals(object obj)
-        {
-            if (typeof(DbEntityEntryWrapper).IsAssignableFrom(obj.GetType()) == false)
-            {
-                return false;
-            }
-
-            var entityEntryWrapper = (DbEntityEntryWrapper)obj;
-            return Entity.Equals(entityEntryWrapper.Entity);
-        }
-
-        public override int GetHashCode()
-        {
-            return Entity.GetHashCode();
-        }
-    }
-
-    internal sealed class DbEntityEntryWrapper<TEntity> : DbEntityEntryWrapper
-        , ITrackedEntry<TEntity>
-        where TEntity : class
-    {
-        public DbEntityEntryWrapper(DbContextWrapper contextWrapper, DbEntityEntry<TEntity> entityEntry)
-            : base(contextWrapper, entityEntry)
-        {
-        }
-
         public IEnumerable<ITrackedEntry> Collections
         {
             get
@@ -77,9 +45,8 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
                 }
             }
         }
-
-        TEntity ITrackedEntry<TEntity>.Entity => (TEntity)Entity;
-
+        public object Entity => EntityEntry.Entity;
+        public IPropertyValues OriginalValues => new DbPropertyValuesWrapper(EntityEntry.OriginalValues);
         public IEnumerable<ITrackedEntry> References
         {
             get
@@ -103,6 +70,25 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
                 }
             }
         }
+        public EntityState State { get => (EntityState)EntityEntry.State; set => EntityEntry.State = (System.Data.Entity.EntityState)value; }
+        protected DbContextWrapper ContextWrapper => contextWrapper;
+        protected DbEntityEntry EntityEntry => entityEntry;
+
+        public override bool Equals(object obj)
+        {
+            if (typeof(DbEntityEntryWrapper).IsAssignableFrom(obj.GetType()) == false)
+            {
+                return false;
+            }
+
+            var entityEntryWrapper = (DbEntityEntryWrapper)obj;
+            return Entity.Equals(entityEntryWrapper.Entity);
+        }
+
+        public override int GetHashCode()
+        {
+            return Entity.GetHashCode();
+        }
 
         private IEnumerable<string> GetPropertyNames()
         {
@@ -112,5 +98,17 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
                 .GetProperties()
                 .Select(i => i.Name);
         }
+    }
+
+    internal sealed class DbEntityEntryWrapper<TEntity> : DbEntityEntryWrapper
+        , ITrackedEntry<TEntity>
+        where TEntity : class
+    {
+        public DbEntityEntryWrapper(DbContextWrapper contextWrapper, DbEntityEntry<TEntity> entityEntry)
+            : base(contextWrapper, entityEntry)
+        {
+        }
+
+        TEntity ITrackedEntry<TEntity>.Entity => (TEntity)Entity;
     }
 }

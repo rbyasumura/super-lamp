@@ -1,6 +1,8 @@
 ﻿using System;
 using Kendo.Entities.Enums;
 
+using System;
+
 namespace Kendo.Entities
 {
     public class Rank
@@ -10,6 +12,6 @@ namespace Kendo.Entities
         public RankType Type { get; set; }
         public Title Title { get; set; }
         public Discipline Discipline { get; set; }
-        public DateTime ObtainedAt { get; set; }
+        public DateTime? ObtainedAt { get; set; }
     }
 }
