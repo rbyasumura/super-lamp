@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Advance.Framework.Mappers")]
+[assembly: AssemblyTitle("Advance.Framework.Mappers.AutoMapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Advance.Framework.Mappers")]
+[assembly: AssemblyProduct("Advance.Framework.Mappers.AutoMapper")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a512d67e-9645-41b7-af5c-5436199a3f2c")]
+[assembly: Guid("5c6779df-ee1a-411d-8883-a5bd8957e6aa")]
 
 // Version information for an assembly consists of the following four values:
 //

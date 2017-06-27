@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A512D67E-9645-41B7-AF5C-5436199A3F2C}</ProjectGuid>
+    <ProjectGuid>{5C6779DF-EE1A-411D-8883-A5BD8957E6AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Advance.Framework.Mappers</RootNamespace>
-    <AssemblyName>Advance.Framework.Mappers</AssemblyName>
+    <RootNamespace>Advance.Framework.Mappers.AutoMapper</RootNamespace>
+    <AssemblyName>Advance.Framework.Mappers.AutoMapper</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,14 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mapper.cs" />
+    <Compile Include="AutoMapperMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
-      <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
-      <Name>Advance.Framework.DependencyInjection.Unity</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
       <Name>Advance.Framework</Name>

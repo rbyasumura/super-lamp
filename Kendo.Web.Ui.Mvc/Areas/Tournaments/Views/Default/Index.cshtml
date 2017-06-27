@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Kendo.Web.Ui.Mvc.Areas.Tournaments.Models.IndexViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tournaments</h2>
+
+<table>
+    <tbody>
+        @foreach (var tournament in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(tournament.Name, "GetDetail")</td>
+            </tr>
+        }
+    </tbody>
+</table>
