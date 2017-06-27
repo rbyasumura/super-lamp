@@ -1,6 +1,9 @@
-﻿namespace Kendo.Interfaces.Repositories
+﻿using Advance.Framework.Interfaces.Repositories;
+using Kendo.Entities;
+
+namespace Kendo.Interfaces.Repositories
 {
-    public interface IMemberRepository
+    public interface IMemberRepository : IRepository<Member>
     {
     }
 }

@@ -27,5 +27,20 @@ namespace Advance.Framework.Modules.Core.UnitTests.Repositories
 
             /// Assert
         }
+
+        [TestCase]
+        public void ListAll()
+        {
+            /// Arrange
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var repository = unitOfWork.GetRepository<IPersonRepository>();
+
+                /// Act
+                var result = repository.ListAll();
+            }
+
+            /// Assert
+        }
     }
 }

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Kendo.Contexts.EntityFramework</RootNamespace>
     <AssemblyName>Kendo.Contexts.EntityFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,10 @@
     <Compile Include="Migrations\201706221530470_001.Designer.cs">
       <DependentUpon>201706221530470_001.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706270347003_002.cs" />
+    <Compile Include="Migrations\201706270347003_002.Designer.cs">
+      <DependentUpon>201706270347003_002.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706221530470_001.resx">
       <DependentUpon>201706221530470_001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706270347003_002.resx">
+      <DependentUpon>201706270347003_002.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
