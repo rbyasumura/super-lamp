@@ -1,9 +1,9 @@
-﻿using Kendo.Modules.Tournament.Dtos;
+﻿using Kendo.Modules.Tournaments.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Kendo.Modules.Tournament.Interfaces.Services
+namespace Kendo.Modules.Tournaments.Interfaces.Services
 {
     public interface ITournamentService
     {

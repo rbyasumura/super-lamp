@@ -144,6 +144,7 @@
     <Compile Include="Areas\Tournaments\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Tournaments\Models\IndexViewModel.cs" />
     <Compile Include="Areas\Tournaments\TournamentsAreaRegistration.cs" />
+    <Compile Include="Areas\Tournaments\TournamentsViewModelMappingDefinition.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +192,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="unity.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -216,6 +218,10 @@
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Mappers.AutoMapper\Advance.Framework.Mappers.AutoMapper.csproj">
+      <Project>{5c6779df-ee1a-411d-8883-a5bd8957e6aa}</Project>
+      <Name>Advance.Framework.Mappers.AutoMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Mappers\Advance.Framework.Mappers.csproj">
       <Project>{A512D67E-9645-41B7-AF5C-5436199A3F2C}</Project>
       <Name>Advance.Framework.Mappers</Name>
@@ -224,9 +230,13 @@
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
       <Name>Advance.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Kendo.Modules.Tournament\Kendo.Modules.Tournament.csproj">
+    <ProjectReference Include="..\Kendo.Contexts.EntityFramework\Kendo.Contexts.EntityFramework.csproj">
+      <Project>{b843fd3c-e86c-419e-945a-9b2ff8a40eea}</Project>
+      <Name>Kendo.Contexts.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kendo.Modules.Tournament\Kendo.Modules.Tournaments.csproj">
       <Project>{E6BA4B31-86BF-4B68-9550-3BD15071EB3A}</Project>
-      <Name>Kendo.Modules.Tournament</Name>
+      <Name>Kendo.Modules.Tournaments</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -63,7 +63,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.UnitTests", "Kendo.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.Web.Ui.Mvc", "Kendo.Web.Ui.Mvc\Kendo.Web.Ui.Mvc.csproj", "{9E23D146-6C1C-4756-B79F-6253FCE3E600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.Modules.Tournament", "Kendo.Modules.Tournament\Kendo.Modules.Tournament.csproj", "{E6BA4B31-86BF-4B68-9550-3BD15071EB3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.Modules.Tournaments", "Kendo.Modules.Tournament\Kendo.Modules.Tournaments.csproj", "{E6BA4B31-86BF-4B68-9550-3BD15071EB3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Mappers.AutoMapper", "Advance.Framework.Mappers.AutoMapper\Advance.Framework.Mappers.AutoMapper.csproj", "{5C6779DF-EE1A-411D-8883-A5BD8957E6AA}"
 EndProject

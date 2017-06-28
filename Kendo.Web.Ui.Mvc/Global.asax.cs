@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Advance.Framework.Mappers;
+using Kendo.Modules.Tournaments;
+using Kendo.Web.Ui.Mvc.Areas.Tournaments;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -16,6 +17,11 @@ namespace Kendo.Web.Ui.Mvc
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Mapper.Instance.RegisterMappingDefinitions(
+                new TournamentMappingDefinition()
+                , new TournamentsViewModelMappingDefinition()
+                );
         }
     }
 }

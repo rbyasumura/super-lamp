@@ -1,7 +1,7 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Mappers;
-using Kendo.Modules.Tournament.Dtos;
-using Kendo.Modules.Tournament.Interfaces.Services;
+using Kendo.Modules.Tournaments.Dtos;
+using Kendo.Modules.Tournaments.Interfaces.Services;
 using Kendo.Web.Ui.Mvc.Areas.Tournaments.Models;
 using System;
 using System.Linq;

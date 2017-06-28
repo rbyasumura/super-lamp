@@ -7,8 +7,8 @@
     <ProjectGuid>{E6BA4B31-86BF-4B68-9550-3BD15071EB3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kendo.Modules.Tournament</RootNamespace>
-    <AssemblyName>Kendo.Modules.Tournament</AssemblyName>
+    <RootNamespace>Kendo.Modules.Tournaments</RootNamespace>
+    <AssemblyName>Kendo.Modules.Tournaments</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,7 +42,27 @@
   <ItemGroup>
     <Compile Include="Dtos\TournamentDto.cs" />
     <Compile Include="Interfaces\Services\ITournamentService.cs" />
+    <Compile Include="TournamentMappingDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TournamentService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
+      <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
+      <Name>Advance.Framework.DependencyInjection.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Mappers\Advance.Framework.Mappers.csproj">
+      <Project>{A512D67E-9645-41B7-AF5C-5436199A3F2C}</Project>
+      <Name>Advance.Framework.Mappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
+      <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
+      <Name>Advance.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kendo.Entities\Kendo.csproj">
+      <Project>{8ACF80BC-FBE1-4927-AE11-EB718FDF0B86}</Project>
+      <Name>Kendo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

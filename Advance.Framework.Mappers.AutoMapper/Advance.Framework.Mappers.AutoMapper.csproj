@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="AutoMapperMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\MapperConfigurationWrapper.cs" />
+    <Compile Include="Wrappers\MappingExpressionWrapper.cs" />
+    <Compile Include="Wrappers\MemberConfigurationExpressionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

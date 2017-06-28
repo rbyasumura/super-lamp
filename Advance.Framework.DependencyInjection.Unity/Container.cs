@@ -1,17 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Practices.Unity;
 
 namespace Advance.Framework.DependencyInjection.Unity
 {
     public class Container
     {
         private static Container _Instance;
-        private UnityContainer UnityContainer;
+        private IUnityContainer unityContainer;
 
         private Container()
         {
-            UnityContainer = new UnityContainer();
+            unityContainer = new UnityContainer();
+
+            /// Try to open config
+            try
+            {
+                unityContainer = unityContainer.LoadConfiguration();
+            }
+            catch (ArgumentException)
+            {
+                /// Do nothing
+            }
         }
 
         public static Container Instance
@@ -29,7 +41,7 @@ namespace Advance.Framework.DependencyInjection.Unity
 
         public Container RegisterInstance<TInterface>(TInterface instance)
         {
-            UnityContainer.RegisterInstance(instance);
+            unityContainer.RegisterInstance(instance);
 
             return this;
         }
@@ -37,7 +49,7 @@ namespace Advance.Framework.DependencyInjection.Unity
         public Container RegisterType<TFrom, TTo>()
             where TTo : TFrom
         {
-            UnityContainer.RegisterType<TFrom, TTo>();
+            unityContainer.RegisterType<TFrom, TTo>();
 
             return this;
         }
@@ -49,7 +61,7 @@ namespace Advance.Framework.DependencyInjection.Unity
 
         public T Resolve<T>(IDictionary<string, object> parameters)
         {
-            return UnityContainer.Resolve<T>(parameters.Select(i => new ParameterOverride(i.Key, i.Value)).ToArray());
+            return unityContainer.Resolve<T>(parameters.Select(i => new ParameterOverride(i.Key, i.Value)).ToArray());
         }
     }
 }
