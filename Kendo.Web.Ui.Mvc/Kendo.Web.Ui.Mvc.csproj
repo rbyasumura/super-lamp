@@ -142,7 +142,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Tournaments\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Tournaments\Models\GetDetailViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\IndexViewModel.cs" />
+    <Compile Include="Areas\Tournaments\Models\RegisterViewModel.cs" />
     <Compile Include="Areas\Tournaments\TournamentsAreaRegistration.cs" />
     <Compile Include="Areas\Tournaments\TournamentsViewModelMappingDefinition.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -167,6 +169,8 @@
     <Content Include="Areas\Tournaments\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Tournaments\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Tournaments\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Tournaments\Views\Default\GetDetail.cshtml" />
+    <Content Include="Areas\Tournaments\Views\Default\Register.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Advance.Framework.Interfaces.Mappers
 {
     public interface IMapper
     {
-        TDestination Map<TSource, TDestination>(TSource source);
+        TDestination Map<TDestination>(object source);
 
-        IEnumerable<TDestination> Map<TSource, TDestination>(IEnumerable<TSource> source);
+        IEnumerable<TDestination> Map<TDestination>(IEnumerable source);
 
         void RegisterMappingDefinitions(params IMappingDefinition[] mappingDefinitions);
     }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
 {
-    public class IndexViewModel
+    public class GetDetailViewModel
     {
         private static _Actions _actions = new _Actions();
 
@@ -17,11 +17,10 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
         }
 
         public Guid TournamentId { get; set; }
-        public string Name { get; set; }
 
         public class _Actions
         {
-            public readonly string GetDetail = nameof(DefaultController.GetDetail);
+            public readonly string Register = nameof(DefaultController.Register);
         }
     }
 }

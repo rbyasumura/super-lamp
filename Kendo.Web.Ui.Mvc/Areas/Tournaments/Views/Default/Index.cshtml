@@ -10,7 +10,7 @@
         @foreach (var tournament in Model)
             {
             <tr>
-                <td>@Html.ActionLink(tournament.Name, "GetDetail")</td>
+                <td>@Html.ActionLink(tournament.Name, tournament.Actions.GetDetail, new { id = tournament.TournamentId })</td>
             </tr>
         }
     </tbody>

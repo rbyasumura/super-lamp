@@ -10,8 +10,8 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
     {
         public void Initialize(IMapperConfiguration config)
         {
-            config.CreateMap<TournamentDto, IndexViewModel>()
-                ;
+            config.CreateMap<TournamentDto, IndexViewModel>();
+            config.CreateMap<TournamentDto, GetDetailViewModel>();
         }
     }
 }
