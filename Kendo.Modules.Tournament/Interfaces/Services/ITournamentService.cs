@@ -10,5 +10,9 @@ namespace Kendo.Modules.Tournaments.Interfaces.Services
         IEnumerable<TournamentDto> ListAll();
 
         TournamentDto GetById(Guid id);
+
+        IEnumerable<DivisionDto> ListDivisionsByTournamentId(Guid tournamentId);
+
+        void Register(RegistrationDto registration);
     }
 }

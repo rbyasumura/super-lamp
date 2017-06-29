@@ -1,0 +1,42 @@
+﻿@model Kendo.Web.Ui.Mvc.Areas.Tournaments.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(model => model.ClubId)
+    @Html.TextBoxFor(model => model.ClubId)
+    <br />
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Bogu or Non-Bogu</th>
+                <th>Date of Birth</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < 20; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Html.TextBoxFor(model => model.Registrants[i].FirstName)</td>
+                    <td>@Html.TextBoxFor(model => model.Registrants[i].LastName)</td>
+                    <td>@Html.DropDownListFor(model => model.Registrants[i].SelectedDivisionId, Model.Divisions)</td>
+                    <td>@Html.TextBoxFor(model => model.Registrants[i].DateOfBirth)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="submit" value="Submit" />
+}

@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\DivisionDto.cs" />
+    <Compile Include="Dtos\RegistrantDto.cs" />
+    <Compile Include="Dtos\RegistrationDto.cs" />
     <Compile Include="Dtos\TournamentDto.cs" />
     <Compile Include="Interfaces\Services\ITournamentService.cs" />
     <Compile Include="TournamentMappingDefinition.cs" />

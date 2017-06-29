@@ -22,5 +22,10 @@ namespace Advance.Framework.Mappers.AutoMapper.Wrappers
         {
             return new MappingExpressionWrapper<TSource, TDestination>(mappingExpression.ForMember(destinationMember, opt => memberOptions(new MemberConfigurationExpressionWrapper<TSource, TDestination, TMember>(opt))));
         }
+
+        public void ConvertUsing(Func<TSource, TDestination> mappingFunction)
+        {
+            mappingExpression.ConvertUsing(src => mappingFunction(src));
+        }
     }
 }

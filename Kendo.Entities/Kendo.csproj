@@ -43,19 +43,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Club.cs" />
+    <Compile Include="Entities\Division.cs" />
     <Compile Include="Entities\Enums\Discipline.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\Registrant.cs" />
     <Compile Include="Entities\Tournament.cs" />
     <Compile Include="Entities\TournamentSeries.cs" />
+    <Compile Include="Interfaces\Repositories\IDivisionRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMemberRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRegistrantRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITournamentRepository.cs" />
     <Compile Include="KendoModelDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Rank.cs" />
     <Compile Include="Entities\Enums\RankType.cs" />
     <Compile Include="Entities\Enums\Title.cs" />
+    <Compile Include="Repositories\DivisionRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
+    <Compile Include="Repositories\RegistrantRepository.cs" />
     <Compile Include="Repositories\TournamentRepository.cs" />
   </ItemGroup>
   <ItemGroup>

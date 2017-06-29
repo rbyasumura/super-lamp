@@ -12,6 +12,8 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
         {
             config.CreateMap<TournamentDto, IndexViewModel>();
             config.CreateMap<TournamentDto, GetDetailViewModel>();
+            config.CreateMap<RegisterViewModel, RegistrationDto>();
+            config.CreateMap<RegistrantViewModel, RegistrantDto>();
         }
     }
 }

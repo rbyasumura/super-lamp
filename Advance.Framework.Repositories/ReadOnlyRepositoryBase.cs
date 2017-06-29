@@ -53,7 +53,12 @@ namespace Advance.Framework.Repositories
             return query.ToArray();
         }
 
-        private IQuery<TEntity> GetQuery<TProperty>(Expression<Func<TEntity, TProperty>>[] includes)
+        protected IQuery<TEntity> GetQuery()
+        {
+            return GetQuery<object>();
+        }
+
+        protected IQuery<TEntity> GetQuery<TProperty>(params Expression<Func<TEntity, TProperty>>[] includes)
         {
             var query = UnitOfWork.Context.GetSet<TEntity>().AsQuery();
             foreach (var include in includes)

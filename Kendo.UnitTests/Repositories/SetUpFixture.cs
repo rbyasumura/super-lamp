@@ -26,6 +26,7 @@ namespace Kendo.UnitTests.Repositories
                 .RegisterType<IContextWrapper, DbContextWrapper<Context>>()
                 .RegisterType<ITournamentRepository, TournamentRepository>()
                 .RegisterType<IStateRepository, StateRepository>()
+                .RegisterType<IDivisionRepository, DivisionRepository>()
                 ;
         }
     }

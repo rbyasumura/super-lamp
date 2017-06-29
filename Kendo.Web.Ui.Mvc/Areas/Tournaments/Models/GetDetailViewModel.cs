@@ -20,7 +20,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
 
         public class _Actions
         {
-            public readonly string Register = nameof(DefaultController.Register);
+            public readonly string Register = nameof(RegistrationController.Register);
         }
     }
 }

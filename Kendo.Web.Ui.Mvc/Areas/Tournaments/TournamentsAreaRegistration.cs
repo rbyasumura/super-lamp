@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers;
+using System;
+using System.Web.Mvc;
 
 namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
 {
@@ -17,8 +19,15 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
             context.MapRoute(
                 "Tournaments_default",
                 "Tournaments/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional, controller = "Default", }
+                new { action = "Index", id = UrlParameter.Optional, controller = GetControllerName(nameof(RegistrationController)), }
             );
+        }
+
+        private static string GetControllerName(string controllerName)
+        {
+            var _controllerName = controllerName;
+            var index = _controllerName.LastIndexOf("Controller", StringComparison.CurrentCultureIgnoreCase);
+            return _controllerName.Substring(0, index);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
 
         public class _Actions
         {
-            public readonly string GetDetail = nameof(DefaultController.GetDetail);
+            public readonly string GetDetail = nameof(RegistrationController.GetDetail);
         }
     }
 }

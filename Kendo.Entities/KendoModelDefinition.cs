@@ -13,6 +13,7 @@ namespace Kendo
             modelBuilder.Entity<Tournament>();
             modelBuilder.Entity<Registrant>();
             modelBuilder.Entity<TournamentSeries>();
+            modelBuilder.Entity<Division>();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Mappers;
+using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Interfaces.Services;
 using Kendo.Web.Ui.Mvc.Areas.Tournaments.Models;
 using System;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
 {
-    public class DefaultController : Controller
+    public class RegistrationController : Controller
     {
         private ITournamentService service;
 
@@ -26,6 +27,32 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
 
         public ActionResult Register(Guid id)
         {
+            var divisions = Service.ListDivisionsByTournamentId(id)
+                .Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.DivisionId.ToString(),
+                })
+                .ToList();
+            divisions.Insert(0, new SelectListItem
+            {
+                Text = string.Empty,
+            });
+
+            var model = new RegisterViewModel
+            {
+                Divisions = divisions,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Register(Guid id, RegisterViewModel model)
+        {
+            var dto = Mapper.Instance.Map<RegistrationDto>(model);
+            Service.Register(dto);
+
             return View();
         }
 
@@ -33,6 +60,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         {
             var tournament = Service.GetById(id);
             var model = Mapper.Instance.Map<GetDetailViewModel>(tournament);
+
             return View(model);
         }
 
@@ -40,6 +68,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         {
             var tournaments = Service.ListAll();
             var model = Mapper.Instance.Map<IndexViewModel>(tournaments);
+
             return View(model);
         }
     }
