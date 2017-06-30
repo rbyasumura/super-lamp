@@ -49,6 +49,7 @@
     <Compile Include="Entities\Registrant.cs" />
     <Compile Include="Entities\Tournament.cs" />
     <Compile Include="Entities\TournamentSeries.cs" />
+    <Compile Include="Interfaces\Repositories\IClubRepository.cs" />
     <Compile Include="Interfaces\Repositories\IDivisionRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMemberRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRegistrantRepository.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Entities\Rank.cs" />
     <Compile Include="Entities\Enums\RankType.cs" />
     <Compile Include="Entities\Enums\Title.cs" />
+    <Compile Include="Repositories\ClubRepository.cs" />
     <Compile Include="Repositories\DivisionRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\RegistrantRepository.cs" />

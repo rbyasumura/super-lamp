@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Dtos\DivisionDto.cs" />
     <Compile Include="Dtos\RegistrantDto.cs" />
     <Compile Include="Dtos\RegistrationDto.cs" />
@@ -50,6 +51,10 @@
     <Compile Include="Services\TournamentService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
+      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
+      <Name>Advance.Framework.Modules.Contacts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
       <Project>{D8C560A1-3119-4114-B238-728D244F77F1}</Project>
       <Name>Advance.Framework.DependencyInjection.Unity</Name>
@@ -57,6 +62,10 @@
     <ProjectReference Include="..\Advance.Framework.Mappers\Advance.Framework.Mappers.csproj">
       <Project>{A512D67E-9645-41B7-AF5C-5436199A3F2C}</Project>
       <Name>Advance.Framework.Mappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
+      <Project>{75702BFE-0E36-4BB8-AF61-6DAE7C69263B}</Project>
+      <Name>Advance.Framework.Modules.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>

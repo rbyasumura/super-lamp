@@ -7,6 +7,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
 {
     public class RegisterViewModel
     {
+        public Guid TournamentId { get; set; }
         public Guid ClubId { get; set; }
         public IList<RegistrantViewModel> Registrants { get; set; }
         public IEnumerable<SelectListItem> Divisions { get; set; }

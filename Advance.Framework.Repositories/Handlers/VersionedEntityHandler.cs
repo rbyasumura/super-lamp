@@ -19,6 +19,7 @@ namespace Advance.Framework.Repositories.Handlers
 
         public void Handle(IEnumerable<ITrackedEntry> changedEntries)
         {
+            var versionId = Guid.NewGuid();
             var _changedEntries = changedEntries.Where(i => (i.State == EntityState.Added || i.State == EntityState.Modified)
                   && typeof(IVersionedEntity).IsAssignableFrom(i.Entity.GetType()))
                   .ToArray();
@@ -42,7 +43,7 @@ namespace Advance.Framework.Repositories.Handlers
                     property.SetValue(originalEntity, Guid.NewGuid());
 
                     /// Assign version
-                    originalEntity.VersionId = Guid.NewGuid();
+                    originalEntity.VersionId = versionId;
                     versionedEntity.PreviousVersionId = originalEntity.VersionId;
 
                     context.Add(originalEntity);

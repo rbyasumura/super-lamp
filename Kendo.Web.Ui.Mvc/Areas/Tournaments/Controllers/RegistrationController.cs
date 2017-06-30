@@ -41,6 +41,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
 
             var model = new RegisterViewModel
             {
+                TournamentId = id,
                 Divisions = divisions,
             };
 

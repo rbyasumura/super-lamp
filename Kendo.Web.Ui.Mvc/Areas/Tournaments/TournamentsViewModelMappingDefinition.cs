@@ -12,7 +12,14 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
         {
             config.CreateMap<TournamentDto, IndexViewModel>();
             config.CreateMap<TournamentDto, GetDetailViewModel>();
-            config.CreateMap<RegisterViewModel, RegistrationDto>();
+            config.CreateMap<RegisterViewModel, RegistrationDto>()
+                .BeforeMap((src, dest) =>
+                {
+                    src.Registrants = src.Registrants
+                        .Where(i => string.IsNullOrWhiteSpace(i.FirstName) == false
+                            && string.IsNullOrWhiteSpace(i.LastName) == false)
+                        .ToList();
+                });
             config.CreateMap<RegistrantViewModel, RegistrantDto>();
         }
     }

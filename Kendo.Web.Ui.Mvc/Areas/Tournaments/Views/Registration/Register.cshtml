@@ -10,6 +10,7 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(model => model.TournamentId)
     @Html.LabelFor(model => model.ClubId)
     @Html.TextBoxFor(model => model.ClubId)
     <br />

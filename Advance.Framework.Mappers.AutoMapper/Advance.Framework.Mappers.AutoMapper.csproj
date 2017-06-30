@@ -47,7 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\MapperConfigurationWrapper.cs" />
     <Compile Include="Wrappers\MappingExpressionWrapper.cs" />
+    <Compile Include="Wrappers\MappingOperationOptionsWrapper.cs" />
     <Compile Include="Wrappers\MemberConfigurationExpressionWrapper.cs" />
+    <Compile Include="Wrappers\ResolutionContextWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

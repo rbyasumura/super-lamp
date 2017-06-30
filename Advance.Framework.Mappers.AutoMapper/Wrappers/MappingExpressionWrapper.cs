@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System;
+﻿using System;
 using Advance.Framework.Interfaces.Mappers;
 
 using System;
@@ -23,9 +22,14 @@ namespace Advance.Framework.Mappers.AutoMapper.Wrappers
             return new MappingExpressionWrapper<TSource, TDestination>(mappingExpression.ForMember(destinationMember, opt => memberOptions(new MemberConfigurationExpressionWrapper<TSource, TDestination, TMember>(opt))));
         }
 
-        public void ConvertUsing(Func<TSource, TDestination> mappingFunction)
+        public void ConvertUsing(Func<TSource, TDestination, IResolutionContext, TDestination> mappingFunction)
         {
-            mappingExpression.ConvertUsing(src => mappingFunction(src));
+            mappingExpression.ConvertUsing((src, dest, context) => mappingFunction(src, dest, new ResolutionContextWrapper(context)));
+        }
+
+        public IMappingExpression<TSource, TDestination> BeforeMap(Action<TSource, TDestination> beforeFunction)
+        {
+            return new MappingExpressionWrapper<TSource, TDestination>(mappingExpression.BeforeMap((src, dest) => beforeFunction(src, dest)));
         }
     }
 }

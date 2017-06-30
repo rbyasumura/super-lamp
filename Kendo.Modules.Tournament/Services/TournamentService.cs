@@ -45,10 +45,12 @@ namespace Kendo.Modules.Tournaments.Services
 
         public void Register(RegistrationDto registration)
         {
-            var registrants = Mapper.Instance.Map<IEnumerable<Registrant>>(registration);
-
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
             {
+                var registrants = Mapper.Instance.Map<IEnumerable<Registrant>>(registration, opts =>
+                {
+                    opts.Items.Add(Constants.UNIT_OF_WORK, unitOfWork);
+                });
                 var registrantRepository = unitOfWork.GetRepository<IRegistrantRepository>();
                 foreach (var registrant in registrants)
                 {

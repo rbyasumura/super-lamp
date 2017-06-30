@@ -2,27 +2,30 @@
 using System;
 using Advance.Framework.Interfaces.Mappers;
 using Advance.Framework.Mappers.AutoMapper.Wrappers;
-using AutoMapper;
+
+using System;
+
 using System.Collections;
 using System.Collections.Generic;
+using AM = AutoMapper;
 
 namespace Advance.Framework.Mappers.AutoMapper
 {
-    public class AutoMapperMapper : Interfaces.Mappers.IMapper
+    public class AutoMapperMapper : IMapper
     {
-        public TDestination Map<TDestination>(object source)
+        public TDestination Map<TDestination>(object source, Action<IMappingOperationOptions> opts = null)
         {
-            return Mapper.Map<TDestination>(source);
+            return AM.Mapper.Map<TDestination>(source, _opts => opts?.Invoke(new MappingOperationOptionsWrapper(_opts)));
         }
 
         public IEnumerable<TDestination> Map<TDestination>(IEnumerable source)
         {
-            return Mapper.Map<IEnumerable<TDestination>>(source);
+            return AM.Mapper.Map<IEnumerable<TDestination>>(source);
         }
 
         public void RegisterMappingDefinitions(params IMappingDefinition[] mappingDefinitions)
         {
-            Mapper.Initialize(config =>
+            AM.Mapper.Initialize(config =>
             {
                 foreach (var mappingDefinition in mappingDefinitions)
                 {
