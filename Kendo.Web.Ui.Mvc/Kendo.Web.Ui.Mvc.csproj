@@ -143,9 +143,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Tournaments\Controllers\RegistrationController.cs" />
     <Compile Include="Areas\Tournaments\Models\ConfirmViewModel.cs" />
+    <Compile Include="Areas\Tournaments\Models\EditViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\GetDetailViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\IndexViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\RegisterViewModel.cs" />
+    <Compile Include="Areas\Tournaments\Models\_RegistrationViewModel.cs" />
     <Compile Include="Areas\Tournaments\TournamentsAreaRegistration.cs" />
     <Compile Include="Areas\Tournaments\TournamentsViewModelMappingDefinition.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -173,6 +175,8 @@
     <Content Include="Areas\Tournaments\Views\Registration\GetDetail.cshtml" />
     <Content Include="Areas\Tournaments\Views\Registration\Register.cshtml" />
     <Content Include="Areas\Tournaments\Views\Registration\Confirm.cshtml" />
+    <Content Include="Areas\Tournaments\Views\Registration\Edit.cshtml" />
+    <Content Include="Areas\Tournaments\Views\Registration\_Registration.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -15,7 +15,6 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
                 return _actions;
             }
         }
-
         public Guid TournamentId { get; set; }
 
         public class _Actions

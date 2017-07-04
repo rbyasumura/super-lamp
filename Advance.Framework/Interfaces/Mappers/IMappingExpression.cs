@@ -8,6 +8,8 @@ namespace Advance.Framework.Interfaces.Mappers
     {
         IMappingExpression<TSource, TDestination> ForMember<TMember>(Expression<Func<TDestination, TMember>> destinationMember, Action<IMemberConfigurationExpression<TSource, TDestination, TMember>> memberOptions);
 
+        void ConvertUsing(Func<TSource, TDestination> mappingFunction);
+
         void ConvertUsing(Func<TSource, TDestination, IResolutionContext, TDestination> mappingFunction);
 
         IMappingExpression<TSource, TDestination> BeforeMap(Action<TSource, TDestination> beforeFunction);

@@ -40,7 +40,6 @@
     <Compile Include="Repositories\DivisionRepositoryTests.cs" />
     <Compile Include="Repositories\TournamentRepositoryTests.cs" />
     <Compile Include="Repositories\SetUpFixture.cs" />
-    <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

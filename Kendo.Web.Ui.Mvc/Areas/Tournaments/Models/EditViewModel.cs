@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Models
 {
-    public class RegisterViewModel
+    public class EditViewModel
     {
         public _RegistrationViewModel Registration { get; set; }
     }

@@ -4,6 +4,7 @@ using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Interfaces.Services;
 using Kendo.Web.Ui.Mvc.Areas.Tournaments.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,6 +12,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
 {
     public class RegistrationController : Controller
     {
+        private const int MAX_REGISTRANT_COUNT = 20;
         private ITournamentService service;
 
         private ITournamentService Service
@@ -25,9 +27,38 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
             }
         }
 
+        public ActionResult Edit(Guid id)
+        {
+            var registration = Service.GetRegistrationById(id);
+            var model = Mapper.Instance.Map<EditViewModel>(registration);
+            model.Registration.Divisions = ListDivisionsSelectListItemsByTournamentId(model.Registration.TournamentId);
+            for (var i = model.Registration.Registrants.Count; i < MAX_REGISTRANT_COUNT; i++)
+            {
+                model.Registration.Registrants.Add(new _RegistrationViewModel.RegistrantViewModel());
+            }
+
+            return View(model);
+        }
+
         public ActionResult Register(Guid id)
         {
-            var divisions = Service.ListDivisionsByTournamentId(id)
+            var divisions = ListDivisionsSelectListItemsByTournamentId(id);
+            var registration = new _RegistrationViewModel
+            {
+                TournamentId = id,
+                Divisions = divisions,
+            };
+            var model = new RegisterViewModel
+            {
+                Registration = registration,
+            };
+
+            return View(model);
+        }
+
+        private IEnumerable<SelectListItem> ListDivisionsSelectListItemsByTournamentId(Guid tournamentId)
+        {
+            var divisions = Service.ListDivisionsByTournamentId(tournamentId)
                 .Select(i => new SelectListItem
                 {
                     Text = i.Name,
@@ -38,14 +69,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
             {
                 Text = string.Empty,
             });
-
-            var model = new RegisterViewModel
-            {
-                TournamentId = id,
-                Divisions = divisions,
-            };
-
-            return View(model);
+            return divisions;
         }
 
         [HttpPost]
@@ -61,6 +85,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         {
             var registration = Service.GetRegistrationById(id);
             var model = Mapper.Instance.Map<ConfirmViewModel>(registration);
+
             return View(model);
         }
 
