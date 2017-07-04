@@ -1,12 +1,11 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
-using Kendo.Entities;
-using Kendo.Interfaces.Repositories;
+using Kendo.Modules.Tournaments.Entities;
+using Kendo.Modules.Tournaments.Interfaces.Repositories;
 using NUnit.Framework;
-using System;
 using System.Linq;
 
-namespace Kendo.UnitTests.Repositories
+namespace Kendo.Modules.Tournaments.UnitTests.Repositories
 {
     [TestFixture]
     internal class DivisionRepositoryTests

@@ -1,10 +1,10 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts.ModelConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq.Expressions;
 
-namespace Advance.Framework.Contexts.EntityFramework.Wrappers
+namespace Advance.Framework.Contexts.EntityFramework.Wrappers.ModelConfiguration
 {
     internal class EntityTypeConfigurationWrapper<TEntity> : IEntityTypeConfiguration<TEntity>
         where TEntity : class

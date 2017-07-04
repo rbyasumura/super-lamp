@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Advance.Framework.Interfaces.Repositories
+namespace Advance.Framework.Interfaces.Contexts
 {
     public interface IQuery<TEntity> : IQueryable<TEntity>
     {

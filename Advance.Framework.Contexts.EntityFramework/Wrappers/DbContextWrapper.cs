@@ -1,4 +1,5 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts;
+using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Repositories;
 using System;
 using System.Linq;

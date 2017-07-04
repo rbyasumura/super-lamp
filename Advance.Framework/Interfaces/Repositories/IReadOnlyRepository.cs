@@ -6,7 +6,7 @@ namespace Advance.Framework.Interfaces.Repositories
 {
     public interface IReadOnlyRepository<TEntity>
     {
-        bool Exists(Guid id);
+        bool Exists<TId>(TId id);
 
         TEntity GetById<TId>(TId id);
 

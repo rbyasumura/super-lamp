@@ -1,4 +1,4 @@
-﻿namespace Advance.Framework.Interfaces.Repositories
+﻿namespace Advance.Framework.Interfaces.Contexts
 {
     public interface IEntitySet<TEntity>
     {

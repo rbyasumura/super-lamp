@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Advance.Framework.Interfaces.Repositories
+namespace Advance.Framework.Interfaces.Contexts.ModelConfiguration
 {
     public interface IEntityTypeConfiguration<TEntity>
         where TEntity : class

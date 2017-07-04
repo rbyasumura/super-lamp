@@ -1,4 +1,6 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Contexts.EntityFramework.Wrappers.ModelConfiguration;
+using Advance.Framework.Interfaces.Contexts;
+using Advance.Framework.Interfaces.Contexts.ModelConfiguration;
 using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers

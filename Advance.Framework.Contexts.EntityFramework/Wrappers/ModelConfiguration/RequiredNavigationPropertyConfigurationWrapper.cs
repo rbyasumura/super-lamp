@@ -1,7 +1,7 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 
-namespace Advance.Framework.Contexts.EntityFramework.Wrappers
+namespace Advance.Framework.Contexts.EntityFramework.Wrappers.ModelConfiguration
 {
     internal class RequiredNavigationPropertyConfigurationWrapper<TEntity, TTargetEntity> : IRequiredNavigationPropertyConfiguration<TEntity, TTargetEntity>
         where TEntity : class

@@ -1,6 +1,5 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts;
 using Advance.Framework.Modules.Contacts.Entities;
-using Advance.Framework.Modules.Core.Entities;
 
 namespace Advance.Framework.Modules.Contacts
 {

@@ -1,11 +1,11 @@
 ﻿using Advance.Framework.Repositories;
-using Kendo.Entities;
-using Kendo.Interfaces.Repositories;
+using Kendo.Modules.Tournaments.Entities;
+using Kendo.Modules.Tournaments.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Kendo.Repositories
+namespace Kendo.Modules.Tournaments.Repositories
 {
     public class DivisionRepository : RepositoryBase<Division>
             , IDivisionRepository

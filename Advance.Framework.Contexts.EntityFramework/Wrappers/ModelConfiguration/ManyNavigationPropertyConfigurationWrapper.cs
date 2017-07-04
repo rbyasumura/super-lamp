@@ -1,7 +1,8 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using System;
+using Advance.Framework.Interfaces.Contexts.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 
-namespace Advance.Framework.Contexts.EntityFramework.Wrappers
+namespace Advance.Framework.Contexts.EntityFramework.Wrappers.ModelConfiguration
 {
     internal class ManyNavigationPropertyConfigurationWrapper<TEntity, TTargetEntity> : IManyNavigationPropertyConfiguration<TEntity, TTargetEntity>
         where TEntity : class
@@ -12,6 +13,11 @@ namespace Advance.Framework.Contexts.EntityFramework.Wrappers
         public ManyNavigationPropertyConfigurationWrapper(ManyNavigationPropertyConfiguration<TEntity, TTargetEntity> manyNavigationPropertyConfiguration)
         {
             this.manyNavigationPropertyConfiguration = manyNavigationPropertyConfiguration;
+        }
+
+        public IManyToManyNavigationPropertyConfiguration WithMany()
+        {
+            return new ManyToManyNavigationPropertyConfigurationWrapper<TEntity, TTargetEntity>(manyNavigationPropertyConfiguration.WithMany());
         }
 
         public IDependentNavigationPropertyConfiguration<TTargetEntity> WithOptional()

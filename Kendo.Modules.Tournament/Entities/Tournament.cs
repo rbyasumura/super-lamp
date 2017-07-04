@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Kendo.Entities
+namespace Kendo.Modules.Tournaments.Entities
 {
     public class Tournament
     {

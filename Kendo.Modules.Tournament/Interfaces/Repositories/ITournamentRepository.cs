@@ -1,7 +1,7 @@
 ﻿using Advance.Framework.Interfaces.Repositories;
-using Kendo.Entities;
+using Kendo.Modules.Tournaments.Entities;
 
-namespace Kendo.Interfaces.Repositories
+namespace Kendo.Modules.Tournaments.Interfaces.Repositories
 {
     public interface ITournamentRepository : IRepository<Tournament>
     {

@@ -142,10 +142,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Tournaments\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\Tournaments\Models\ConfirmViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\GetDetailViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\IndexViewModel.cs" />
     <Compile Include="Areas\Tournaments\Models\RegisterViewModel.cs" />
-    <Compile Include="Areas\Tournaments\Models\RegistrantViewModel.cs" />
     <Compile Include="Areas\Tournaments\TournamentsAreaRegistration.cs" />
     <Compile Include="Areas\Tournaments\TournamentsViewModelMappingDefinition.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -172,6 +172,7 @@
     <Content Include="Areas\Tournaments\Views\Registration\Index.cshtml" />
     <Content Include="Areas\Tournaments\Views\Registration\GetDetail.cshtml" />
     <Content Include="Areas\Tournaments\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\Tournaments\Views\Registration\Confirm.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,6 +241,10 @@
     <ProjectReference Include="..\Kendo.Contexts.EntityFramework\Kendo.Contexts.EntityFramework.csproj">
       <Project>{b843fd3c-e86c-419e-945a-9b2ff8a40eea}</Project>
       <Name>Kendo.Contexts.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kendo.Entities\Kendo.csproj">
+      <Project>{8ACF80BC-FBE1-4927-AE11-EB718FDF0B86}</Project>
+      <Name>Kendo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kendo.Modules.Tournament\Kendo.Modules.Tournaments.csproj">
       <Project>{E6BA4B31-86BF-4B68-9550-3BD15071EB3A}</Project>

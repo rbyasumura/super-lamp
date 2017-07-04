@@ -1,0 +1,32 @@
+﻿@model Kendo.Web.Ui.Mvc.Areas.Tournaments.Models.ConfirmViewModel
+
+@{
+    ViewBag.Title = "Confirm";
+}
+
+<h2>Confirm</h2>
+
+@Html.LabelFor(model => model.ClubName)
+@Html.DisplayTextFor(model => model.ClubName)
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Division</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Registrants.Count(); i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@Html.DisplayTextFor(model => model.Registrants[i].FirstName) @Html.DisplayTextFor(model => model.Registrants[i].LastName)</td>
+                <td>@Html.DisplayTextFor(model => model.Registrants[i].DivisionName)</td>
+                <td>@Model.Registrants[i].DateOfBirth.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

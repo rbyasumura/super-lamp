@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C02EA86-8DDC-45E3-9F90-4D4AEFFBBDCE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kendo.Modules.Tournaments.UnitTests</RootNamespace>
+    <AssemblyName>Kendo.Modules.Tournaments.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Repositories\DivisionRepositoryTests.cs" />
+    <Compile Include="Repositories\TournamentRepositoryTests.cs" />
+    <Compile Include="Repositories\SetUpFixture.cs" />
+    <Compile Include="TestClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Advance.Framework.ContactModule\Advance.Framework.Modules.Contacts.csproj">
+      <Project>{B087153C-3480-4EAA-9E3F-B06DECB3B69A}</Project>
+      <Name>Advance.Framework.Modules.Contacts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Contexts.EntityFramework\Advance.Framework.Contexts.EntityFramework.csproj">
+      <Project>{226A2371-DE0F-433C-B4E0-082E150B2918}</Project>
+      <Name>Advance.Framework.Contexts.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj">
+      <Project>{d8c560a1-3119-4114-b238-728d244f77f1}</Project>
+      <Name>Advance.Framework.DependencyInjection.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Loggers.log4net\Advance.Framework.Loggers.log4net.csproj">
+      <Project>{CB7B9FA6-F9E4-4292-94E6-E7925DD8ED11}</Project>
+      <Name>Advance.Framework.Loggers.log4net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
+      <Project>{75702BFE-0E36-4BB8-AF61-6DAE7C69263B}</Project>
+      <Name>Advance.Framework.Modules.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Repositories\Advance.Framework.Repositories.csproj">
+      <Project>{660D9E99-DB64-4129-8E16-12F84C771779}</Project>
+      <Name>Advance.Framework.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
+      <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
+      <Name>Advance.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kendo.Contexts.EntityFramework\Kendo.Contexts.EntityFramework.csproj">
+      <Project>{B843FD3C-E86C-419E-945A-9B2FF8A40EEA}</Project>
+      <Name>Kendo.Contexts.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kendo.Entities\Kendo.csproj">
+      <Project>{8ACF80BC-FBE1-4927-AE11-EB718FDF0B86}</Project>
+      <Name>Kendo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kendo.Modules.Tournament\Kendo.Modules.Tournaments.csproj">
+      <Project>{E6BA4B31-86BF-4B68-9550-3BD15071EB3A}</Project>
+      <Name>Kendo.Modules.Tournaments</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

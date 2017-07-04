@@ -1,9 +1,10 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Mappers;
-using Kendo.Entities;
-using Kendo.Interfaces.Repositories;
+using Advance.Framework.Repositories;
 using Kendo.Modules.Tournaments.Dtos;
+using Kendo.Modules.Tournaments.Entities;
+using Kendo.Modules.Tournaments.Interfaces.Repositories;
 using Kendo.Modules.Tournaments.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,27 @@ namespace Kendo.Modules.Tournaments.Services
 {
     public class TournamentService : ITournamentService
     {
-        public TournamentDto GetById(Guid id)
+        public RegistrationDto GetRegistrationById(Guid registrationId)
+        {
+            using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
+            {
+                var registrationRepository = unitOfWork.GetRepository<IRegistrationRepository>();
+                var registration = registrationRepository.GetById<Guid, object>(registrationId,
+                    i => i.Club,
+                    i => i.Registrants,
+                    i => i.Registrants.Select(j => j.Contact),
+                    i => i.Registrants.Select(j => j.Contact.Person),
+                    i => i.Registrants.Select(j => j.Divisions));
+                return Mapper.Instance.Map<RegistrationDto>(registration);
+            }
+        }
+
+        public TournamentDto GetTournamentById(Guid tournamentId)
         {
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
             {
                 var tournamentRepository = unitOfWork.GetRepository<ITournamentRepository>();
-                var tournament = tournamentRepository.GetById(id);
+                var tournament = tournamentRepository.GetById(tournamentId);
                 return Mapper.Instance.Map<TournamentDto>(tournament);
             }
         }
@@ -43,21 +59,20 @@ namespace Kendo.Modules.Tournaments.Services
             }
         }
 
-        public void Register(RegistrationDto registration)
+        public Guid Register(RegistrationDto dto)
         {
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
             {
-                var registrants = Mapper.Instance.Map<IEnumerable<Registrant>>(registration, opts =>
+                var registrationRepository = unitOfWork.GetRepository<IRegistrationRepository>();
+                var registration = Mapper.Instance.Map<Registration>(dto, opts =>
                 {
                     opts.Items.Add(Constants.UNIT_OF_WORK, unitOfWork);
                 });
-                var registrantRepository = unitOfWork.GetRepository<IRegistrantRepository>();
-                foreach (var registrant in registrants)
-                {
-                    registrantRepository.Add(registrant);
-                }
+                registrationRepository.Add(registration);
 
                 unitOfWork.SaveChanges();
+
+                return registration.RegistrationId;
             }
         }
     }

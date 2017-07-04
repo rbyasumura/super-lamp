@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts;
 using System.Data.Entity;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers

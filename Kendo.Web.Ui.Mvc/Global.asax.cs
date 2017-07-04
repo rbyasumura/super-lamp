@@ -19,9 +19,9 @@ namespace Kendo.Web.Ui.Mvc
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Mapper.Instance.RegisterMappingDefinitions(
-                new TournamentMappingDefinition()
-                , new TournamentsViewModelMappingDefinition()
-                );
+                new TournamentMappingDefinition(),
+                new TournamentsViewModelMappingDefinition(),
+                new KendoMappingDefinition());
         }
     }
 }

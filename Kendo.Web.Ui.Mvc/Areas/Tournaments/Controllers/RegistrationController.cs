@@ -52,14 +52,21 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         public ActionResult Register(Guid id, RegisterViewModel model)
         {
             var dto = Mapper.Instance.Map<RegistrationDto>(model);
-            Service.Register(dto);
+            var registrationId = Service.Register(dto);
 
-            return View();
+            return RedirectToAction(nameof(Confirm), new { id = registrationId });
+        }
+
+        public ActionResult Confirm(Guid id)
+        {
+            var registration = Service.GetRegistrationById(id);
+            var model = Mapper.Instance.Map<ConfirmViewModel>(registration);
+            return View(model);
         }
 
         public ActionResult GetDetail(Guid id)
         {
-            var tournament = Service.GetById(id);
+            var tournament = Service.GetTournamentById(id);
             var model = Mapper.Instance.Map<GetDetailViewModel>(tournament);
 
             return View(model);

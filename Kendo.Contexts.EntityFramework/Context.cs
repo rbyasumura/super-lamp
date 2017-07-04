@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using Advance.Framework.Contexts.EntityFramework;
-using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Interfaces.Contexts;
 using Advance.Framework.Modules.Cms;
 using Advance.Framework.Modules.Contacts;
 using Advance.Framework.Modules.Security;
+using Kendo.Modules.Tournaments;
+
+using System.Collections.Generic;
+
+using System.Configuration;
 
 namespace Kendo.Contexts.EntityFramework
 {
@@ -21,6 +25,7 @@ namespace Kendo.Contexts.EntityFramework
             modelDefinitions.Add(new ContactModelDefinition());
             modelDefinitions.Add(new SecurityModelDefinition());
             modelDefinitions.Add(new KendoModelDefinition());
+            modelDefinitions.Add(new TournamentModelDefinition());
         }
     }
 }

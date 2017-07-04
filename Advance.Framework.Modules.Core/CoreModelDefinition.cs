@@ -1,9 +1,7 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Advance.Framework.Interfaces.Repositories;
+using System;
+using Advance.Framework.Interfaces.Contexts;
 using Advance.Framework.Modules.Core.Entities;
 
 namespace Advance.Framework.Modules.Core

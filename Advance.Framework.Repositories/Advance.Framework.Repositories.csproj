@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="ContextWrapperBase.cs" />
     <Compile Include="Handlers\AuditableEntityHandler.cs" />
     <Compile Include="Handlers\PrimaryKeyHandler.cs" />

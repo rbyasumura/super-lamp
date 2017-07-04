@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Kendo.Entities
+namespace Kendo.Modules.Tournaments.Entities
 {
     public class Division
     {

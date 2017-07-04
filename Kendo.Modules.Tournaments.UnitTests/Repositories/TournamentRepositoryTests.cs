@@ -5,12 +5,13 @@ using Advance.Framework.Modules.Core.Entities;
 using Advance.Framework.Modules.Core.Interfaces.Repositories;
 using Kendo.Entities;
 using Kendo.Entities.Enums;
-using Kendo.Interfaces.Repositories;
+using Kendo.Modules.Tournaments.Entities;
+using Kendo.Modules.Tournaments.Interfaces.Repositories;
 using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace Kendo.UnitTests.Repositories
+namespace Kendo.Modules.Tournaments.UnitTests.Repositories
 {
     [TestFixture]
     internal class TournamentRepositoryTests
@@ -28,6 +29,7 @@ namespace Kendo.UnitTests.Repositories
 
                 var entity = new Tournament
                 {
+                    TournamentId = new Guid("3c469850-6cbf-48a8-a989-f1f5f13cbf8a"),
                     Name = "19th Canadian National Kendo Championships",
                     StartAt = new DateTimeOffset(new DateTime(2017, 8, 5), new TimeSpan(-4, 0, 0)),
                     EndAt = new DateTimeOffset(new DateTime(2017, 8, 6), new TimeSpan(-4, 0, 0)),
@@ -71,10 +73,10 @@ namespace Kendo.UnitTests.Repositories
                             DateOfBirth = new DateTime(1981, 12, 11),
                         },
                     },
-                    Club = new Club
-                    {
-                        Name = "Etobicoke Olympium Kendo / Iaido Club",
-                    },
+                    //Club = new Club
+                    //{
+                    //    Name = "Etobicoke Olympium Kendo / Iaido Club",
+                    //},
                     Rank = new Rank
                     {
                         RankNumber = 5,

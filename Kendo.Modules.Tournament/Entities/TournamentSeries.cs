@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kendo.Entities
+namespace Kendo.Modules.Tournaments.Entities
 {
     public class TournamentSeries
     {

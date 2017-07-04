@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts;
 using Advance.Framework.Modules.Security.Entities;
 
 namespace Advance.Framework.Modules.Security

@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts;
 using System;
 using System.Collections;
 using System.Collections.Generic;

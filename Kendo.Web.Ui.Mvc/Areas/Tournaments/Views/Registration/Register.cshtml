@@ -32,7 +32,7 @@
                     <td>@(i + 1)</td>
                     <td>@Html.TextBoxFor(model => model.Registrants[i].FirstName)</td>
                     <td>@Html.TextBoxFor(model => model.Registrants[i].LastName)</td>
-                    <td>@Html.DropDownListFor(model => model.Registrants[i].SelectedDivisionId, Model.Divisions)</td>
+                    <td>@Html.DropDownListFor(model => model.Registrants[i].SelectedDivisionIds[0], Model.Divisions)</td>
                     <td>@Html.TextBoxFor(model => model.Registrants[i].DateOfBirth)</td>
                 </tr>
             }

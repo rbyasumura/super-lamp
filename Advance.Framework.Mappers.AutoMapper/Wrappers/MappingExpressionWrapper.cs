@@ -1,8 +1,5 @@
-﻿using System;
-using Advance.Framework.Interfaces.Mappers;
-
+﻿using Advance.Framework.Interfaces.Mappers;
 using System;
-
 using System.Linq.Expressions;
 using AM = AutoMapper;
 
@@ -17,7 +14,7 @@ namespace Advance.Framework.Mappers.AutoMapper.Wrappers
             this.mappingExpression = mappingExpression;
         }
 
-        public IMappingExpression<TSource, TDestination> ForMember<TMember>(Expression<Func<TDestination, TMember>> destinationMember, Action<IMemberConfigurationExpression<TSource>> memberOptions)
+        public IMappingExpression<TSource, TDestination> ForMember<TMember>(Expression<Func<TDestination, TMember>> destinationMember, Action<IMemberConfigurationExpression<TSource, TDestination, TMember>> memberOptions)
         {
             return new MappingExpressionWrapper<TSource, TDestination>(mappingExpression.ForMember(destinationMember, opt => memberOptions(new MemberConfigurationExpressionWrapper<TSource, TDestination, TMember>(opt))));
         }

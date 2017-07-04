@@ -69,6 +69,7 @@
     <Compile Include="Wrappers\ModelConfiguration\DependentNavigationPropertyConfigurationWrapper.cs" />
     <Compile Include="Wrappers\ModelConfiguration\EntityTypeConfigurationWrapper.cs" />
     <Compile Include="Wrappers\ModelConfiguration\ManyNavigationPropertyConfigurationWrapper.cs" />
+    <Compile Include="Wrappers\ModelConfiguration\ManyToManyNavigationPropertyConfigurationWrapper.cs" />
     <Compile Include="Wrappers\ModelConfiguration\RequiredNavigationPropertyConfigurationWrapper.cs" />
     <Compile Include="Wrappers\SqlProviderServicesWrapper.cs" />
   </ItemGroup>

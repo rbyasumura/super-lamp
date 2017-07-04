@@ -1,10 +1,7 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Linq;
 using Advance.Framework.Interfaces.Mappers;
-
 using System.Collections.Generic;
-
 using AM = AutoMapper;
 
 namespace Advance.Framework.Mappers.AutoMapper.Wrappers

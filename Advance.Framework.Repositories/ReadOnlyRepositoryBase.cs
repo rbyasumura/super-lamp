@@ -1,4 +1,5 @@
 ﻿using Advance.Framework.Entities.Helpers;
+using Advance.Framework.Interfaces.Contexts;
 using Advance.Framework.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Advance.Framework.Repositories
             get;
         }
 
-        public bool Exists(Guid id)
+        public bool Exists<TId>(TId id)
         {
             throw new NotImplementedException();
         }
