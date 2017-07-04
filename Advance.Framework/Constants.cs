@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Advance.Framework.Repositories
+namespace Advance.Framework
 {
     public static class Constants
     {

@@ -1,7 +1,7 @@
-﻿using Advance.Framework.DependencyInjection.Unity;
+﻿using Advance.Framework;
+using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Mappers;
-using Advance.Framework.Repositories;
 using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Entities;
 using Kendo.Modules.Tournaments.Interfaces.Repositories;
