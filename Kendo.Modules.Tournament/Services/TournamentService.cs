@@ -1,7 +1,7 @@
 ﻿using Advance.Framework;
 using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Mappers;
+using Advance.Framework.Repositories.Interfaces;
 using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Entities;
 using Kendo.Modules.Tournaments.Interfaces.Repositories;
@@ -24,7 +24,8 @@ namespace Kendo.Modules.Tournaments.Services
                     i => i.Registrants,
                     i => i.Registrants.Select(j => j.Contact),
                     i => i.Registrants.Select(j => j.Contact.Person),
-                    i => i.Registrants.Select(j => j.Divisions));
+                    i => i.Registrants.Select(j => j.Divisions),
+                    i => i.Tournament);
                 return Mapper.Instance.Map<RegistrationDto>(registration);
             }
         }

@@ -1,6 +1,6 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Core.Interfaces.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using NUnit.Framework;
 
 namespace Advance.Framework.Modules.Core.UnitTests.Repositories

@@ -40,6 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IMapper.cs" />
+    <Compile Include="Interfaces\IMapperConfiguration.cs" />
+    <Compile Include="Interfaces\IMappingDefinition.cs" />
+    <Compile Include="Interfaces\IMappingExpression.cs" />
+    <Compile Include="Interfaces\IMappingOperationOptions.cs" />
+    <Compile Include="Interfaces\IMemberConfigurationExpression.cs" />
+    <Compile Include="Interfaces\IResolutionContext.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="MemberConfigurationExpressionBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

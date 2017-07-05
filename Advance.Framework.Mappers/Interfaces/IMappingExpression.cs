@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Advance.Framework.Interfaces.Mappers
+namespace Advance.Framework.Mappers.Interfaces
 {
     public interface IMappingExpression<TSource, TDestination>
     {

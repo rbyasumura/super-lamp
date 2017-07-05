@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using Kendo.Entities;
 using Kendo.Entities.Enums;
 using Kendo.Interfaces.Repositories;
 using NUnit.Framework;
+
+using System;
+using System.Collections.Generic;
 
 namespace Kendo.UnitTests.Repositories
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Advance.Framework.Interfaces.Mappers
+namespace Advance.Framework.Mappers.Interfaces
 {
     public interface IMapperConfiguration
     {

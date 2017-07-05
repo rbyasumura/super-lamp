@@ -1,10 +1,9 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
-namespace Advance.Framework.Interfaces.Mappers
+namespace Advance.Framework.Mappers.Interfaces
 {
     public interface IMemberConfigurationExpression<TSource, TDestination, TMember>
     {
@@ -19,5 +18,7 @@ namespace Advance.Framework.Interfaces.Mappers
 
         void ResolveUsing<TRepository, TElement, TId>(Func<TSource, IEnumerable<TId>> ids)
             where TRepository : IReadOnlyRepository<TElement>;
+
+        void ResolveUsing<TResult>(Func<TSource, TResult> resolver);
     }
 }

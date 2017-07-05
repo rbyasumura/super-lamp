@@ -63,6 +63,10 @@
       <Project>{cb7b9fa6-f9e4-4292-94e6-e7925dd8ed11}</Project>
       <Name>Advance.Framework.Loggers.log4net</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Logger\Advance.Framework.Loggers.csproj">
+      <Project>{9022D910-5D1C-4F75-81C5-094869F5907B}</Project>
+      <Name>Advance.Framework.Loggers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
       <Project>{75702BFE-0E36-4BB8-AF61-6DAE7C69263B}</Project>
       <Name>Advance.Framework.Modules.Core</Name>

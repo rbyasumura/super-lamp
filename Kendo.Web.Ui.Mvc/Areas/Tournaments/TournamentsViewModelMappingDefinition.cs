@@ -1,9 +1,8 @@
-﻿using Advance.Framework.Interfaces.Mappers;
-using Advance.Framework.Mappers;
+﻿using Advance.Framework.Mappers;
+using Advance.Framework.Mappers.Interfaces;
 using Kendo.Dtos;
 using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Web.Ui.Mvc.Areas.Tournaments.Models;
-using System;
 using System.Linq;
 
 namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
@@ -46,8 +45,11 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
                 .ForMember(dest => dest.Registration, opts => opts.MapFrom(src => src))
                 ;
             config.CreateMap<RegistrationDto, _RegistrationViewModel>()
+                .ForMember(dest => dest.ClubId, opts => opts.MapFrom(src => src.Club.ClubId))
                 ;
             config.CreateMap<RegistrantDto, _RegistrationViewModel.RegistrantViewModel>()
+                .ForMember(dest => dest.SelectedDivisionIds, opts => opts.ResolveUsing(src => src.Divisions.Select(i => i.DivisionId)))
+                .ForMember(dest => dest.Divisions, opts => opts.Ignore())
                 ;
         }
     }

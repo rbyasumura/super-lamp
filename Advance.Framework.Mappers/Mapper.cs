@@ -1,7 +1,5 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Mappers;
-using System;
-using System.Linq;
+using Advance.Framework.Mappers.Interfaces;
 
 namespace Advance.Framework.Mappers
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Advance.Framework.Interfaces.Repositories
+namespace Advance.Framework.Interfaces.Contexts.Infrastructure
 {
     [Flags]
     public enum EntityState

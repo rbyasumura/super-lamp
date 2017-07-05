@@ -1,7 +1,5 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Repositories.Interfaces;
 using Kendo.Modules.Tournaments.Entities;
-using System;
-using System.Linq;
 
 namespace Kendo.Modules.Tournaments.Interfaces.Repositories
 {

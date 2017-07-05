@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Advance.Framework.Interfaces.Repositories
+namespace Advance.Framework.Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

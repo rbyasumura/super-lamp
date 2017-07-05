@@ -1,6 +1,6 @@
-﻿using Advance.Framework.Interfaces.Entities;
-using Advance.Framework.Interfaces.Repositories;
-using Advance.Framework.Interfaces.Repositories.Handlers;
+﻿using Advance.Framework.Interfaces.Contexts.Infrastructure;
+using Advance.Framework.Interfaces.Entities;
+using Advance.Framework.Repositories.Interfaces.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

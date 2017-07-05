@@ -1,8 +1,7 @@
-﻿using Advance.Framework.Interfaces.Mappers;
-using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Mappers.Interfaces;
+using Advance.Framework.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace Advance.Framework.Mappers
@@ -30,6 +29,8 @@ namespace Advance.Framework.Mappers
         }
 
         public abstract void ResolveUsing<TResult>(Func<TSource, TDestination, TMember, IResolutionContext, TResult> resolver);
+
+        public abstract void ResolveUsing<TResult>(Func<TSource, TResult> resolver);
 
         private IEnumerable<TElement> ResolveUsing<TRepository, TElement, TId>(IEnumerable<TId> ids, IResolutionContext context)
             where TRepository : IReadOnlyRepository<TElement>

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.DependencyInjection.Unity", "Advance.Framework.DependencyInjection.Unity\Advance.Framework.DependencyInjection.Unity.csproj", "{D8C560A1-3119-4114-B238-728D244F77F1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Infrastructure", "0 - Infrastructure", "{B9646424-263D-4161-A858-571D347725EF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Core", "0 - Core", "{B9646424-263D-4161-A858-571D347725EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - IoC", "1 - IoC", "{A9E46B26-8F35-4891-BF9E-4939A0DC6BFA}"
 EndProject
@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Modules.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Modules.Contacts.UnitTests", "Advance.Framework.Modules.Contacts.UnitTests\Advance.Framework.Modules.Contacts.UnitTests.csproj", "{79108470-EB62-4BE3-A191-FAF1CCB62E9E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Implementation", "2 - Implementation", "{A2A21918-9FE4-49ED-98B5-2DAB040BFC7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Libraries", "2 - Libraries", "{A2A21918-9FE4-49ED-98B5-2DAB040BFC7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Repositories", "Advance.Framework.Repositories\Advance.Framework.Repositories.csproj", "{660D9E99-DB64-4129-8E16-12F84C771779}"
 EndProject
@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Advance.Framework", "0 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.Contexts.EntityFramework", "Kendo.Contexts.EntityFramework\Kendo.Contexts.EntityFramework.csproj", "{B843FD3C-E86C-419E-945A-9B2FF8A40EEA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1 - Base Classes", "2.1 - Base Classes", "{A19E031C-0939-4E60-A139-CF9A42FCAEE7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1 - Base Libraries", "2.1 - Base Libraries", "{A19E031C-0939-4E60-A139-CF9A42FCAEE7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2 - Library Implementation", "2.2 - Library Implementation", "{25D1BF83-7C75-4A90-AA6B-7480E3223250}"
 EndProject

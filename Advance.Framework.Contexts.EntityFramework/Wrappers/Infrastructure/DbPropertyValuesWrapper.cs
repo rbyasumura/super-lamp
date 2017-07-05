@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Interfaces.Contexts.Infrastructure;
 using System.Data.Entity.Infrastructure;
 
 namespace Advance.Framework.Contexts.EntityFramework.Wrappers

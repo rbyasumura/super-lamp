@@ -1,5 +1,5 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using Kendo.Modules.Tournaments.Entities;
 using Kendo.Modules.Tournaments.Interfaces.Repositories;
 using NUnit.Framework;

@@ -1,4 +1,4 @@
-﻿namespace Advance.Framework.Interfaces.Loggers
+﻿namespace Advance.Framework.Loggers.Interfaces
 {
     public interface ILogger
     {

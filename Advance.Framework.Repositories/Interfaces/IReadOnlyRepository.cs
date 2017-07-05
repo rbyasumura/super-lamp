@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Advance.Framework.Interfaces.Repositories
+namespace Advance.Framework.Repositories.Interfaces
 {
     public interface IReadOnlyRepository<TEntity>
     {

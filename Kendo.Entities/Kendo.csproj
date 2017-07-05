@@ -62,6 +62,10 @@
       <Project>{b087153c-3480-4eaa-9e3f-b06decb3b69a}</Project>
       <Name>Advance.Framework.Modules.Contacts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Mappers\Advance.Framework.Mappers.csproj">
+      <Project>{A512D67E-9645-41B7-AF5C-5436199A3F2C}</Project>
+      <Name>Advance.Framework.Mappers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework.Modules.Core\Advance.Framework.Modules.Core.csproj">
       <Project>{75702BFE-0E36-4BB8-AF61-6DAE7C69263B}</Project>
       <Name>Advance.Framework.Modules.Core</Name>

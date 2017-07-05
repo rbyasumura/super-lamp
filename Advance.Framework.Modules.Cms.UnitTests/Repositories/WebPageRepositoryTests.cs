@@ -1,7 +1,7 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Cms.Entities;
 using Advance.Framework.Modules.Cms.Interfaces.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using NUnit.Framework;
 using System.Linq;
 

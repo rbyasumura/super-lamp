@@ -1,8 +1,8 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Contacts.Entities;
 using Advance.Framework.Modules.Core.Entities;
 using Advance.Framework.Modules.Core.Interfaces.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using Kendo.Entities;
 using Kendo.Entities.Enums;
 using Kendo.Modules.Tournaments.Entities;

@@ -19,11 +19,14 @@
         @for (var i = 0; i < Model.Registrants.Count; i++)
             {
             <tr>
-                <td>@(i + 1)</td>
+                <td>
+                    @(i + 1)
+                    @Html.HiddenFor(model => model.Registrants[i].RegistrantId)
+                </td>
                 <td>@Html.TextBoxFor(model => model.Registrants[i].FirstName)</td>
                 <td>@Html.TextBoxFor(model => model.Registrants[i].LastName)</td>
-                <td>@Html.DropDownListFor(model => model.Registrants[i].SelectedDivisionIds[0], Model.Divisions)</td>
-                <td>@Html.TextBoxFor(model => model.Registrants[i].DateOfBirth)</td>
+                <td>@Html.DropDownListFor(model => model.Registrants[i].SelectedDivisionIds[0], Model.Registrants[i].Divisions)</td>
+                <td>@Html.TextBoxFor(model => model.Registrants[i].DateOfBirth, "{0:d}")</td>
             </tr>
         }
     </tbody>

@@ -1,11 +1,14 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Repositories;
 using Advance.Framework.Modules.Contacts.Entities;
 using Advance.Framework.Modules.Contacts.Interfaces.Repositories;
+using System.Linq;
+using System;
+using Advance.Framework.Modules.Core.Entities;
+using Advance.Framework.Repositories.Interfaces;
 using NUnit.Framework;
+
 using System;
 using System.Linq;
-using Advance.Framework.Modules.Core.Entities;
 
 namespace Advance.Framework.Modules.Contacts.UnitTests.Repositories
 {

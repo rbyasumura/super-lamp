@@ -48,8 +48,6 @@
     <Compile Include="Interfaces\Entities\ISoftDeletableEntity.cs" />
     <Compile Include="Interfaces\Entities\ITimestampableEntity.cs" />
     <Compile Include="Interfaces\Entities\IVersionedEntity.cs" />
-    <Compile Include="Interfaces\Loggers\ILogger.cs" />
-    <Compile Include="Interfaces\Mappers\IMapper.cs" />
     <Compile Include="Interfaces\Contexts\IContextWrapper.cs" />
     <Compile Include="Interfaces\Contexts\ModelConfiguration\IDependentNavigationPropertyConfiguration.cs" />
     <Compile Include="Interfaces\Contexts\IEntitySet.cs" />
@@ -60,19 +58,9 @@
     <Compile Include="Interfaces\Contexts\Infrastructure\IPropertyValues.cs" />
     <Compile Include="Interfaces\Contexts\IQuery.cs" />
     <Compile Include="Interfaces\Contexts\ModelConfiguration\IRequiredNavigationPropertyConfiguration.cs" />
-    <Compile Include="Interfaces\Mappers\IMapperConfiguration.cs" />
-    <Compile Include="Interfaces\Mappers\IMappingDefinition.cs" />
-    <Compile Include="Interfaces\Mappers\IMappingExpression.cs" />
-    <Compile Include="Interfaces\Mappers\IMappingOperationOptions.cs" />
-    <Compile Include="Interfaces\Mappers\IMemberConfigurationExpression.cs" />
-    <Compile Include="Interfaces\Mappers\IResolutionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\Repositories\IArchiveRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IReadOnlyRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Contexts\Infrastructure\ITrackedEntry.cs" />
-    <Compile Include="Interfaces\Repositories\Handlers\IChangeHandler.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

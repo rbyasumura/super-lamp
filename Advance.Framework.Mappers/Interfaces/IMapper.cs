@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Advance.Framework.Interfaces.Mappers
+namespace Advance.Framework.Mappers.Interfaces
 {
     public interface IMapper
     {

@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Mappers;
+﻿using Advance.Framework.Mappers.Interfaces;
 using Advance.Framework.Modules.Contacts.Entities;
 using Advance.Framework.Modules.Core.Entities;
 using Kendo.Interfaces.Repositories;
@@ -6,7 +6,6 @@ using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Entities;
 using Kendo.Modules.Tournaments.Interfaces.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Kendo.Modules.Tournaments
@@ -28,7 +27,9 @@ namespace Kendo.Modules.Tournaments
             config.CreateMap<RegistrantDto, Contact>()
                 .ForMember(dest => dest.Person, opts => opts.MapFrom(src => src));
             config.CreateMap<RegistrantDto, Person>();
-            config.CreateMap<Registration, RegistrationDto>();
+            config.CreateMap<Registration, RegistrationDto>()
+                .ForMember(dest => dest.TournamentId, opts => opts.MapFrom(src => src.Tournament.TournamentId))
+                ;
             config.CreateMap<Registrant, RegistrantDto>()
                 .ForMember(dest => dest.FirstName, opts => opts.MapFrom(src => src.Contact.Person.FirstName))
                 .ForMember(dest => dest.LastName, opts => opts.MapFrom(src => src.Contact.Person.LastName))

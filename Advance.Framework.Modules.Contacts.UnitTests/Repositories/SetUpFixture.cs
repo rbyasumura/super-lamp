@@ -1,12 +1,12 @@
 ﻿using Advance.Framework.Contexts.EntityFramework.Wrappers;
 using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Contexts;
-using Advance.Framework.Interfaces.Loggers;
-using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Loggers.Interfaces;
 using Advance.Framework.Loggers.log4net;
 using Advance.Framework.Modules.Contacts.Interfaces.Repositories;
 using Advance.Framework.Modules.Contacts.Repositories;
 using Advance.Framework.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using Kendo.Contexts.EntityFramework;
 using NUnit.Framework;
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Advance.Framework.Interfaces.Mappers
+namespace Advance.Framework.Mappers.Interfaces
 {
-    public interface IResolutionContext
+    public interface IMappingOperationOptions
     {
         IDictionary<string, object> Items { get; }
     }

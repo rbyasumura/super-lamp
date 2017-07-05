@@ -1,6 +1,6 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Interfaces.Contexts;
-using Advance.Framework.Interfaces.Repositories;
+using Advance.Framework.Repositories.Interfaces;
 using System.Collections.Generic;
 
 namespace Advance.Framework.Repositories

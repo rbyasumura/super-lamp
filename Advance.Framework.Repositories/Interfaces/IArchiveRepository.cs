@@ -1,7 +1,7 @@
 ﻿using Advance.Framework.Interfaces.Entities;
 using System.Collections.Generic;
 
-namespace Advance.Framework.Interfaces.Repositories
+namespace Advance.Framework.Repositories.Interfaces
 {
     internal interface IArchiveRepository<TEntity> : IRepository<TEntity>
         where TEntity : ISoftDeletableEntity

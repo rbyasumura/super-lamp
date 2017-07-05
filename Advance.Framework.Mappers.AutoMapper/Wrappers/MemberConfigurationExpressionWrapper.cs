@@ -1,7 +1,5 @@
-﻿using Advance.Framework.Interfaces.Mappers;
+﻿using Advance.Framework.Mappers.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using AM = AutoMapper;
 
@@ -29,6 +27,11 @@ namespace Advance.Framework.Mappers.AutoMapper.Wrappers
         public override void ResolveUsing<TResult>(Func<TSource, TDestination, TMember, IResolutionContext, TResult> resolver)
         {
             memberConfigurationExpression.ResolveUsing((src, dest, member, context) => resolver(src, dest, member, new ResolutionContextWrapper(context)));
+        }
+
+        public override void ResolveUsing<TResult>(Func<TSource, TResult> resolver)
+        {
+            memberConfigurationExpression.ResolveUsing(src => resolver(src));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Repositories;
+﻿using Advance.Framework.Repositories.Interfaces;
 
 namespace Advance.Framework.Repositories
 {

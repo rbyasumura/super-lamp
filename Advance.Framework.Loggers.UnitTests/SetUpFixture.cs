@@ -1,5 +1,5 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Interfaces.Loggers;
+using Advance.Framework.Loggers.Interfaces;
 using Advance.Framework.Loggers.log4net;
 using NUnit.Framework;
 

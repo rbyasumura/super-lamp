@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Interfaces.Mappers;
+﻿using Advance.Framework.Mappers.Interfaces;
 using System;
 using System.Linq.Expressions;
 using AM = AutoMapper;

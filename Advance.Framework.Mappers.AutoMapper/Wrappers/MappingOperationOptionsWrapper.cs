@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Advance.Framework.Interfaces.Mappers;
+﻿using Advance.Framework.Mappers.Interfaces;
 using System.Collections.Generic;
 using AM = AutoMapper;
 
