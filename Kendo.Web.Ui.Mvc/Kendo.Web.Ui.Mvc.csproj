@@ -238,6 +238,10 @@
       <Project>{A512D67E-9645-41B7-AF5C-5436199A3F2C}</Project>
       <Name>Advance.Framework.Mappers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Advance.Framework.Web.Ui.Mvc\Advance.Framework.Web.Ui.Mvc.csproj">
+      <Project>{703f8c47-0925-46fa-98f3-ad2b67ae083b}</Project>
+      <Name>Advance.Framework.Web.Ui.Mvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Advance.Framework\Advance.Framework.csproj">
       <Project>{DF833EE4-96F7-4AAD-95FD-F729CAA1619E}</Project>
       <Name>Advance.Framework</Name>

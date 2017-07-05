@@ -1,4 +1,5 @@
-﻿using Advance.Framework.Mappers;
+﻿using Advance.Framework.DependencyInjection.Unity;
+using Advance.Framework.Mappers.Interfaces;
 using Kendo.Modules.Tournaments;
 using Kendo.Web.Ui.Mvc.Areas.Tournaments;
 using System;
@@ -11,6 +12,20 @@ namespace Kendo.Web.Ui.Mvc
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private IMapper mapper;
+
+        private IMapper Mapper
+        {
+            get
+            {
+                if (mapper == null)
+                {
+                    mapper = Container.Instance.Resolve<IMapper>();
+                }
+                return mapper;
+            }
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,7 +33,7 @@ namespace Kendo.Web.Ui.Mvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Mapper.Instance.RegisterMappingDefinitions(
+            Mapper.RegisterMappingDefinitions(
                 new TournamentMappingDefinition(),
                 new TournamentsViewModelMappingDefinition(),
                 new KendoMappingDefinition());

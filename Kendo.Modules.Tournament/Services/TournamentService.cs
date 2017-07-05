@@ -1,6 +1,6 @@
 ﻿using Advance.Framework;
 using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Mappers;
+using Advance.Framework.Mappers.Interfaces;
 using Advance.Framework.Repositories.Interfaces;
 using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Entities;
@@ -14,6 +14,20 @@ namespace Kendo.Modules.Tournaments.Services
 {
     public class TournamentService : ITournamentService
     {
+        private IMapper mapper;
+
+        private IMapper Mapper
+        {
+            get
+            {
+                if (mapper == null)
+                {
+                    mapper = Container.Instance.Resolve<IMapper>();
+                }
+                return mapper;
+            }
+        }
+
         public RegistrationDto GetRegistrationById(Guid registrationId)
         {
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
@@ -26,7 +40,7 @@ namespace Kendo.Modules.Tournaments.Services
                     i => i.Registrants.Select(j => j.Contact.Person),
                     i => i.Registrants.Select(j => j.Divisions),
                     i => i.Tournament);
-                return Mapper.Instance.Map<RegistrationDto>(registration);
+                return Mapper.Map<RegistrationDto>(registration);
             }
         }
 
@@ -36,7 +50,7 @@ namespace Kendo.Modules.Tournaments.Services
             {
                 var tournamentRepository = unitOfWork.GetRepository<ITournamentRepository>();
                 var tournament = tournamentRepository.GetById(tournamentId);
-                return Mapper.Instance.Map<TournamentDto>(tournament);
+                return Mapper.Map<TournamentDto>(tournament);
             }
         }
 
@@ -46,7 +60,7 @@ namespace Kendo.Modules.Tournaments.Services
             {
                 var tournamentRepository = unitOfWork.GetRepository<ITournamentRepository>();
                 var tournaments = tournamentRepository.ListAll();
-                return Mapper.Instance.Map<TournamentDto>(tournaments);
+                return Mapper.Map<TournamentDto>(tournaments);
             }
         }
 
@@ -56,7 +70,7 @@ namespace Kendo.Modules.Tournaments.Services
             {
                 var divisionRepository = unitOfWork.GetRepository<IDivisionRepository>();
                 var divisions = divisionRepository.ListByTournamentId(tournamentId);
-                return Mapper.Instance.Map<DivisionDto>(divisions);
+                return Mapper.Map<DivisionDto>(divisions);
             }
         }
 
@@ -65,7 +79,7 @@ namespace Kendo.Modules.Tournaments.Services
             using (var unitOfWork = Container.Instance.Resolve<IUnitOfWork>())
             {
                 var registrationRepository = unitOfWork.GetRepository<IRegistrationRepository>();
-                var registration = Mapper.Instance.Map<Registration>(dto, opts =>
+                var registration = Mapper.Map<Registration>(dto, opts =>
                 {
                     opts.Items.Add(Constants.UNIT_OF_WORK, unitOfWork);
                 });

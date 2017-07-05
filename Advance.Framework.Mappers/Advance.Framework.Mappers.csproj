@@ -47,7 +47,6 @@
     <Compile Include="Interfaces\IMappingOperationOptions.cs" />
     <Compile Include="Interfaces\IMemberConfigurationExpression.cs" />
     <Compile Include="Interfaces\IResolutionContext.cs" />
-    <Compile Include="Mapper.cs" />
     <Compile Include="MemberConfigurationExpressionBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

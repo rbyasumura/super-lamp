@@ -1,5 +1,5 @@
 ﻿using Advance.Framework.DependencyInjection.Unity;
-using Advance.Framework.Mappers;
+using Advance.Framework.Mappers.Interfaces;
 using Kendo.Modules.Tournaments.Dtos;
 using Kendo.Modules.Tournaments.Interfaces.Services;
 using Kendo.Web.Ui.Mvc.Areas.Tournaments.Models;
@@ -14,6 +14,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
     {
         private const int MAX_REGISTRANT_COUNT = 20;
         private IEnumerable<DivisionDto> divisions;
+        private IMapper mapper;
         private ITournamentService service;
 
         private IEnumerable<DivisionDto> Divisions
@@ -25,6 +26,17 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
                     divisions = Service.ListDivisionsByTournamentId(TournamentId);
                 }
                 return divisions;
+            }
+        }
+        private IMapper Mapper
+        {
+            get
+            {
+                if (mapper == null)
+                {
+                    mapper = Container.Instance.Resolve<IMapper>();
+                }
+                return mapper;
             }
         }
         private ITournamentService Service
@@ -43,7 +55,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         public ActionResult Confirm(Guid id)
         {
             var registration = Service.GetRegistrationById(id);
-            var model = Mapper.Instance.Map<ConfirmViewModel>(registration);
+            var model = Mapper.Map<ConfirmViewModel>(registration);
 
             return View(model);
         }
@@ -53,7 +65,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
             var registration = Service.GetRegistrationById(id);
             TournamentId = registration.TournamentId;
 
-            var model = Mapper.Instance.Map<EditViewModel>(registration);
+            var model = Mapper.Map<EditViewModel>(registration);
             var divisions = ListDivisionsSelectListItems();
             for (var i = 0; i < MAX_REGISTRANT_COUNT; i++)
             {
@@ -83,7 +95,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         public ActionResult GetDetail(Guid id)
         {
             var tournament = Service.GetTournamentById(id);
-            var model = Mapper.Instance.Map<GetDetailViewModel>(tournament);
+            var model = Mapper.Map<GetDetailViewModel>(tournament);
 
             return View(model);
         }
@@ -91,7 +103,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         public ActionResult Index()
         {
             var tournaments = Service.ListAll();
-            var model = Mapper.Instance.Map<IndexViewModel>(tournaments);
+            var model = Mapper.Map<IndexViewModel>(tournaments);
 
             return View(model);
         }
@@ -124,7 +136,7 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments.Controllers
         [HttpPost]
         public ActionResult Register(Guid id, RegisterViewModel model)
         {
-            var dto = Mapper.Instance.Map<RegistrationDto>(model);
+            var dto = Mapper.Map<RegistrationDto>(model);
             var registrationId = Service.Register(dto);
 
             return RedirectToAction(nameof(Confirm), new { id = registrationId });

@@ -10,7 +10,7 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.Partial("_Registration", Model.Registration)
+    @Html.PartialFor(model => model.Registration, "_Registration")
 
     <input type="submit" value="Submit" />
 }

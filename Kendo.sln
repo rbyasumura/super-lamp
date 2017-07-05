@@ -79,6 +79,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Pre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kendo.Modules.Tournaments.UnitTests", "Kendo.Modules.Tournaments.UnitTests\Kendo.Modules.Tournaments.UnitTests.csproj", "{7C02EA86-8DDC-45E3-9F90-4D4AEFFBBDCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advance.Framework.Web.Ui.Mvc", "Advance.Framework.Web.Ui.Mvc\Advance.Framework.Web.Ui.Mvc.csproj", "{703F8C47-0925-46FA-98F3-AD2B67AE083B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,10 @@ Global
 		{7C02EA86-8DDC-45E3-9F90-4D4AEFFBBDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C02EA86-8DDC-45E3-9F90-4D4AEFFBBDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C02EA86-8DDC-45E3-9F90-4D4AEFFBBDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703F8C47-0925-46FA-98F3-AD2B67AE083B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703F8C47-0925-46FA-98F3-AD2B67AE083B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703F8C47-0925-46FA-98F3-AD2B67AE083B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703F8C47-0925-46FA-98F3-AD2B67AE083B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +217,6 @@ Global
 		{5C6779DF-EE1A-411D-8883-A5BD8957E6AA} = {25D1BF83-7C75-4A90-AA6B-7480E3223250}
 		{A512D67E-9645-41B7-AF5C-5436199A3F2C} = {A19E031C-0939-4E60-A139-CF9A42FCAEE7}
 		{7C02EA86-8DDC-45E3-9F90-4D4AEFFBBDCE} = {6B199944-1B1F-4AB1-A6F2-88F5B65414E9}
+		{703F8C47-0925-46FA-98F3-AD2B67AE083B} = {25D1BF83-7C75-4A90-AA6B-7480E3223250}
 	EndGlobalSection
 EndGlobal

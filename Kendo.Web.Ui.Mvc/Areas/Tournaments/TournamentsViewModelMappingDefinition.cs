@@ -1,4 +1,4 @@
-﻿using Advance.Framework.Mappers;
+﻿using Advance.Framework.DependencyInjection.Unity;
 using Advance.Framework.Mappers.Interfaces;
 using Kendo.Dtos;
 using Kendo.Modules.Tournaments.Dtos;
@@ -9,12 +9,26 @@ namespace Kendo.Web.Ui.Mvc.Areas.Tournaments
 {
     public class TournamentsViewModelMappingDefinition : IMappingDefinition
     {
+        private IMapper mapper;
+
+        private IMapper Mapper
+        {
+            get
+            {
+                if (mapper == null)
+                {
+                    mapper = Container.Instance.Resolve<IMapper>();
+                }
+                return mapper;
+            }
+        }
+
         public void Initialize(IMapperConfiguration config)
         {
             config.CreateMap<TournamentDto, IndexViewModel>();
             config.CreateMap<TournamentDto, GetDetailViewModel>();
             config.CreateMap<RegisterViewModel, RegistrationDto>()
-                .ConvertUsing(src => Mapper.Instance.Map<RegistrationDto>(src.Registration))
+                .ConvertUsing(src => Mapper.Map<RegistrationDto>(src.Registration))
                 ;
             config.CreateMap<_RegistrationViewModel, RegistrationDto>()
                 .BeforeMap((src, dest) =>
